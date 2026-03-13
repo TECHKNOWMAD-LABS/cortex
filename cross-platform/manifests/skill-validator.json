@@ -1,0 +1,114 @@
+{
+  "name": "skill-validator",
+  "version": "1.0.0",
+  "description": "Validates Claude Code skill structure, frontmatter, scripts, and references against the canonical skill specification. Catches errors before packaging.",
+  "author": "TECHKNOWMAD LABS",
+  "license": "MIT",
+  "repository": "https://github.com/TECHKNOWMAD-LABS/cortex/tree/main/skills/skill-validator",
+  "capabilities": [
+    {
+      "name": "validate_skill",
+      "description": "Validate a skill directory against the canonical specification",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "skill_path": {
+            "type": "string",
+            "description": "Path to skill directory"
+          },
+          "strict": {
+            "type": "boolean",
+            "default": true
+          }
+        },
+        "required": [
+          "skill_path"
+        ]
+      },
+      "output_schema": {
+        "type": "object",
+        "properties": {
+          "valid": {
+            "type": "boolean"
+          },
+          "errors": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            }
+          },
+          "warnings": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            }
+          },
+          "score": {
+            "type": "number"
+          }
+        }
+      }
+    }
+  ],
+  "platforms": {
+    "claude_skill": {
+      "entry_point": "SKILL.md",
+      "triggers": [
+        "validates",
+        "claude",
+        "code",
+        "skill",
+        "structure",
+        "frontmatter",
+        "scripts",
+        "references",
+        "canonical",
+        "specification",
+        "catches",
+        "errors",
+        "packaging"
+      ]
+    },
+    "mcp_server": {
+      "transport": "stdio",
+      "entry_point": "mcp/skill-validator/server.py",
+      "command": "uv",
+      "args": [
+        "--directory",
+        "mcp/skill-validator",
+        "run",
+        "python",
+        "server.py"
+      ]
+    },
+    "langchain": {
+      "tool_class": "SkillValidatorTool",
+      "module_path": "langchain.skill_validator.tools"
+    },
+    "crewai": {
+      "tool_class": "SkillValidatorTool",
+      "module_path": "crewai.skill_validator.tools"
+    },
+    "openai_gpt": {
+      "action_schema_url": "https://api.techknowmad.ai/skills/skill-validator/openapi.json",
+      "openapi_spec": "openai/skill-validator/openapi.json"
+    },
+    "github_copilot": {
+      "mcp_config": {
+        "command": "uv",
+        "args": [
+          "--directory",
+          "mcp/skill-validator",
+          "run",
+          "python",
+          "server.py"
+        ]
+      }
+    }
+  },
+  "dependencies": {
+    "python": ">=3.12",
+    "packages": [],
+    "system": []
+  }
+}
