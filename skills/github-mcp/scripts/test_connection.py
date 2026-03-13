@@ -18,6 +18,24 @@ import os
 import sys
 from pathlib import Path
 from datetime import datetime
+from urllib.parse import urlparse
+
+
+def _validate_github_url(url: str) -> None:
+    """
+    Validate URL points to GitHub API only.
+    
+    Args:
+        url: The URL to validate
+        
+    Raises:
+        ValueError: If URL does not point to api.github.com via HTTPS
+    """
+    parsed = urlparse(url)
+    if parsed.scheme != "https":
+        raise ValueError(f"Only HTTPS allowed, got: {parsed.scheme}")
+    if parsed.hostname != "api.github.com":
+        raise ValueError(f"Only api.github.com allowed, got: {parsed.hostname}")
 
 
 def load_env_file(env_path=".env"):
@@ -69,10 +87,12 @@ def verify_token(token):
         "User-Agent": "github-mcp-verify/0.1.0",
     }
 
-    # SECURITY: URL validated to api.github.com only
+    url = "https://api.github.com/user"
+    _validate_github_url(url)
+    
     # Request user info
     req = urllib.request.Request(
-        "https://api.github.com/user",
+        url,
         headers=headers,
     )
 
@@ -114,9 +134,11 @@ def get_rate_limit(token):
         "User-Agent": "github-mcp-verify/0.1.0",
     }
 
-    # SECURITY: URL validated to api.github.com only
+    url = "https://api.github.com/rate_limit"
+    _validate_github_url(url)
+    
     req = urllib.request.Request(
-        "https://api.github.com/rate_limit",
+        url,
         headers=headers,
     )
 
