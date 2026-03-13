@@ -1,0 +1,127 @@
+{
+  "name": "dev-lifecycle-engine",
+  "version": "1.0.0",
+  "description": "Manages the full software development lifecycle from planning through deployment. Tracks phases, gates, artifacts, and provides automated status reporting across the entire pipeline.",
+  "author": "TECHKNOWMAD LABS",
+  "license": "MIT",
+  "repository": "https://github.com/TECHKNOWMAD-LABS/cortex/tree/main/skills/dev-lifecycle-engine",
+  "capabilities": [
+    {
+      "name": "manage_lifecycle",
+      "description": "Track and manage software development lifecycle phases and gates",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "project": {
+            "type": "string",
+            "description": "Project identifier"
+          },
+          "action": {
+            "type": "string",
+            "enum": [
+              "status",
+              "advance",
+              "gate-check",
+              "report"
+            ],
+            "description": "Lifecycle action"
+          },
+          "phase": {
+            "type": "string",
+            "description": "Target phase (planning, development, testing, staging, production)"
+          }
+        },
+        "required": [
+          "project",
+          "action"
+        ]
+      },
+      "output_schema": {
+        "type": "object",
+        "properties": {
+          "current_phase": {
+            "type": "string"
+          },
+          "gates_passed": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "blockers": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            }
+          },
+          "report": {
+            "type": "object"
+          }
+        }
+      }
+    }
+  ],
+  "platforms": {
+    "claude_skill": {
+      "entry_point": "SKILL.md",
+      "triggers": [
+        "manages",
+        "full",
+        "software",
+        "development",
+        "lifecycle",
+        "planning",
+        "through",
+        "deployment",
+        "tracks",
+        "phases",
+        "gates",
+        "artifacts",
+        "provides",
+        "status",
+        "reporting"
+      ]
+    },
+    "mcp_server": {
+      "transport": "stdio",
+      "entry_point": "mcp/dev-lifecycle-engine/server.py",
+      "command": "uv",
+      "args": [
+        "--directory",
+        "mcp/dev-lifecycle-engine",
+        "run",
+        "python",
+        "server.py"
+      ]
+    },
+    "langchain": {
+      "tool_class": "DevLifecycleEngineTool",
+      "module_path": "langchain.dev_lifecycle_engine.tools"
+    },
+    "crewai": {
+      "tool_class": "DevLifecycleEngineTool",
+      "module_path": "crewai.dev_lifecycle_engine.tools"
+    },
+    "openai_gpt": {
+      "action_schema_url": "https://api.techknowmad.ai/skills/dev-lifecycle-engine/openapi.json",
+      "openapi_spec": "openai/dev-lifecycle-engine/openapi.json"
+    },
+    "github_copilot": {
+      "mcp_config": {
+        "command": "uv",
+        "args": [
+          "--directory",
+          "mcp/dev-lifecycle-engine",
+          "run",
+          "python",
+          "server.py"
+        ]
+      }
+    }
+  },
+  "dependencies": {
+    "python": ">=3.12",
+    "packages": [],
+    "system": []
+  }
+}
