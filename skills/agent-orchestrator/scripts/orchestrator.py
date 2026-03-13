@@ -213,10 +213,10 @@ class AgentSimulator:
         This is a simulator; in real usage, you'd call actual agent API here.
         """
         # Simulate processing time
-        time.sleep(random.uniform(0.1, 0.5))
+        time.sleep(random.uniform(0.1, 0.5))  # nosec B311 - simulation only, not security-sensitive
 
         # Simulate occasional failures
-        if random.random() < self.failure_rate:
+        if random.random() < self.failure_rate:  # nosec B311 - simulation only, not security-sensitive
             return False, {}, "Simulated agent failure"
 
         # Return mock outputs
@@ -356,7 +356,7 @@ class Orchestrator:
         retries = self.retry_counts[task_id]
 
         if retries < task.retries:
-            backoff = min(2 ** retries, 32) + random.uniform(0, 0.2 * 2 ** retries)
+            backoff = min(2 ** retries, 32) + random.uniform(0, 0.2 * 2 ** retries)  # nosec B311 - simulation only, not security-sensitive
             logging.warning(
                 f"✗ Task {task_id} failed: {error}. "
                 f"Retrying in {backoff:.1f}s ({retries + 1}/{task.retries})"
