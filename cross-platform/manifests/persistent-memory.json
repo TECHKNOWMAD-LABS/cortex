@@ -1,0 +1,135 @@
+{
+  "name": "persistent-memory",
+  "version": "1.0.0",
+  "description": "Persistent key-value memory system for AI agents. Stores, retrieves, and manages structured knowledge across sessions with TTL, tagging, and semantic search support.",
+  "author": "TECHKNOWMAD LABS",
+  "license": "MIT",
+  "repository": "https://github.com/TECHKNOWMAD-LABS/cortex/tree/main/skills/persistent-memory",
+  "capabilities": [
+    {
+      "name": "memory_operation",
+      "description": "Store, retrieve, search, or manage persistent memory entries",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "action": {
+            "type": "string",
+            "enum": [
+              "store",
+              "retrieve",
+              "search",
+              "delete",
+              "list"
+            ],
+            "description": "Memory operation"
+          },
+          "key": {
+            "type": "string",
+            "description": "Memory key"
+          },
+          "value": {
+            "type": "object",
+            "description": "Value to store"
+          },
+          "query": {
+            "type": "string",
+            "description": "Search query"
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Tags for filtering"
+          },
+          "ttl": {
+            "type": "integer",
+            "description": "Time-to-live in seconds"
+          }
+        },
+        "required": [
+          "action"
+        ]
+      },
+      "output_schema": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string"
+          },
+          "data": {
+            "type": "object"
+          },
+          "results": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "platforms": {
+    "claude_skill": {
+      "entry_point": "SKILL.md",
+      "triggers": [
+        "persistent",
+        "key-value",
+        "memory",
+        "system",
+        "agents",
+        "stores",
+        "retrieves",
+        "manages",
+        "knowledge",
+        "sessions",
+        "tagging",
+        "semantic",
+        "search",
+        "support"
+      ]
+    },
+    "mcp_server": {
+      "transport": "stdio",
+      "entry_point": "mcp/persistent-memory/server.py",
+      "command": "uv",
+      "args": [
+        "--directory",
+        "mcp/persistent-memory",
+        "run",
+        "python",
+        "server.py"
+      ]
+    },
+    "langchain": {
+      "tool_class": "PersistentMemoryTool",
+      "module_path": "langchain.persistent_memory.tools"
+    },
+    "crewai": {
+      "tool_class": "PersistentMemoryTool",
+      "module_path": "crewai.persistent_memory.tools"
+    },
+    "openai_gpt": {
+      "action_schema_url": "https://api.techknowmad.ai/skills/persistent-memory/openapi.json",
+      "openapi_spec": "openai/persistent-memory/openapi.json"
+    },
+    "github_copilot": {
+      "mcp_config": {
+        "command": "uv",
+        "args": [
+          "--directory",
+          "mcp/persistent-memory",
+          "run",
+          "python",
+          "server.py"
+        ]
+      }
+    }
+  },
+  "dependencies": {
+    "python": ">=3.12",
+    "packages": [],
+    "system": []
+  }
+}
