@@ -1,0 +1,154 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "github-mcp API",
+    "version": "1.0.0",
+    "description": "GitHub API integration via MCP. Manages repositories, files, branches, pull requests, issues, and releases programmatically without browser automation."
+  },
+  "servers": [
+    {
+      "url": "https://api.techknowmad.ai/skills/github-mcp"
+    }
+  ],
+  "paths": {
+    "/github_manage_repo": {
+      "post": {
+        "operationId": "github_manage_repo",
+        "summary": "Create, update, and manage GitHub repositories and their settings",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "owner": {
+                    "type": "string",
+                    "description": "Repository owner"
+                  },
+                  "repo": {
+                    "type": "string",
+                    "description": "Repository name"
+                  },
+                  "action": {
+                    "type": "string",
+                    "enum": [
+                      "get",
+                      "create",
+                      "update",
+                      "list"
+                    ],
+                    "description": "Repository action"
+                  }
+                },
+                "required": [
+                  "owner",
+                  "repo",
+                  "action"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/github_manage_files": {
+      "post": {
+        "operationId": "github_manage_files",
+        "summary": "Create, read, update, and delete files in GitHub repositories via API",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "owner": {
+                    "type": "string"
+                  },
+                  "repo": {
+                    "type": "string"
+                  },
+                  "path": {
+                    "type": "string",
+                    "description": "File path in repository"
+                  },
+                  "action": {
+                    "type": "string",
+                    "enum": [
+                      "get",
+                      "create",
+                      "update",
+                      "delete"
+                    ]
+                  },
+                  "content": {
+                    "type": "string",
+                    "description": "File content (for create/update)"
+                  },
+                  "message": {
+                    "type": "string",
+                    "description": "Commit message"
+                  },
+                  "branch": {
+                    "type": "string",
+                    "default": "main"
+                  }
+                },
+                "required": [
+                  "owner",
+                  "repo",
+                  "path",
+                  "action"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string"
+                    },
+                    "sha": {
+                      "type": "string"
+                    },
+                    "url": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
