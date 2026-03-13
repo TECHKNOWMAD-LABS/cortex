@@ -1,0 +1,114 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "security-audit API",
+    "version": "1.0.0",
+    "description": "Automated security scanning for code repositories. Runs bandit (Python SAST), semgrep (multi-language static analysis), and secret detection to produce machine-readable reports."
+  },
+  "servers": [
+    {
+      "url": "https://api.techknowmad.ai/skills/security-audit"
+    }
+  ],
+  "paths": {
+    "/security_scan": {
+      "post": {
+        "operationId": "security_scan",
+        "summary": "Run a full security scan on a target directory with bandit, semgrep, and secret detection",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "target": {
+                    "type": "string",
+                    "description": "Directory path to scan"
+                  },
+                  "output": {
+                    "type": "string",
+                    "description": "Output path for the report"
+                  },
+                  "format": {
+                    "type": "string",
+                    "enum": [
+                      "json",
+                      "markdown",
+                      "both"
+                    ],
+                    "default": "both"
+                  },
+                  "severity_threshold": {
+                    "type": "string",
+                    "enum": [
+                      "critical",
+                      "high",
+                      "medium",
+                      "low"
+                    ],
+                    "default": "low"
+                  }
+                },
+                "required": [
+                  "target"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "pass",
+                        "warn",
+                        "fail"
+                      ]
+                    },
+                    "summary": {
+                      "type": "object",
+                      "properties": {
+                        "critical": {
+                          "type": "integer"
+                        },
+                        "high": {
+                          "type": "integer"
+                        },
+                        "medium": {
+                          "type": "integer"
+                        },
+                        "low": {
+                          "type": "integer"
+                        },
+                        "secrets_detected": {
+                          "type": "integer"
+                        }
+                      }
+                    },
+                    "findings": {
+                      "type": "array",
+                      "items": {
+                        "type": "object"
+                      }
+                    },
+                    "report_path": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
