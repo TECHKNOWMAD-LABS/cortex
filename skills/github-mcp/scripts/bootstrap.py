@@ -308,6 +308,7 @@ if __name__ == "__main__":
 
 def create_readme(project_dir, project_name):
     """Create README.md with setup instructions."""
+    # nosec B608 - markdown generation, not SQL injection
     content = f"""# {project_name}
 
 A GitHub MCP server for model context protocol integration.
