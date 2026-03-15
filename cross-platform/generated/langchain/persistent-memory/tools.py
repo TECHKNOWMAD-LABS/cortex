@@ -8,19 +8,17 @@ import json
 from pydantic import BaseModel, Field
 from langchain_core.tools import BaseTool
 
-class MemoryOperationToolInput(BaseModel):
-    action: str = Field(description="Memory operation")
+class Memory_operationToolInput(BaseModel):
+    operation: str = Field(description="Operation: store, retrieve, search, delete")
     key: str = Field(description="Memory key")
-    value: dict = Field(description="Value to store")
-    query: str = Field(description="Search query")
-    tags: list = Field(description="Tags for filtering")
-    ttl: int = Field(description="Time-to-live in seconds")
+    value: str = Field(description="Value to store")
+    query: str = Field(description="Search query for FTS5")
 
 
-class MemoryOperationTool(BaseTool):
+class Memory_operationTool(BaseTool):
     name: str = "memory_operation"
-    description: str = "Store, retrieve, search, or manage persistent memory entries"
-    args_schema: type[BaseModel] = MemoryOperationToolInput
+    description: str = "Store, retrieve, or search persistent memory entries"
+    args_schema: type[BaseModel] = Memory_operationToolInput
 
     def _run(self, **kwargs) -> str:
         from skills.persistent_memory import execute_sync
@@ -34,4 +32,4 @@ class MemoryOperationTool(BaseTool):
 
 def get_all_tools() -> list[BaseTool]:
     """Return all tools for this skill."""
-    return [MemoryOperationTool()]
+    return [Memory_operationTool()]
