@@ -1,0 +1,81 @@
+{
+  "name": "mlops-standards",
+  "version": "1.0.0",
+  "description": "ML operations best practices enforcement covering experiment tracking, model versioning, CI/CD for ML, and deployment standards.",
+  "author": "TECHKNOWMAD LABS",
+  "license": "MIT",
+  "repository": "https://github.com/TECHKNOWMAD-LABS/cortex/tree/main/skills/mlops-standards",
+  "capabilities": [
+    {
+      "name": "audit_mlops",
+      "description": "Audit ML project for MLOps standards compliance",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "project_path": {
+            "type": "string",
+            "description": "Path to ML project"
+          },
+          "standards": {
+            "type": "array",
+            "description": "Standards to check against"
+          },
+          "level": {
+            "type": "string",
+            "description": "Maturity level to target"
+          }
+        },
+        "required": [
+          "project_path"
+        ]
+      }
+    }
+  ],
+  "platforms": {
+    "claude_skill": {
+      "entry_point": "SKILL.md"
+    },
+    "mcp_server": {
+      "transport": "stdio",
+      "entry_point": "mcp/mlops-standards/server.py",
+      "command": "uv",
+      "args": [
+        "--directory",
+        "mcp/mlops-standards",
+        "run",
+        "python",
+        "server.py"
+      ]
+    },
+    "langchain": {
+      "tool_class": "Audit_mlopsTool",
+      "module_path": "langchain.mlops_standards.tools"
+    },
+    "crewai": {
+      "tool_class": "Audit_mlopsTool",
+      "module_path": "crewai.mlops_standards.tools"
+    },
+    "openai_gpt": {
+      "action_schema_url": "https://api.techknowmad.ai/skills/mlops-standards/openapi.json",
+      "openapi_spec": "openai/mlops-standards/openapi.json"
+    },
+    "github_copilot": {
+      "mcp_config": {
+        "command": "uv",
+        "args": [
+          "--directory",
+          "mcp/mlops-standards",
+          "run",
+          "python",
+          "server.py"
+        ]
+      }
+    }
+  },
+  "dependencies": {
+    "python": ">=3.12",
+    "packages": [
+      "mlflow>=2.0"
+    ]
+  }
+}
