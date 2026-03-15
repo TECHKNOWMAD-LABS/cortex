@@ -1,6 +1,15 @@
 line-length = 120
 target-version = "py311"
 
+# Exclude directories from ALL ruff operations (lint + format)
+# [lint.per-file-ignores] only affects 'ruff check', not 'ruff format'
+exclude = [
+    "cross-platform/**",
+    "skill-organism/**",
+    "packages/**",
+    "skills/**",
+]
+
 [lint]
 select = ["E", "F", "W"]
 ignore = [
