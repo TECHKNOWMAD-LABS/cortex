@@ -1,15 +1,55 @@
 # Cortex Research Suite
 
-21 autonomous skills for AI/ML research and development. Covers research workflows, MLOps enforcement, security auditing, agent orchestration, quality assurance, and developer tooling. Works natively with Claude Code and integrates with LangChain, CrewAI, and OpenAI via MCP adapters.
+[![CI](https://github.com/TECHKNOWMAD-LABS/cortex-research-suite/actions/workflows/ci.yml/badge.svg)](https://github.com/TECHKNOWMAD-LABS/cortex-research-suite/actions/workflows/ci.yml)
+[![Evaluation Pipeline](https://github.com/TECHKNOWMAD-LABS/cortex-research-suite/actions/workflows/eval.yml/badge.svg)](https://github.com/TECHKNOWMAD-LABS/cortex-research-suite/actions/workflows/eval.yml)
+[![Security Scan](https://github.com/TECHKNOWMAD-LABS/cortex-research-suite/actions/workflows/security.yml/badge.svg)](https://github.com/TECHKNOWMAD-LABS/cortex-research-suite/actions/workflows/security.yml)
+[![Python 3.10-3.12](https://img.shields.io/badge/python-3.10--3.12-blue.svg)](https://www.python.org/downloads/)
+[![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
+[![Code style: ruff](https://img.shields.io/badge/code%20style-ruff-000000.svg)](https://github.com/astral-sh/ruff)
 
-## Quick Start
+21 autonomous skills + a Python evaluation framework for AI/ML research and development. Covers research workflows, MLOps enforcement, security auditing, agent orchestration, quality assurance, and developer tooling. Works natively with Claude Code and integrates with LangChain, CrewAI, and OpenAI via MCP adapters.
+
+## Quickstart in 60 Seconds
 
 ```bash
+# Clone and install
 git clone https://github.com/TECHKNOWMAD-LABS/cortex-research-suite.git
-cd cortex-research-suite/skills/<skill-name>
+cd cortex-research-suite
+pip install -e ".[dev]"
+
+# Run the test suite
+pytest
+
+# Generate a synthetic dataset (50 prompts, seeded for reproducibility)
+cortex-generate --count 50 --seed 42 --output ./datasets
+
+# Run a benchmark evaluation
+cortex-benchmark --suite reasoning --output ./results
+
+# Use any skill directly
+cd skills/security-audit   # Each skill has a SKILL.md with instructions
 ```
 
-Each skill directory contains a `SKILL.md` with setup instructions and a `scripts/` directory with Python implementations.
+### Use as a Python Library
+
+```python
+from cortex.synthetic.reasoning_generator import ReasoningGenerator
+from cortex.evaluation.judge import LLMJudge
+from cortex.agents.orchestrator import AgentOrchestrator
+
+# Generate evaluation prompts
+gen = ReasoningGenerator(seed=42)
+prompts = gen.generate(100)
+
+# Run multi-agent research pipeline
+orchestrator = AgentOrchestrator(provider)
+result = orchestrator.run("Analyze the impact of transformer architectures on NLP")
+
+# Evaluate output quality
+judge = LLMJudge(provider)
+score = judge.score(prompt="...", response=result.final_output)
+print(f"Quality: {score.normalized:.0%}")  # e.g., Quality: 87%
+```
 
 ## Skills
 
@@ -36,6 +76,23 @@ Each skill directory contains a `SKILL.md` with setup instructions and a `script
 | `skill-test-harness` | Testing | Automated skill testing framework |
 | `skill-validator` | Validation | Skill structure and manifest validation |
 | `tdd-enforcer` | Testing | Test-driven development enforcement with coverage tracking |
+
+See [AGENTS.md](AGENTS.md) for the full agent manifest with platform-specific integration guides.
+
+## Cortex Python Framework
+
+The `cortex/` package is an installable Python library providing:
+
+| Module | Purpose |
+|--------|---------|
+| `cortex.synthetic` | Synthetic data generation (reasoning, research, strategy, domain, adversarial) |
+| `cortex.evaluation` | LLM-as-Judge scoring, benchmark suites, regression detection |
+| `cortex.agents` | Multi-agent orchestrator, debate arena, DAG task graphs |
+| `cortex.models` | Model provider abstraction (Anthropic SDK + CLI fallback) |
+| `cortex.telemetry` | Structured logging, SQLite metrics collector |
+| `cortex.config` | YAML + env var configuration with thread-safe singleton |
+| `cortex.utils` | Atomic I/O, input sanitization, prompt injection detection |
+| `cortex.experiments` | Experiment tracking with comparison and best-run queries |
 
 ## Skill Organism
 
@@ -99,44 +156,34 @@ Each skill has a platform-agnostic manifest at `cross-platform/manifests/<skill>
 
 ```
 cortex-research-suite/
-├── skills/                    # Native Claude Code skills (21 skills)
-│   ├── <skill-name>/
-│   │   ├── SKILL.md           # Skill definition and instructions
-│   │   └── scripts/           # Python implementations
+├── cortex/                    # Python framework (pip install -e .)
+│   ├── agents/                # Multi-agent runtime (orchestrator, debate, task graph)
+│   ├── evaluation/            # LLM judge, benchmarks, regression detection
+│   ├── synthetic/             # Dataset generators (reasoning, research, strategy, adversarial)
+│   ├── models/                # Model providers (Anthropic SDK + CLI fallback)
+│   ├── telemetry/             # Logging and metrics
+│   ├── config/                # Settings with YAML + env var support
+│   ├── pipelines/             # Skill runner, dataset pipeline
+│   └── utils/                 # I/O, security, sanitization
+├── skills/                    # 21 autonomous skills (SKILL.md + scripts/)
 ├── skill-organism/            # Skill evolution engine
-│   ├── organism.py            # Core evolution: observe/mutate/select/reproduce/heal
-│   ├── enterprise_runner.py   # Production runner with SHA-256 integrity
-│   └── cortex_skill_organism/ # Installable package
-├── packages/                  # Distributable skill packages
-├── cross-platform/
-│   ├── manifests/             # Universal Skill Manifests (JSON)
-│   ├── generated/             # Platform-specific adapters
-│   │   ├── mcp/               # FastMCP servers
-│   │   ├── langchain/         # LangChain tools
-│   │   ├── crewai/            # CrewAI tools
-│   │   ├── openai/            # GPT Action schemas
-│   │   └── agents/            # AGENTS.md definitions
-│   └── adapters/              # Cross-platform adapter framework
+├── cross-platform/            # Generated adapters (MCP, LangChain, CrewAI, OpenAI)
+├── tests/                     # 127 tests, 80%+ coverage
+├── scripts/                   # CLI entry points
 ├── docs/                      # Documentation site (GitHub Pages)
-├── .github/
-│   ├── workflows/             # CI/CD (security, lint, CodeQL)
-│   ├── CODEOWNERS             # Review requirements
-│   └── scripts/               # Setup automation
-├── SECURITY.md
-├── CONTRIBUTING.md
-├── CODE_OF_CONDUCT.md
-└── LICENSE                    # MIT
+└── .github/workflows/         # CI/CD (lint, test, security, release)
 ```
 
 ## Security
 
 All code passes automated security scanning on every push:
 
-- Bandit Python SAST with zero HIGH findings
+- Bandit Python SAST with zero HIGH/MEDIUM findings
 - CodeQL semantic code analysis
 - Secret scanning with push protection enabled
 - Dependabot automated dependency updates
-- Safe XML parsing via defusedxml (no XXE)
+- Prompt injection detection (7 compiled regex patterns)
+- Path traversal protection across all I/O operations
 
 Report vulnerabilities to admin@techknowmad.ai. See [SECURITY.md](SECURITY.md).
 

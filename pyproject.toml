@@ -12,18 +12,41 @@ requires-python = ">=3.10"
 authors = [
     {name = "TECHKNOWMAD-LABS"},
 ]
+keywords = [
+    "claude-code",
+    "mcp",
+    "langchain",
+    "crewai",
+    "ai-agents",
+    "mlops",
+    "autonomous-agents",
+    "synthetic-data",
+    "evaluation",
+    "multi-agent",
+]
 classifiers = [
-    "Development Status :: 4 - Beta",
+    "Development Status :: 5 - Production/Stable",
     "Intended Audience :: Developers",
     "Intended Audience :: Science/Research",
     "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
     "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Software Development :: Testing",
+    "Typing :: Typed",
 ]
 dependencies = []
+
+[project.urls]
+Homepage = "https://github.com/TECHKNOWMAD-LABS/cortex-research-suite"
+Repository = "https://github.com/TECHKNOWMAD-LABS/cortex-research-suite"
+Documentation = "https://techknowmad-labs.github.io/cortex-research-suite"
+Issues = "https://github.com/TECHKNOWMAD-LABS/cortex-research-suite/issues"
+Changelog = "https://github.com/TECHKNOWMAD-LABS/cortex-research-suite/blob/main/CHANGELOG.md"
 
 [project.optional-dependencies]
 api = ["anthropic>=0.40.0"]
