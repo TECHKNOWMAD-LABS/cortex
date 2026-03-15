@@ -6,7 +6,7 @@ Represents and manipulates skill genetic material (SKILL.md content).
 import re
 import logging
 from pathlib import Path
-from typing import Optional, Dict, List, Tuple
+from typing import Optional, Dict, List
 from dataclasses import dataclass
 from difflib import SequenceMatcher
 import hashlib
