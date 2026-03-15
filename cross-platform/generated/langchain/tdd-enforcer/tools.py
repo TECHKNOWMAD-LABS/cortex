@@ -8,17 +8,16 @@ import json
 from pydantic import BaseModel, Field
 from langchain_core.tools import BaseTool
 
-class EnforceTddToolInput(BaseModel):
-    target: str = Field(description="Path to codebase")
+class Enforce_tddToolInput(BaseModel):
+    project_path: str = Field(description="Path to project")
     coverage_threshold: float = Field(description="Minimum coverage percentage")
-    check_anti_patterns: bool = Field(description="")
-    block_commit: bool = Field(description="Return exit code for pre-commit hook")
+    strict: bool = Field(description="Block commits without tests")
 
 
-class EnforceTddTool(BaseTool):
+class Enforce_tddTool(BaseTool):
     name: str = "enforce_tdd"
-    description: str = "Validate TDD compliance for a codebase — tests exist, coverage meets threshold, no anti-patterns"
-    args_schema: type[BaseModel] = EnforceTddToolInput
+    description: str = "Enforce TDD workflow with coverage tracking and cycle validation"
+    args_schema: type[BaseModel] = Enforce_tddToolInput
 
     def _run(self, **kwargs) -> str:
         from skills.tdd_enforcer import execute_sync
@@ -32,4 +31,4 @@ class EnforceTddTool(BaseTool):
 
 def get_all_tools() -> list[BaseTool]:
     """Return all tools for this skill."""
-    return [EnforceTddTool()]
+    return [Enforce_tddTool()]
