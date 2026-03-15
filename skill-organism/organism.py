@@ -6,13 +6,13 @@ Manages the full lifecycle of skills as living entities in an evolving ecosystem
 import json
 import logging
 import random
-from datetime import datetime, timedelta
+from datetime import datetime
 from pathlib import Path
-from typing import Dict, List, Optional, Tuple
+from typing import Dict, List, Optional
 from dataclasses import dataclass, asdict
 import hashlib
 
-from telemetry import SkillTelemetry, SkillMetrics
+from telemetry import SkillTelemetry
 from skill_dna import SkillDNA, crossover, mutate
 
 logger = logging.getLogger(__name__)
