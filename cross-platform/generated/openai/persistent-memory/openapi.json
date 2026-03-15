@@ -3,7 +3,7 @@
   "info": {
     "title": "persistent-memory API",
     "version": "1.0.0",
-    "description": "Persistent key-value memory system for AI agents. Stores, retrieves, and manages structured knowledge across sessions with TTL, tagging, and semantic search support."
+    "description": "SQLite-backed persistent memory with FTS5 full-text search for cross-session knowledge retention."
   },
   "servers": [
     {
@@ -14,7 +14,7 @@
     "/memory_operation": {
       "post": {
         "operationId": "memory_operation",
-        "summary": "Store, retrieve, search, or manage persistent memory entries",
+        "summary": "Store, retrieve, or search persistent memory entries",
         "requestBody": {
           "required": true,
           "content": {
@@ -22,43 +22,25 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "action": {
+                  "operation": {
                     "type": "string",
-                    "enum": [
-                      "store",
-                      "retrieve",
-                      "search",
-                      "delete",
-                      "list"
-                    ],
-                    "description": "Memory operation"
+                    "description": "Operation: store, retrieve, search, delete"
                   },
                   "key": {
                     "type": "string",
                     "description": "Memory key"
                   },
                   "value": {
-                    "type": "object",
+                    "type": "string",
                     "description": "Value to store"
                   },
                   "query": {
                     "type": "string",
-                    "description": "Search query"
-                  },
-                  "tags": {
-                    "type": "array",
-                    "items": {
-                      "type": "string"
-                    },
-                    "description": "Tags for filtering"
-                  },
-                  "ttl": {
-                    "type": "integer",
-                    "description": "Time-to-live in seconds"
+                    "description": "Search query for FTS5"
                   }
                 },
                 "required": [
-                  "action"
+                  "operation"
                 ]
               }
             }
@@ -70,21 +52,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "type": "string"
-                    },
-                    "data": {
-                      "type": "object"
-                    },
-                    "results": {
-                      "type": "array",
-                      "items": {
-                        "type": "object"
-                      }
-                    }
-                  }
+                  "type": "object"
                 }
               }
             }
