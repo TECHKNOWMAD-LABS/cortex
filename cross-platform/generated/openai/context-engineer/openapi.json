@@ -3,7 +3,7 @@
   "info": {
     "title": "context-engineer API",
     "version": "1.0.0",
-    "description": "Builds optimal context windows for LLM interactions. Compresses, prioritizes, and structures information to maximize relevance within token limits. Implements retrieval-augmented context assembly."
+    "description": "Context window optimization and prompt context management for efficient LLM usage."
   },
   "servers": [
     {
@@ -11,10 +11,10 @@
     }
   ],
   "paths": {
-    "/build_context": {
+    "/optimize_context": {
       "post": {
-        "operationId": "build_context",
-        "summary": "Assemble an optimal context window from multiple sources within token limits",
+        "operationId": "optimize_context",
+        "summary": "Optimize context window by prioritizing and compressing relevant content",
         "requestBody": {
           "required": true,
           "content": {
@@ -22,35 +22,23 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "sources": {
-                    "type": "array",
-                    "items": {
-                      "type": "string"
-                    },
-                    "description": "Paths or URIs to context sources"
-                  },
-                  "query": {
+                  "content": {
                     "type": "string",
-                    "description": "Query to optimize context for"
+                    "description": "Raw content to optimize"
                   },
                   "max_tokens": {
                     "type": "integer",
-                    "default": 8000,
-                    "description": "Maximum token budget"
+                    "description": "Target token budget",
+                    "default": 4096
                   },
                   "strategy": {
                     "type": "string",
-                    "enum": [
-                      "relevance",
-                      "recency",
-                      "hybrid"
-                    ],
-                    "default": "hybrid"
+                    "description": "Optimization strategy",
+                    "default": "relevance"
                   }
                 },
                 "required": [
-                  "sources",
-                  "query"
+                  "content"
                 ]
               }
             }
@@ -62,24 +50,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object",
-                  "properties": {
-                    "context": {
-                      "type": "string"
-                    },
-                    "token_count": {
-                      "type": "integer"
-                    },
-                    "sources_used": {
-                      "type": "array",
-                      "items": {
-                        "type": "string"
-                      }
-                    },
-                    "compression_ratio": {
-                      "type": "number"
-                    }
-                  }
+                  "type": "object"
                 }
               }
             }
