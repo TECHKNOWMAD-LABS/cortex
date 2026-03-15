@@ -2,7 +2,7 @@
   "schema": "techknowmad-universal-skill-manifest",
   "version": "1.0.0",
   "generated": true,
-  "skill_count": 18,
+  "skill_count": 21,
   "skills": {
     "agent-orchestrator": {
       "manifest": "agent-orchestrator.json",
@@ -54,6 +54,11 @@
       "status": "ok",
       "path": "manifests/meta-skill-evolver.json"
     },
+    "mlops-standards": {
+      "manifest": "mlops-standards.json",
+      "status": "ok",
+      "path": "manifests/mlops-standards.json"
+    },
     "persistent-memory": {
       "manifest": "persistent-memory.json",
       "status": "ok",
@@ -64,10 +69,20 @@
       "status": "ok",
       "path": "manifests/pre-package-pipeline.json"
     },
+    "prompt-architect": {
+      "manifest": "prompt-architect.json",
+      "status": "ok",
+      "path": "manifests/prompt-architect.json"
+    },
     "repo-publisher": {
       "manifest": "repo-publisher.json",
       "status": "ok",
       "path": "manifests/repo-publisher.json"
+    },
+    "research-workflow": {
+      "manifest": "research-workflow.json",
+      "status": "ok",
+      "path": "manifests/research-workflow.json"
     },
     "security-audit": {
       "manifest": "security-audit.json",
