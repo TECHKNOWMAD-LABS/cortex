@@ -12,8 +12,8 @@ from pathlib import Path
 from typing import Any
 
 from cortex.synthetic.base_generator import BaseGenerator, GeneratedPrompt
-from cortex.synthetic.validator import DatasetValidator, ValidationReport
 from cortex.synthetic.shard_manager import ShardManager
+from cortex.synthetic.validator import DatasetValidator, ValidationReport
 from cortex.telemetry.logger import get_logger
 
 

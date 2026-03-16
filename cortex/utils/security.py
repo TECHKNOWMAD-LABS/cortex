@@ -7,11 +7,7 @@ from __future__ import annotations
 
 import hashlib
 import re
-import json
 from typing import Any
-
-from cortex.config.settings import SecurityConfig
-
 
 # Pre-compiled patterns for prompt injection detection
 _INJECTION_PATTERNS: list[re.Pattern[str]] = [

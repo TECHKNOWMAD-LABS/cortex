@@ -4,11 +4,11 @@ Provides agent pipelines, multi-agent debate for improved reasoning,
 task graph execution, and automated research workflows.
 """
 
-from cortex.agents.base_agent import BaseAgent, AgentResponse
-from cortex.agents.orchestrator import AgentOrchestrator
+from cortex.agents.base_agent import AgentResponse, BaseAgent
 from cortex.agents.debate import DebateArena
-from cortex.agents.task_graph import TaskGraph, TaskNode
+from cortex.agents.orchestrator import AgentOrchestrator
 from cortex.agents.research_engine import ResearchEngine
+from cortex.agents.task_graph import TaskGraph, TaskNode
 
 __all__ = [
     "BaseAgent",

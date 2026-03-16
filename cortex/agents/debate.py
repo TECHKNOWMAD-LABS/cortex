@@ -10,7 +10,7 @@ import time
 from dataclasses import dataclass, field
 from typing import Any
 
-from cortex.agents.base_agent import BaseAgent, AgentResponse
+from cortex.agents.base_agent import AgentResponse, BaseAgent
 from cortex.models.provider import ModelProvider
 
 

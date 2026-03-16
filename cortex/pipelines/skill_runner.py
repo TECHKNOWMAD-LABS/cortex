@@ -12,7 +12,7 @@ from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any
 
-from cortex.models.provider import ModelProvider, ModelResponse
+from cortex.models.provider import ModelProvider
 from cortex.utils.io import read_json
 from cortex.utils.security import sanitize_input, validate_json_schema
 

@@ -11,7 +11,7 @@ from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any
 
-from cortex.evaluation.judge import LLMJudge, JudgeScore
+from cortex.evaluation.judge import JudgeScore, LLMJudge
 from cortex.models.provider import ModelProvider
 from cortex.telemetry.metrics import MetricsCollector
 from cortex.utils.io import write_json

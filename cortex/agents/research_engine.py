@@ -12,7 +12,7 @@ from pathlib import Path
 from typing import Any
 
 from cortex.agents.orchestrator import AgentOrchestrator, PipelineResult
-from cortex.evaluation.judge import LLMJudge, JudgeScore
+from cortex.evaluation.judge import JudgeScore, LLMJudge
 from cortex.models.provider import ModelProvider
 from cortex.utils.io import write_json
 

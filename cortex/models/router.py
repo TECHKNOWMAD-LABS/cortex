@@ -5,10 +5,8 @@ Routes tasks to optimal models based on complexity, cost, and capability.
 
 from __future__ import annotations
 
-from cortex.config.settings import get_settings
-from cortex.models.provider import ModelProvider, ModelResponse
 from cortex.models.claude_provider import ClaudeProvider
-
+from cortex.models.provider import ModelProvider, ModelResponse
 
 # Model tier mapping: task_type -> model identifier
 _DEFAULT_ROUTES: dict[str, str] = {

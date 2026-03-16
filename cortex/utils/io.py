@@ -20,7 +20,7 @@ def _validate_path(path: Path) -> Path:
     resolved = path.resolve()
     # Prevent null bytes in path (common attack vector)
     if "\x00" in str(resolved):
-        raise ValueError(f"Invalid path: contains null bytes")
+        raise ValueError("Invalid path: contains null bytes")
     return resolved
 
 

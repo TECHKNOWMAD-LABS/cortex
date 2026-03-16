@@ -4,10 +4,10 @@ Provides automated evaluation of skill outputs using structured rubrics,
 benchmark suites, and regression detection across versions.
 """
 
-from cortex.evaluation.judge import LLMJudge, JudgeScore
-from cortex.evaluation.runner import EvaluationRunner, EvalResult
-from cortex.evaluation.regression import RegressionDetector
 from cortex.evaluation.benchmarks import BenchmarkSuite
+from cortex.evaluation.judge import JudgeScore, LLMJudge
+from cortex.evaluation.regression import RegressionDetector
+from cortex.evaluation.runner import EvalResult, EvaluationRunner
 
 __all__ = [
     "LLMJudge",
