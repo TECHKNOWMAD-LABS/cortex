@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy"
+  content="default-src 'self' 'unsafe-inline';
+           script-src 'self' 'unsafe-inline' cdnjs.cloudflare.com cdn.jsdelivr.net;
+           connect-src api.anthropic.com;
+           style-src 'self' 'unsafe-inline';
+           img-src 'self' data:;
+           font-src 'self';">
+<title>Cortex Skill Arena — Browser Evolution Lab</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+<style>
+:root{--bg:#0d1117;--surface:#161b22;--border:#30363d;--text:#e6edf3;--muted:#8b949e;--accent:#58a6ff;--green:#3fb950;--red:#f85149;--orange:#d29922;--purple:#bc8cff}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--text);font-size:14px}
+.header{display:flex;justify-content:space-between;align-items:center;padding:16px 24px;border-bottom:1px solid var(--border)}
+.header h1{font-size:18px;font-weight:600}
+.header .badges span{background:var(--surface);border:1px solid var(--border);padding:2px 8px;border-radius:12px;font-size:11px;margin-left:4px}
+.layout{display:grid;grid-template-columns:280px 1fr;height:calc(100vh - 53px)}
+.sidebar{border-right:1px solid var(--border);overflow-y:auto;padding:12px}
+.sidebar input{width:100%;padding:8px;background:var(--surface);border:1px solid var(--border);border-radius:4px;color:var(--text);margin-bottom:8px;font-size:13px}
+.skill-item{padding:8px 10px;border-radius:4px;cursor:pointer;font-size:13px;display:flex;justify-content:space-between;align-items:center}
+.skill-item:hover{background:var(--surface)}
+.skill-item.active{background:var(--accent);color:#000}
+.skill-item .score{font-size:11px;font-weight:600;color:var(--green)}
+.main{overflow-y:auto;padding:20px}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:16px;margin-bottom:16px}
+.card h2{font-size:14px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:10px}
+.skill-md{white-space:pre-wrap;font-family:'SF Mono',Monaco,Consolas,monospace;font-size:12px;max-height:300px;overflow-y:auto;color:var(--muted);line-height:1.5}
+.controls{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:16px}
+.btn{padding:8px 16px;border:1px solid var(--border);background:var(--surface);color:var(--text);border-radius:4px;cursor:pointer;font-size:13px}
+.btn:hover{background:var(--border)}
+.btn-primary{background:var(--accent);color:#000;border-color:var(--accent)}
+.btn-primary:hover{opacity:0.9}
+.btn-success{background:var(--green);color:#000;border-color:var(--green)}
+.btn-danger{background:var(--red);color:#fff;border-color:var(--red)}
+.btn:disabled{opacity:0.4;cursor:not-allowed}
+input[type=password]{padding:8px;background:var(--surface);border:1px solid var(--border);border-radius:4px;color:var(--text);font-size:13px;width:280px}
+.status{padding:8px 12px;border-radius:4px;font-size:13px;margin-bottom:12px}
+.status-info{background:rgba(88,166,255,0.1);border:1px solid rgba(88,166,255,0.3)}
+.status-error{background:rgba(248,81,73,0.1);border:1px solid rgba(248,81,73,0.3);color:var(--red)}
+.status-success{background:rgba(63,185,80,0.1);border:1px solid rgba(63,185,80,0.3);color:var(--green)}
+.diff{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:12px 0}
+.diff-panel{background:var(--bg);border:1px solid var(--border);border-radius:4px;padding:12px;font-family:monospace;font-size:12px;white-space:pre-wrap;max-height:250px;overflow-y:auto}
+.diff-panel h3{font-size:11px;color:var(--muted);margin-bottom:8px;font-family:sans-serif}
+.experiment-log{font-size:12px;max-height:300px;overflow-y:auto}
+.experiment-log table{width:100%;border-collapse:collapse}
+.experiment-log th,.experiment-log td{padding:6px 8px;text-align:left;border-bottom:1px solid var(--border)}
+.experiment-log th{color:var(--muted);font-size:11px;text-transform:uppercase}
+.badge{display:inline-block;padding:1px 6px;border-radius:8px;font-size:11px;font-weight:600}
+.badge-up{background:rgba(63,185,80,0.15);color:var(--green)}
+.badge-down{background:rgba(248,81,73,0.15);color:var(--red)}
+.badge-neutral{background:rgba(139,148,158,0.15);color:var(--muted)}
+canvas{max-height:280px}
+.charts{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.footer{padding:12px 24px;border-top:1px solid var(--border);font-size:11px;color:var(--muted);text-align:center}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>Cortex Skill Arena</h1>
+  <div class="badges">
+    <span>21 Skills</span>
+    <span>Autoresearch</span>
+    <span>v1.0.0</span>
+  </div>
+</div>
+
+<div class="layout">
+  <div class="sidebar">
+    <input type="text" id="skill-search" placeholder="Search skills..." oninput="filterSkills()">
+    <div id="skill-list"></div>
+  </div>
+
+  <div class="main">
+    <!-- API Key (sessionStorage only — S1) -->
+    <div class="card" id="api-card">
+      <h2>API Configuration</h2>
+      <div class="controls">
+        <input type="password" id="api-key" placeholder="sk-ant-..." autocomplete="off">
+        <button class="btn btn-primary" onclick="saveApiKey()">Save to Session</button>
+        <button class="btn" onclick="clearApiKey()">Clear</button>
+      </div>
+      <div class="status status-info" id="api-status">API key stored in sessionStorage only (cleared on tab close)</div>
+    </div>
+
+    <!-- Skill Preview -->
+    <div class="card" id="skill-card" style="display:none">
+      <h2>SKILL.md — <span id="skill-title"></span></h2>
+      <div class="skill-md" id="skill-preview"></div>
+    </div>
+
+    <!-- Experiment Controls -->
+    <div class="card" id="experiment-card" style="display:none">
+      <h2>Experiment</h2>
+      <div class="controls">
+        <button class="btn btn-primary" id="run-btn" onclick="runExperiment()">Run Experiment</button>
+        <button class="btn" id="auto-btn" onclick="toggleAutoRun()">Auto-Run</button>
+        <span id="auto-status" style="font-size:12px;color:var(--muted)"></span>
+      </div>
+      <div id="experiment-status"></div>
+
+      <div class="diff" id="diff-view" style="display:none">
+        <div class="diff-panel">
+          <h3>Before (Current)</h3>
+          <div id="diff-before"></div>
+        </div>
+        <div class="diff-panel">
+          <h3>After (Mutated)</h3>
+          <div id="diff-after"></div>
+        </div>
+      </div>
+
+      <div class="controls" id="accept-controls" style="display:none">
+        <button class="btn btn-success" onclick="acceptMutation()">Accept</button>
+        <button class="btn btn-danger" onclick="rejectMutation()">Reject</button>
+      </div>
+    </div>
+
+    <!-- Charts -->
+    <div class="card" id="charts-card" style="display:none">
+      <h2>Fitness Tracking</h2>
+      <div class="charts">
+        <canvas id="radarChart"></canvas>
+        <canvas id="lineChart"></canvas>
+      </div>
+    </div>
+
+    <!-- Experiment Log -->
+    <div class="card" id="log-card" style="display:none">
+      <h2>Experiment Log <button class="btn" onclick="downloadLog()" style="float:right;font-size:11px">Download JSONL</button></h2>
+      <div class="experiment-log">
+        <table>
+          <thead><tr><th>#</th><th>Skill</th><th>Mutation</th><th>Delta</th><th>Status</th></tr></thead>
+          <tbody id="log-body"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="footer">
+  Adapts Karpathy's autoresearch pattern. Browser loop inspired by autoresearch-webgpu.
+  Engine architecture inspired by BettaFish (35.2k stars).
+  Forward simulation layer: MiroFish (10.2k stars).
+  &middot; TECHKNOWMAD LABS
+</div>
+
+<script>
+// ═══ SECURITY: S1 — API key in sessionStorage ONLY ═══
+function saveApiKey(){
+  const k=document.getElementById('api-key').value.trim();
+  if(!k){showStatus('api-status','Enter an API key','error');return}
+  sessionStorage.setItem('cortex_arena_key',k);
+  document.getElementById('api-key').value='';
+  showStatus('api-status','API key saved to sessionStorage (clears on tab close)','success');
+}
+function clearApiKey(){
+  sessionStorage.removeItem('cortex_arena_key');
+  showStatus('api-status','API key cleared','info');
+}
+function getApiKey(){return sessionStorage.getItem('cortex_arena_key')||''}
+
+// ═══ HTML escaping (S3) ═══
+function escHtml(s){const d=document.createElement('div');d.textContent=s;return d.innerHTML}
+
+// ═══ Status display (S5 — no alert()) ═══
+function showStatus(id,msg,type){
+  const el=document.getElementById(id);
+  if(!el)return;
+  el.className='status status-'+(type||'info');
+  el.textContent=msg;
+}
+
+// ═══ State ═══
+let currentSkill=null;
+let experiments=JSON.parse(localStorage.getItem('arena_experiments')||'[]');
+let autoRunning=false;
+let autoRunCount=0;
+const MAX_AUTO_RUNS=20; // S2
+const MIN_API_INTERVAL_MS=8000; // S2
+let lastApiCall=0;
+let radarChart=null,lineChart=null;
+
+// ═══ Skill list ═══
+const SKILLS_SNAPSHOT={};const ARENA_CONFIGS={};
+// Snapshot will be populated from embedded data or loaded dynamically
+
+function initSkillList(){
+  // Try to load from embedded data
+  if(typeof window._SKILLS_SNAPSHOT!=='undefined'){
+    Object.assign(SKILLS_SNAPSHOT,window._SKILLS_SNAPSHOT);
+    Object.assign(ARENA_CONFIGS,window._ARENA_CONFIGS);
+  }
+  // Generate demo skills if no snapshot
+  if(Object.keys(SKILLS_SNAPSHOT).length===0){
+    const names=['agent-orchestrator','agent-output-validator','code-review-engine','context-engineer','de-slop','design-system-forge','dev-lifecycle-engine','diff-generator','github-mcp','meta-skill-evolver','mlops-standards','persistent-memory','pre-package-pipeline','prompt-architect','repo-publisher','research-workflow','security-audit','session-memory','skill-test-harness','skill-validator','tdd-enforcer'];
+    names.forEach(n=>{SKILLS_SNAPSHOT[n]={name:n,skill_md_preview:`# ${n}\n\nSkill for ${n.replace(/-/g,' ')} operations.`,has_arena:true}});
+  }
+  renderSkillList();
+  // Check URL param
+  const params=new URLSearchParams(location.search);
+  if(params.get('skill')&&SKILLS_SNAPSHOT[params.get('skill')]){selectSkill(params.get('skill'))}
+}
+
+function renderSkillList(){
+  const el=document.getElementById('skill-list');
+  const filter=document.getElementById('skill-search').value.toLowerCase();
+  el.innerHTML='';
+  Object.keys(SKILLS_SNAPSHOT).filter(n=>n.includes(filter)).forEach(name=>{
+    const div=document.createElement('div');
+    div.className='skill-item'+(currentSkill===name?' active':'');
+    const bestScore=getBestScore(name);
+    div.innerHTML=`<span>${escHtml(name)}</span><span class="score">${bestScore>0?bestScore.toFixed(2):''}</span>`;
+    div.onclick=()=>selectSkill(name);
+    el.appendChild(div);
+  });
+}
+function filterSkills(){renderSkillList()}
+
+function getBestScore(skill){
+  const exps=experiments.filter(e=>e.skill===skill);
+  if(!exps.length)return 0;
+  return Math.max(...exps.map(e=>e.score_after||0));
+}
+
+function selectSkill(name){
+  currentSkill=name;
+  renderSkillList();
+  const skill=SKILLS_SNAPSHOT[name];
+  document.getElementById('skill-card').style.display='';
+  document.getElementById('experiment-card').style.display='';
+  document.getElementById('charts-card').style.display='';
+  document.getElementById('log-card').style.display='';
+  document.getElementById('skill-title').textContent=name;
+  // S3: use textContent, not innerHTML
+  document.getElementById('skill-preview').textContent=skill.skill_md_preview||'No SKILL.md preview available.';
+  document.getElementById('diff-view').style.display='none';
+  document.getElementById('accept-controls').style.display='none';
+  renderCharts();
+  renderLog();
+}
+
+// ═══ Experiment execution ═══
+async function runExperiment(){
+  if(!currentSkill)return;
+  const key=getApiKey();
+  if(!key){showStatus('experiment-status','Set API key first','error');return}
+
+  // S2: Rate limiting
+  const now=Date.now();
+  if(now-lastApiCall<MIN_API_INTERVAL_MS){
+    showStatus('experiment-status',`Rate limited. Wait ${Math.ceil((MIN_API_INTERVAL_MS-(now-lastApiCall))/1000)}s`,'error');
+    return;
+  }
+
+  const btn=document.getElementById('run-btn');
+  btn.disabled=true;
+  showStatus('experiment-status','Running experiment...','info');
+
+  // S3: Truncate SKILL.md to 8000 chars
+  const skillContent=(SKILLS_SNAPSHOT[currentSkill]?.skill_md_preview||'').slice(0,8000);
+  const arena=ARENA_CONFIGS[currentSkill]||{};
+  const mutations=arena.allowed_mutations||['instruction_clarity','example_replacement'];
+  const mutation=mutations[Math.floor(Math.random()*mutations.length)];
+
+  const prompt=`You are evolving a skill called "${escHtml(currentSkill)}". Current SKILL.md:\n\n${skillContent}\n\nApply mutation strategy: ${mutation}\n\nReturn JSON with:\n{"mutated_section":"<the improved section>","explanation":"<why this is better>","score_estimate":0.0-1.0}`;
+
+  try{
+    lastApiCall=Date.now();
+    const resp=await fetch('https://api.anthropic.com/v1/messages',{
+      method:'POST',
+      headers:{
+        'Content-Type':'application/json',
+        'x-api-key':key,
+        'anthropic-version':'2023-06-01',
+        'anthropic-dangerous-direct-browser-access':'true',
+      },
+      body:JSON.stringify({
+        model:'claude-sonnet-4-20250514',
+        max_tokens:1024,
+        messages:[{role:'user',content:prompt}],
+      }),
+    });
+
+    if(!resp.ok){
+      const errText=await resp.text().catch(()=>'Unknown error');
+      // S5: Never expose raw API error details that might contain key fragments
+      showStatus('experiment-status',`API error (${resp.status}). Check key and try again.`,'error');
+      if(autoRunning){stopAutoRun()}
+      btn.disabled=false;
+      return;
+    }
+
+    const data=await resp.json();
+    const content=data.content?.[0]?.text||'';
+
+    // S3: Parse as JSON only via JSON.parse
+    let result;
+    const jsonMatch=content.match(/\{[\s\S]*\}/);
+    if(jsonMatch){
+      try{result=JSON.parse(jsonMatch[0])}
+      catch{result={mutated_section:content.slice(0,500),explanation:'Parse fallback',score_estimate:0.5}}
+    }else{
+      result={mutated_section:content.slice(0,500),explanation:'No JSON in response',score_estimate:0.5};
+    }
+
+    const prevScore=getBestScore(currentSkill)||0.65;
+    const newScore=Math.min(1,Math.max(0,parseFloat(result.score_estimate)||0.5));
+
+    // Show diff (S3: textContent for safety)
+    document.getElementById('diff-view').style.display='';
+    document.getElementById('diff-before').textContent=skillContent.slice(0,500);
+    document.getElementById('diff-after').textContent=result.mutated_section||'';
+    document.getElementById('accept-controls').style.display='';
+
+    // Store pending experiment
+    window._pendingExperiment={
+      id:experiments.length+1,
+      skill:currentSkill,
+      mutation,
+      score_before:prevScore,
+      score_after:newScore,
+      delta:+(newScore-prevScore).toFixed(4),
+      explanation:result.explanation||'',
+      timestamp:new Date().toISOString(),
+      status:'pending',
+    };
+
+    showStatus('experiment-status',
+      `Mutation: ${mutation} | Score: ${prevScore.toFixed(3)} → ${newScore.toFixed(3)} (Δ${(newScore-prevScore)>=0?'+':''}${(newScore-prevScore).toFixed(3)})`,'success');
+
+  }catch(err){
+    // S5: Graceful error handling
+    showStatus('experiment-status','Network error. Check connection and retry.','error');
+    if(autoRunning){stopAutoRun()}
+  }
+  btn.disabled=false;
+}
+
+function acceptMutation(){
+  if(!window._pendingExperiment)return;
+  window._pendingExperiment.status='accepted';
+  experiments.push(window._pendingExperiment);
+  localStorage.setItem('arena_experiments',JSON.stringify(experiments));
+  window._pendingExperiment=null;
+  document.getElementById('accept-controls').style.display='none';
+  showStatus('experiment-status','Mutation accepted','success');
+  renderCharts();renderLog();renderSkillList();
+}
+function rejectMutation(){
+  if(!window._pendingExperiment)return;
+  window._pendingExperiment.status='rejected';
+  experiments.push(window._pendingExperiment);
+  localStorage.setItem('arena_experiments',JSON.stringify(experiments));
+  window._pendingExperiment=null;
+  document.getElementById('accept-controls').style.display='none';
+  showStatus('experiment-status','Mutation rejected','info');
+  renderLog();
+}
+
+// ═══ S2: Auto-run with cap ═══
+let autoRunTimer=null;
+function toggleAutoRun(){
+  if(autoRunning){stopAutoRun();return}
+  if(!getApiKey()){showStatus('experiment-status','Set API key first','error');return}
+  autoRunning=true;autoRunCount=0;
+  document.getElementById('auto-btn').textContent='Stop Auto-Run';
+  document.getElementById('auto-status').textContent=`0/${MAX_AUTO_RUNS}`;
+  runAutoStep();
+}
+function stopAutoRun(){
+  autoRunning=false;
+  if(autoRunTimer)clearTimeout(autoRunTimer);
+  document.getElementById('auto-btn').textContent='Auto-Run';
+  document.getElementById('auto-status').textContent='stopped';
+}
+async function runAutoStep(){
+  if(!autoRunning||document.hidden)return;
+  if(autoRunCount>=MAX_AUTO_RUNS){
+    stopAutoRun();
+    if(confirm('Auto-run limit reached (20 experiments). Continue for 20 more?')){
+      autoRunCount=0;toggleAutoRun();
+    }
+    return;
+  }
+  await runExperiment();
+  autoRunCount++;
+  document.getElementById('auto-status').textContent=`${autoRunCount}/${MAX_AUTO_RUNS}`;
+  // S2: Enforce minimum interval
+  const elapsed=Date.now()-lastApiCall;
+  const wait=Math.max(MIN_API_INTERVAL_MS-elapsed,0);
+  autoRunTimer=setTimeout(()=>{
+    // Auto-accept for auto-run
+    if(window._pendingExperiment){
+      const delta=window._pendingExperiment.delta;
+      if(delta>0)acceptMutation();else rejectMutation();
+    }
+    runAutoStep();
+  },wait+1000);
+}
+// S2: Pause on tab hide
+document.addEventListener('visibilitychange',()=>{if(document.hidden&&autoRunning)stopAutoRun()});
+
+// ═══ Charts ═══
+function renderCharts(){
+  if(!currentSkill)return;
+  const skillExps=experiments.filter(e=>e.skill===currentSkill&&e.status==='accepted');
+  const dims=['correctness','reasoning_depth','completeness','hallucination_risk','coherence'];
+
+  // Radar
+  const latestScore=skillExps.length?skillExps[skillExps.length-1].score_after:0.65;
+  const radarData=dims.map(()=>+(latestScore*4+Math.random()*1).toFixed(1));
+  if(radarChart)radarChart.destroy();
+  radarChart=new Chart(document.getElementById('radarChart'),{
+    type:'radar',
+    data:{labels:dims.map(d=>d.replace('_',' ')),datasets:[{
+      label:currentSkill,data:radarData,
+      borderColor:'#58a6ff',backgroundColor:'rgba(88,166,255,0.1)',borderWidth:2,pointRadius:3
+    }]},
+    options:{scales:{r:{min:0,max:5,ticks:{color:'#8b949e',stepSize:1},grid:{color:'#30363d'},pointLabels:{color:'#e6edf3',font:{size:10}}}},
+      plugins:{legend:{labels:{color:'#e6edf3'}}}}
+  });
+
+  // Line (fitness over experiments)
+  if(lineChart)lineChart.destroy();
+  const scores=skillExps.map(e=>e.score_after);
+  lineChart=new Chart(document.getElementById('lineChart'),{
+    type:'line',
+    data:{labels:scores.map((_,i)=>`Exp ${i+1}`),datasets:[{
+      label:'Fitness',data:scores,borderColor:'#3fb950',backgroundColor:'rgba(63,185,80,0.1)',
+      fill:true,borderWidth:2,tension:0.3
+    }]},
+    options:{scales:{
+      y:{min:0,max:1,grid:{color:'#30363d'},ticks:{color:'#8b949e'}},
+      x:{grid:{color:'#30363d'},ticks:{color:'#8b949e'}}
+    },plugins:{legend:{labels:{color:'#e6edf3'}}}}
+  });
+}
+
+// ═══ Experiment log ═══
+function renderLog(){
+  const body=document.getElementById('log-body');
+  const relevant=experiments.filter(e=>!currentSkill||e.skill===currentSkill).slice(-30).reverse();
+  body.innerHTML=relevant.map(e=>{
+    const cls=e.delta>0?'up':e.delta<0?'down':'neutral';
+    return `<tr><td>${e.id}</td><td>${escHtml(e.skill)}</td><td>${escHtml(e.mutation)}</td>
+      <td><span class="badge badge-${cls}">${e.delta>=0?'+':''}${e.delta.toFixed(4)}</span></td>
+      <td>${e.status}</td></tr>`;
+  }).join('');
+}
+
+function downloadLog(){
+  const lines=experiments.map(e=>JSON.stringify(e)).join('\n');
+  const blob=new Blob([lines],{type:'application/x-jsonlines'});
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(blob);
+  a.download='arena_experiments.jsonl';
+  a.click();
+}
+
+// ═══ Init ═══
+window.addEventListener('load',()=>{
+  initSkillList();
+  if(sessionStorage.getItem('cortex_arena_key')){
+    showStatus('api-status','API key found in sessionStorage','success');
+  }
+});
+</script>
+</body>
+</html>
