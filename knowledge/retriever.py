@@ -1,7 +1,8 @@
 """Knowledge retriever — FTS5 search interface for the knowledge store.
 
 Provides semantic search retrieval with ranked results.
-Will be upgraded to GraphRAG in Phase 15.
+Phase 15: GraphRAG integration via retrieve_with_graph() for
+combined FTS5 + knowledge graph traversal.
 
 Usage:
     python -m knowledge.retriever --query "AKI prediction bias"
@@ -21,8 +22,8 @@ from knowledge.store import KnowledgeStore, SearchResult
 class KnowledgeRetriever:
     """Search interface for the knowledge store.
 
-    Currently uses TF-IDF search. Will be upgraded to GraphRAG
-    with entity extraction and relationship traversal in Phase 15.
+    Uses TF-IDF search with optional GraphRAG enrichment via
+    retrieve_with_graph() for combined FTS5 + graph traversal.
     """
 
     def __init__(self, store: KnowledgeStore) -> None:
@@ -57,6 +58,96 @@ class KnowledgeRetriever:
             }
             for r in results
         ]
+
+    def retrieve_with_graph(
+        self,
+        query: str,
+        graph_store: Any,
+        max_hops: int = 2,
+        top_k: int = 10,
+        source: str | None = None,
+    ) -> list[dict[str, Any]]:
+        """Combine FTS5 search with knowledge graph traversal.
+
+        Performs a standard text search, then enriches each result by
+        traversing the graph store for related entities up to *max_hops*
+        away. Returns a merged list of search results augmented with
+        graph context.
+
+        Args:
+            query: The search query string.
+            graph_store: A ``knowledge.graph_store.GraphStore`` instance.
+            max_hops: Maximum graph traversal depth (default 2).
+            top_k: Maximum number of search results to enrich.
+            source: Optional source filter for the FTS5 search.
+
+        Returns:
+            List of dicts, each containing the search result fields plus
+            a ``graph_context`` key with neighbor information.
+        """
+        # Step 1: FTS5 text search
+        results = self.search(query, top_k=top_k, source=source)
+
+        enriched: list[dict[str, Any]] = []
+        seen_entities: set[str] = set()
+
+        for r in results:
+            entry_dict = r.to_dict()
+
+            # Step 2: Extract entity candidates from the result title/content
+            entities = self._extract_entity_candidates(r.entry.title, r.entry.content)
+
+            # Step 3: Traverse graph for each entity
+            graph_context: dict[str, Any] = {}
+            for entity in entities:
+                if entity.lower() in seen_entities:
+                    continue
+                seen_entities.add(entity.lower())
+                neighbors = graph_store.get_neighbors(entity, depth=max_hops)
+                if neighbors:
+                    graph_context[entity] = neighbors
+
+            # Step 4: Also query graph directly for the search query terms
+            query_triples = graph_store.query(subject=query)
+            query_triples += graph_store.query(object=query)
+            if query_triples:
+                graph_context["_query_triples"] = [
+                    {
+                        "subject": t.subject,
+                        "predicate": t.predicate,
+                        "object": t.object,
+                    }
+                    for t in query_triples
+                ]
+
+            entry_dict["graph_context"] = graph_context
+            enriched.append(entry_dict)
+
+        return enriched
+
+    @staticmethod
+    def _extract_entity_candidates(title: str, content: str) -> list[str]:
+        """Extract candidate entity names from title and content.
+
+        Uses a simple heuristic: capitalized multi-word phrases and
+        standalone capitalized words longer than 2 characters.
+        """
+        import re
+
+        text = f"{title} {content}"
+        # Find capitalized phrases (e.g., "Acute Kidney Injury")
+        phrases = re.findall(r"(?:[A-Z][a-z]+(?:\s+[A-Z][a-z]+)+)", text)
+        # Find standalone capitalized words / acronyms
+        acronyms = re.findall(r"\b[A-Z]{2,6}\b", text)
+        # Deduplicate while preserving order
+        seen: set[str] = set()
+        entities: list[str] = []
+        for e in phrases + acronyms:
+            e_stripped = e.strip()
+            if e_stripped.lower() not in seen and len(e_stripped) > 2:
+                seen.add(e_stripped.lower())
+                entities.append(e_stripped)
+        return entities[:10]  # cap to avoid excessive traversal
 
     def stats(self) -> dict[str, Any]:
         return self._store.stats()
