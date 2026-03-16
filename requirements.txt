@@ -1,11 +1,10 @@
-# Core (zero external dependencies for base functionality)
-# Optional dependencies listed below
+# Core (zero required dependencies for base functionality)
 
-# API access (optional)
-# anthropic>=0.40.0
+# API access (optional — needed for eval_judge.py and live LLM calls)
+anthropic>=0.40.0
 
-# YAML config (optional)
-# pyyaml>=6.0
+# YAML config (optional — needed for rubrics and ARENA.md parsing)
+pyyaml>=6.0
 
 # Development
 pytest>=8.0
