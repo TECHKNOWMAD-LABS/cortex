@@ -531,7 +531,7 @@ def main() -> int:
     engine = DebateEngine(
         num_rounds=args.rounds,
         output_dir=args.output,
-        simulate=args.simulate or True,  # Default to simulate for safety
+        simulate=args.simulate,
     )
     report = engine.run(args.topic)
 
