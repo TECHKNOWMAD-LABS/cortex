@@ -4,7 +4,7 @@ build-backend = "setuptools.backends._legacy:_Backend"
 
 [project]
 name = "cortex-research-suite"
-version = "1.0.0"
+version = "1.1.0"
 description = "AI Research Operating System — skill testing, synthetic data, evaluation, multi-agent orchestration"
 readme = "README.md"
 license = {text = "MIT"}

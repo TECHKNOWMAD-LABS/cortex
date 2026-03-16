@@ -5,6 +5,49 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.1.0] - 2026-03-16
+
+### Added
+
+#### Trilogy Integration (5 new skills, 26 total)
+- **mindspider-connector** (#22): Live social listening feed connector with demo/MySQL modes, parameterized SQL, 10s connect timeout, 30s query timeout
+- **intelligence-query** (#23): Multi-source intelligence analysis with query decomposition, parallel source collection, and synthesis (BettaFish-inspired)
+- **multimodal-analyst** (#24): Cross-modal content analysis for text, image URLs, and video URLs with hallucination warnings (BettaFish-inspired)
+- **forum-intelligence** (#25): Forum thread analysis with coordination detection, sentiment distribution, and minority viewpoint extraction (BettaFish-inspired)
+- **scenario-simulator** (#26): MiroFish-inspired swarm scenario simulation with counterfactual injection, system-generated personas, and mandatory disclaimers
+
+#### GraphRAG Knowledge Store
+- `knowledge/graph_store.py`: Triple-based knowledge graph with JSON persistence (no pickle), regex-based entity extraction, BFS neighbor traversal, optional NetworkX export
+- `knowledge/retriever.py`: Updated with `retrieve_with_graph()` combining FTS5 search with graph traversal
+
+#### Enterprise Security Hardening
+- Browser Skill Arena: CSP meta tag, sessionStorage-only API key isolation, MAX_AUTO_RUNS=20 rate limit, 8s minimum interval, input sanitization (8000 char truncation, escHtml)
+- All BettaFish skills: MAX_INPUT_CHARS=50000 truncation, HTML stripping via stdlib, JSON schema validation, no pickle/eval/exec
+- Scenario simulator: 3000 char seed report cap, system-generated personas only, mandatory simulation disclaimers
+- GraphRAG: JSON-only persistence, regex-only triple extraction, no eval/exec
+
+#### Documentation & Compliance
+- `LEGAL_NOTES.md`: License compatibility audit for MindSpider (Non-Commercial + MIT), BettaFish (GPL-2.0), MiroFish (AGPL-3.0) — all pattern-inspiration only
+- `datasets/mindspider/DATA_NOTICE.md`: Data handling policy with GDPR/DPDP Act 2023 awareness
+- `SECURITY.md`: 7 new subsections for trilogy skills and browser arena
+- `CONTRIBUTING.md`: Skill creation guide with directory structure, ARENA.md setup, eval/evolution commands
+- `docs/SKILL_REGISTRY.md`: Full registry of 26 skills with trilogy integration guide
+- `docs/launch/`: 7 launch content files (Show HN, X thread, Discord, Dev.to, LinkedIn India, Reddit, demo script)
+- `OVERNIGHT_USAGE.md`: Autonomous evolution setup documentation
+
+#### Infrastructure
+- `scripts/smoke_test.py`: 12-check end-to-end verification (runs without API key)
+- `requirements-lock.txt`: Dependency pinning for reproducible builds
+- `scripts/publish.sh`: Build verification and distribution pipeline
+- 21 skill documentation pages generated at `docs/skills/`
+- Arena snapshot regeneration pipeline
+
+### Changed
+- README.md: 7-badge panel, 5-layer ecosystem table, 26-skill catalog, trilogy section
+- AGENTS.md: Added Intelligence & Data category with 5 trilogy skills
+- `docs/index.html`: Updated with ecosystem table and 26-skill catalog
+- `pyproject.toml`: Version bump to 1.1.0, package-data includes for ARENA.md/SKILL.md
+
 ## [1.0.0] - 2026-03-15
 
 ### Added
