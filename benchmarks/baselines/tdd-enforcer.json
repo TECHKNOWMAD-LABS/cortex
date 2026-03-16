@@ -1,0 +1,13 @@
+{
+  "skill": "tdd-enforcer",
+  "timestamp": "20260315_000000",
+  "sample_count": 50,
+  "overall_average": 0.7465,
+  "dimension_averages": {
+    "correctness": 3.2138,
+    "reasoning_depth": 4.0649,
+    "completeness": 4.0181,
+    "hallucination_risk": 3.8444,
+    "coherence": 3.5202
+  }
+}

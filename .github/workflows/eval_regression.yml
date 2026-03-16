@@ -1,0 +1,127 @@
+name: Eval Regression Gate
+
+on:
+  pull_request:
+    paths:
+      - "skills/**"
+      - "cortex/**"
+
+permissions:
+  contents: read
+  pull-requests: read
+
+jobs:
+  eval-regression:
+    name: Skill Evaluation Regression Check
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pytest pyyaml
+
+      - name: Detect changed skills
+        id: changed
+        run: |
+          CHANGED_SKILLS=$(git diff --name-only origin/main...HEAD -- skills/ | \
+            sed -n 's|^skills/\([^/]*\)/.*|\1|p' | sort -u | tr '\n' ',' | sed 's/,$//')
+          if [ -z "$CHANGED_SKILLS" ]; then
+            echo "No skills changed, checking cortex/ changes..."
+            CHANGED_CORTEX=$(git diff --name-only origin/main...HEAD -- cortex/ | head -1)
+            if [ -n "$CHANGED_CORTEX" ]; then
+              CHANGED_SKILLS="security-audit,code-review-engine,agent-orchestrator"
+            fi
+          fi
+          echo "skills=$CHANGED_SKILLS" >> "$GITHUB_OUTPUT"
+          echo "Changed skills: $CHANGED_SKILLS"
+
+      - name: Generate evaluation datasets
+        if: steps.changed.outputs.skills != ''
+        run: |
+          IFS=',' read -ra SKILLS <<< "${{ steps.changed.outputs.skills }}"
+          for skill in "${SKILLS[@]}"; do
+            echo "Generating dataset for: $skill"
+            python datasets/generators/skill_dataset_generator.py \
+              --skills "$skill" \
+              --count 50 \
+              --seed 42 \
+              --output datasets/ci_eval \
+              --format jsonl
+          done
+
+      - name: Generate mock responses for offline eval
+        if: steps.changed.outputs.skills != ''
+        run: |
+          python3 -c "
+          import json, hashlib, sys
+          from pathlib import Path
+
+          # Read all generated datasets and create mock prompt+response pairs
+          out_dir = Path('datasets/ci_eval_responses')
+          out_dir.mkdir(parents=True, exist_ok=True)
+
+          for f in Path('datasets/ci_eval').glob('*.jsonl'):
+              items = [json.loads(line) for line in f.read_text().splitlines() if line.strip()]
+              by_skill = {}
+              for item in items:
+                  by_skill.setdefault(item['skill'], []).append(item)
+
+              for skill, prompts in by_skill.items():
+                  out_path = out_dir / f'{skill}.jsonl'
+                  with open(out_path, 'w') as out:
+                      for p in prompts:
+                          # Mock response — in real CI this would call the skill
+                          response = f'Analysis of the topic shows multiple perspectives. '
+                          response += f'Key findings include structured evidence and reasoning. '
+                          response += f'The conclusion synthesizes the main points effectively.'
+                          out.write(json.dumps({
+                              'prompt': p['prompt'],
+                              'response': response,
+                              'skill': p['skill'],
+                          }) + '\n')
+                  print(f'Generated {len(prompts)} responses for {skill}')
+          "
+
+      - name: Run evaluation judge
+        if: steps.changed.outputs.skills != ''
+        run: |
+          IFS=',' read -ra SKILLS <<< "${{ steps.changed.outputs.skills }}"
+          EXIT_CODE=0
+          for skill in "${SKILLS[@]}"; do
+            DATASET="datasets/ci_eval_responses/${skill}.jsonl"
+            if [ ! -f "$DATASET" ]; then
+              echo "Warning: No dataset for $skill, skipping"
+              continue
+            fi
+            BASELINE="benchmarks/baselines/${skill}.json"
+            BASELINE_FLAG=""
+            if [ -f "$BASELINE" ]; then
+              BASELINE_FLAG="--baseline $BASELINE --threshold 0.1"
+            fi
+            echo "=== Evaluating: $skill ==="
+            python skills/skill-test-harness/scripts/eval_judge.py \
+              --skill "$skill" \
+              --dataset "$DATASET" \
+              --output-dir benchmarks/results \
+              --offline \
+              $BASELINE_FLAG || EXIT_CODE=1
+          done
+          exit $EXIT_CODE
+
+      - name: Upload benchmark results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: benchmark-results
+          path: benchmarks/results/
+          if-no-files-found: ignore

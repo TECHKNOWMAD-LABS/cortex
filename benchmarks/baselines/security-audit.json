@@ -1,0 +1,13 @@
+{
+  "skill": "security-audit",
+  "timestamp": "20260315_000000",
+  "sample_count": 50,
+  "overall_average": 0.7699,
+  "dimension_averages": {
+    "correctness": 3.8736,
+    "reasoning_depth": 3.5153,
+    "completeness": 3.9015,
+    "hallucination_risk": 4.2774,
+    "coherence": 3.6793
+  }
+}

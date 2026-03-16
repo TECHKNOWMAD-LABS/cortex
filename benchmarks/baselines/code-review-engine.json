@@ -1,0 +1,13 @@
+{
+  "skill": "code-review-engine",
+  "timestamp": "20260315_000000",
+  "sample_count": 50,
+  "overall_average": 0.7168,
+  "dimension_averages": {
+    "correctness": 3.4624,
+    "reasoning_depth": 3.8064,
+    "completeness": 3.2318,
+    "hallucination_risk": 3.4386,
+    "coherence": 3.9799
+  }
+}

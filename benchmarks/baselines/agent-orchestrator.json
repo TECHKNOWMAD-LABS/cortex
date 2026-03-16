@@ -1,0 +1,13 @@
+{
+  "skill": "agent-orchestrator",
+  "timestamp": "20260315_000000",
+  "sample_count": 50,
+  "overall_average": 0.7312,
+  "dimension_averages": {
+    "correctness": 3.9673,
+    "reasoning_depth": 3.23,
+    "completeness": 3.53,
+    "hallucination_risk": 3.4679,
+    "coherence": 4.0838
+  }
+}

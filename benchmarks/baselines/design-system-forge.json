@@ -1,0 +1,13 @@
+{
+  "skill": "design-system-forge",
+  "timestamp": "20260315_000000",
+  "sample_count": 50,
+  "overall_average": 0.7349,
+  "dimension_averages": {
+    "correctness": 3.6039,
+    "reasoning_depth": 3.3113,
+    "completeness": 3.3161,
+    "hallucination_risk": 4.217,
+    "coherence": 3.9245
+  }
+}

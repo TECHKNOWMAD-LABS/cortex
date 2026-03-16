@@ -1,0 +1,13 @@
+{
+  "skill": "pre-package-pipeline",
+  "timestamp": "20260315_000000",
+  "sample_count": 50,
+  "overall_average": 0.8183,
+  "dimension_averages": {
+    "correctness": 4.3874,
+    "reasoning_depth": 3.968,
+    "completeness": 3.8683,
+    "hallucination_risk": 4.0215,
+    "coherence": 4.2114
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "skill": "prompt-architect",
+  "timestamp": "20260315_000000",
+  "sample_count": 50,
+  "overall_average": 0.7178,
+  "dimension_averages": {
+    "correctness": 4.1312,
+    "reasoning_depth": 3.4749,
+    "completeness": 3.2385,
+    "hallucination_risk": 3.5785,
+    "coherence": 3.5213
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "skill": "diff-generator",
+  "timestamp": "20260315_000000",
+  "sample_count": 50,
+  "overall_average": 0.8051,
+  "dimension_averages": {
+    "correctness": 3.8624,
+    "reasoning_depth": 4.1953,
+    "completeness": 3.9422,
+    "hallucination_risk": 4.234,
+    "coherence": 3.8928
+  }
+}

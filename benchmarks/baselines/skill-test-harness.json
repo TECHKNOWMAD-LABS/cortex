@@ -1,0 +1,13 @@
+{
+  "skill": "skill-test-harness",
+  "timestamp": "20260315_000000",
+  "sample_count": 50,
+  "overall_average": 0.7367,
+  "dimension_averages": {
+    "correctness": 3.3316,
+    "reasoning_depth": 3.9529,
+    "completeness": 4.1505,
+    "hallucination_risk": 3.7066,
+    "coherence": 3.2762
+  }
+}

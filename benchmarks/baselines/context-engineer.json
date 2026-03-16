@@ -1,0 +1,13 @@
+{
+  "skill": "context-engineer",
+  "timestamp": "20260315_000000",
+  "sample_count": 50,
+  "overall_average": 0.7442,
+  "dimension_averages": {
+    "correctness": 3.8539,
+    "reasoning_depth": 3.4645,
+    "completeness": 3.9071,
+    "hallucination_risk": 4.1713,
+    "coherence": 3.2078
+  }
+}

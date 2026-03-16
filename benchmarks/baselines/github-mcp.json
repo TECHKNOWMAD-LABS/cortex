@@ -1,0 +1,13 @@
+{
+  "skill": "github-mcp",
+  "timestamp": "20260315_000000",
+  "sample_count": 50,
+  "overall_average": 0.7047,
+  "dimension_averages": {
+    "correctness": 4.0455,
+    "reasoning_depth": 3.255,
+    "completeness": 3.4735,
+    "hallucination_risk": 3.5473,
+    "coherence": 3.2958
+  }
+}

@@ -293,3 +293,48 @@ Options:
 - `0` — All tests passed
 - `1` — One or more tests failed
 - `2` — Invalid arguments or configuration error
+
+## Quickstart — Evaluation Lab
+
+### 1. Generate a dataset for any skill
+
+```bash
+python datasets/generators/skill_dataset_generator.py --skill security-audit --n 50
+# Output: datasets/synthetic/security-audit/shard_000.json
+```
+
+### 2. Run evaluation with the LLM judge
+
+```bash
+# Offline mode (no API key needed, uses heuristic scoring)
+python skills/skill-test-harness/scripts/eval_judge.py \
+  --skill security-audit \
+  --dataset datasets/synthetic/security-audit/shard_000.json \
+  --offline
+
+# Live mode (uses Anthropic SDK)
+python skills/skill-test-harness/scripts/eval_judge.py \
+  --skill security-audit \
+  --dataset datasets/synthetic/security-audit/shard_000.json
+```
+
+### 3. Compare against baseline
+
+```bash
+python skills/skill-test-harness/scripts/eval_judge.py \
+  --skill security-audit \
+  --dataset datasets/synthetic/security-audit/shard_000.json \
+  --offline --compare-baseline
+```
+
+### 4. Run all evaluations
+
+```bash
+bash skills/skill-test-harness/scripts/run_all_evals.sh
+```
+
+### 5. Rubrics and baselines
+
+- Rubrics: `skills/skill-test-harness/rubrics/{skill}.yaml`
+- Baselines: `benchmarks/baselines/{skill}.json`
+- Results: `benchmarks/results/{skill}/{timestamp}.json`

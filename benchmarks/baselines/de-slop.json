@@ -1,0 +1,13 @@
+{
+  "skill": "de-slop",
+  "timestamp": "20260315_000000",
+  "sample_count": 50,
+  "overall_average": 0.7819,
+  "dimension_averages": {
+    "correctness": 4.167,
+    "reasoning_depth": 4.0378,
+    "completeness": 3.6083,
+    "hallucination_risk": 3.3866,
+    "coherence": 4.3487
+  }
+}

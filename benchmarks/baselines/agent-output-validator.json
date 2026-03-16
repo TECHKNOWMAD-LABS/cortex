@@ -1,0 +1,13 @@
+{
+  "skill": "agent-output-validator",
+  "timestamp": "20260315_000000",
+  "sample_count": 50,
+  "overall_average": 0.7412,
+  "dimension_averages": {
+    "correctness": 4.012,
+    "reasoning_depth": 4.2706,
+    "completeness": 3.3043,
+    "hallucination_risk": 3.7063,
+    "coherence": 3.2358
+  }
+}
