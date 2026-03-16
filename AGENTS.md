@@ -1,6 +1,6 @@
 # TECHKNOWMAD LABS — Cortex Skill Library
 
-Open-source AI agent tools for code quality, security, memory, orchestration, and development lifecycle automation. Every skill runs as a Claude Skill, MCP Server, LangChain Tool, CrewAI Tool, or OpenAI GPT Action from a single source definition.
+26 self-evolving AI research skills built on Karpathy's autoresearch pattern. Each skill has an ARENA.md that defines its evolution strategy — skills compete in an evaluation arena, mutate based on LLM-as-Judge scores, and the best variants survive. The Skill Organism engine runs genetic selection across the full ecosystem. Includes trilogy integration (MindSpider social listening, intelligence analysis, multimodal analysis, forum intelligence, scenario simulation) and cross-platform adapters. Every skill runs as a Claude Skill, MCP Server, LangChain Tool, CrewAI Tool, or OpenAI GPT Action from a single source definition.
 
 ## Skills
 

@@ -8,7 +8,7 @@
 [![Code style: ruff](https://img.shields.io/badge/code%20style-ruff-000000.svg)](https://github.com/astral-sh/ruff)
 [![Skills: 26](https://img.shields.io/badge/skills-26-blueviolet.svg)](skills/)
 
-**AI Research Operating System** — 26 autonomous skills, self-evolving Skill Organism, browser-based experiment arena, and a Python evaluation framework. Covers research workflows, MLOps enforcement, security auditing, agent orchestration, intelligence analysis, and developer tooling. Works natively with Claude Code and integrates with LangChain, CrewAI, and OpenAI via MCP adapters.
+**AI Research Operating System** — 26 self-evolving research skills built on [Karpathy's autoresearch pattern](https://github.com/karpathy/autoresearchgpt). Each skill has an ARENA.md (the "program.md" equivalent) that drives autonomous evolution through LLM-as-Judge evaluation. The Skill Organism engine runs genetic selection — skills compete, mutate, and reproduce. Includes trilogy integration (MindSpider social listening, intelligence analysis, scenario simulation), browser-based experiment arena, and cross-platform adapters for Claude Code, MCP, LangChain, CrewAI, and OpenAI.
 
 ## Quickstart — 3 entry points
 

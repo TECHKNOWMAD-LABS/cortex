@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "cortex-research-suite"
 version = "1.1.0"
-description = "AI Research Operating System — skill testing, synthetic data, evaluation, multi-agent orchestration"
+description = "AI Research Operating System — 26 self-evolving skills with Karpathy's autoresearch pattern, Skill Organism genetic evolution, LLM-as-Judge evaluation, and trilogy integration"
 readme = "README.md"
 license = {text = "MIT"}
 requires-python = ">=3.10"
@@ -13,6 +13,9 @@ authors = [
     {name = "TECHKNOWMAD-LABS"},
 ]
 keywords = [
+    "autoresearch",
+    "skill-evolution",
+    "genetic-algorithm",
     "claude-code",
     "mcp",
     "langchain",
@@ -23,6 +26,8 @@ keywords = [
     "synthetic-data",
     "evaluation",
     "multi-agent",
+    "llm-evaluation",
+    "arena",
 ]
 classifiers = [
     "Development Status :: 5 - Production/Stable",

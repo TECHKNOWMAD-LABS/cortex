@@ -4,14 +4,14 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "cortex-skill-organism"
-version = "1.0.0"
-description = "Evolutionary intelligence for AI skill ecosystems — autonomous lifecycle management with genetic algorithms"
+version = "1.1.0"
+description = "Genetic evolution engine for AI skill ecosystems — Karpathy's autoresearch pattern with ARENA.md-driven competition, LLM-as-Judge evaluation, and autonomous lifecycle management"
 readme = "README.md"
 license = {text = "MIT"}
 authors = [
     {name = "TechKnowmad AI", email = "admin@techknowmad.ai"}
 ]
-keywords = ["ai", "ml", "evolution", "genetic-algorithms", "skill-management", "autonomous-systems"]
+keywords = ["autoresearch", "karpathy", "skill-evolution", "genetic-algorithms", "llm-evaluation", "arena", "ai", "ml", "autonomous-systems"]
 classifiers = [
     "Development Status :: 4 - Beta",
     "Intended Audience :: Developers",
