@@ -26,6 +26,7 @@ def main() -> int:
     sys.path.insert(0, str(REPO_ROOT / "skill-organism"))
     try:
         from arena_config import ArenaConfig
+
         has_arena_config = True
     except ImportError:
         has_arena_config = False

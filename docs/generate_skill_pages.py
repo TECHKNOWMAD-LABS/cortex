@@ -119,9 +119,7 @@ def main() -> None:
     print(f"Generated {len(skills_generated)} skill pages in {OUTPUT_DIR}")
 
     # Generate skills index
-    index_items = "\n".join(
-        f'<li><a href="skills/{s}.html">{s}</a></li>' for s in skills_generated
-    )
+    index_items = "\n".join(f'<li><a href="skills/{s}.html">{s}</a></li>' for s in skills_generated)
     skills_index = f"""<!-- Auto-generated skills index fragment -->
 <ul>
 {index_items}

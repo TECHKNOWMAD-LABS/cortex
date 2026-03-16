@@ -168,11 +168,13 @@ class GraphStore:
             for idx in self._by_subject.get(current, []):
                 triple = self._triples[idx]
                 obj_lower = triple.object.lower()
-                neighbors[triple.object].append({
-                    "predicate": triple.predicate,
-                    "direction": "outgoing",
-                    "connected_to": triple.subject,
-                })
+                neighbors[triple.object].append(
+                    {
+                        "predicate": triple.predicate,
+                        "direction": "outgoing",
+                        "connected_to": triple.subject,
+                    }
+                )
                 if obj_lower not in visited:
                     visited.add(obj_lower)
                     queue.append((obj_lower, current_depth + 1))
@@ -181,11 +183,13 @@ class GraphStore:
             for idx in self._by_object.get(current, []):
                 triple = self._triples[idx]
                 subj_lower = triple.subject.lower()
-                neighbors[triple.subject].append({
-                    "predicate": triple.predicate,
-                    "direction": "incoming",
-                    "connected_to": triple.object,
-                })
+                neighbors[triple.subject].append(
+                    {
+                        "predicate": triple.predicate,
+                        "direction": "incoming",
+                        "connected_to": triple.object,
+                    }
+                )
                 if subj_lower not in visited:
                     visited.add(subj_lower)
                     queue.append((subj_lower, current_depth + 1))
@@ -360,10 +364,7 @@ class GraphStore:
         try:
             import networkx as nx
         except ImportError:
-            raise ImportError(
-                "networkx is required for graph export. "
-                "Install it with: pip install networkx"
-            )
+            raise ImportError("networkx is required for graph export. Install it with: pip install networkx")
 
         G = nx.DiGraph()
         for t in self._triples:

@@ -3,6 +3,7 @@
 Verifies all components work without requiring an API key.
 Exit code 0 = all checks passed. Exit code 1 = fix before tagging.
 """
+
 from pathlib import Path
 import json
 import sys
@@ -57,6 +58,7 @@ def main():
     sys.path.insert(0, str(REPO_ROOT / "skills" / "mindspider-connector" / "scripts"))
     try:
         from connector import generate_demo_data
+
         data = generate_demo_data()
         check("MindSpider demo data generates", len(data) > 0, f"got {len(data)} topics")
     except Exception as e:
@@ -66,6 +68,7 @@ def main():
     sys.path.insert(0, str(REPO_ROOT / "knowledge"))
     try:
         from graph_store import GraphStore
+
         gs = GraphStore()
         check("GraphStore initialises", True)
     except Exception as e:
@@ -75,6 +78,7 @@ def main():
     sys.path.insert(0, str(REPO_ROOT / "skill-organism"))
     try:
         from arena_config import ArenaConfig
+
         cfg = ArenaConfig.load(skills[0])
         check("ArenaConfig loads from ARENA.md", cfg.skill_name != "")
     except Exception as e:
