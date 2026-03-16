@@ -1,0 +1,16 @@
+# Rubric for mindspider-connector
+# Used by eval_judge.py to customize evaluation weights
+
+skill_context: "Focus on correct data extraction, sentiment accuracy, platform coverage, and proper demo/mysql source handling."
+
+# Weight overrides (must sum to ~1.0)
+weights:
+  correctness: 0.25
+  reasoning_depth: 0.15
+  completeness: 0.25
+  hallucination_risk: 0.25
+  coherence: 0.10
+
+# Score interpretation
+passing_threshold: 0.65
+excellence_threshold: 0.85

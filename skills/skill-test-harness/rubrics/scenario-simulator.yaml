@@ -1,0 +1,16 @@
+# Rubric for scenario-simulator
+# Used by eval_judge.py to customize evaluation weights
+
+skill_context: "Focus on persona diversity, counterfactual quality, deliberation coherence, and simulation disclaimer presence."
+
+# Weight overrides (must sum to ~1.0)
+weights:
+  correctness: 0.20
+  reasoning_depth: 0.25
+  completeness: 0.25
+  hallucination_risk: 0.15
+  coherence: 0.15
+
+# Score interpretation
+passing_threshold: 0.65
+excellence_threshold: 0.85
