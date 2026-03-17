@@ -6,12 +6,12 @@
 [![Python 3.10-3.12](https://img.shields.io/badge/python-3.10--3.12-blue.svg)](https://www.python.org/downloads/)
 [![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 [![Code style: ruff](https://img.shields.io/badge/code%20style-ruff-000000.svg)](https://github.com/astral-sh/ruff)
-[![Skills: 26](https://img.shields.io/badge/skills-26-blueviolet.svg)](skills/)
+[![Skills: 27](https://img.shields.io/badge/skills-27-blueviolet.svg)](skills/)
 [![NVIDIA Inception](https://img.shields.io/badge/NVIDIA-Inception%20Program-76b900.svg)](https://www.nvidia.com/en-us/startups/)
 [![Zoho for Startups](https://img.shields.io/badge/Zoho-Startup%20Partner-e42527.svg)](https://www.zoho.com/startups/)
 [![DPIIT Registered](https://img.shields.io/badge/DPIIT-Registered%20Startup-ff9933.svg)](https://www.startupindia.gov.in/)
 
-**AI Research Operating System** — 26 self-evolving research skills built on [Karpathy's autoresearch pattern](https://github.com/karpathy/autoresearchgpt). Each skill has an ARENA.md (the "program.md" equivalent) that drives autonomous evolution through LLM-as-Judge evaluation. The Skill Organism engine runs genetic selection — skills compete, mutate, and reproduce. Includes trilogy integration (MindSpider social listening, intelligence analysis, scenario simulation), browser-based experiment arena, and cross-platform adapters for Claude Code, MCP, LangChain, CrewAI, and OpenAI.
+**AI Research Operating System** — 27 self-evolving research skills built on [Karpathy's autoresearch pattern](https://github.com/karpathy/autoresearchgpt). Each skill has an ARENA.md (the "program.md" equivalent) that drives autonomous evolution through LLM-as-Judge evaluation. The Skill Organism engine runs genetic selection — skills compete, mutate, and reproduce. Includes trilogy integration (MindSpider social listening, intelligence analysis, scenario simulation), browser-based experiment arena, and cross-platform adapters for Claude Code, MCP, LangChain, CrewAI, and OpenAI.
 
 ## Installation
 
@@ -23,7 +23,7 @@ cd cortex-research-suite
 pip install -e ".[dev]"
 ```
 
-This gives you all 26 skills, Skill Organism evolution engine, dashboards, knowledge store (GraphRAG), datasets, and CLI scripts.
+This gives you all 27 skills, Skill Organism evolution engine, dashboards, knowledge store (GraphRAG), datasets, and CLI scripts.
 
 ### Core framework only
 
@@ -31,7 +31,7 @@ This gives you all 26 skills, Skill Organism evolution engine, dashboards, knowl
 pip install cortex-research-suite
 ```
 
-> **Note:** `pip install` delivers only the `cortex/` Python package (synthetic data, evaluation, agents, models). For all 26 skills, Skill Organism, dashboards, and knowledge store, use `git clone`.
+> **Note:** `pip install` delivers only the `cortex/` Python package (synthetic data, evaluation, agents, models). For all 27 skills, Skill Organism, dashboards, and knowledge store, use `git clone`.
 
 ## Quickstart — 3 entry points
 
@@ -46,7 +46,7 @@ Open `dashboards/skill_arena_demo.html` in any browser. Paste your Anthropic API
 # Run the test suite
 pytest
 
-# Generate evaluation datasets for all 26 skills
+# Generate evaluation datasets for all 27 skills
 python datasets/generators/skill_dataset_generator.py --all-skills --n 50
 
 # Run evaluation on any skill
@@ -90,9 +90,35 @@ print(f"Quality: {score.normalized:.0%}")  # e.g., Quality: 87%
 | **4. Intelligence** | BettaFish-inspired analysis engine | Multi-source intelligence queries, forum analysis, multimodal | `skills/intelligence-query/`, `skills/forum-intelligence/`, `skills/multimodal-analyst/` |
 | **3. Data** | MindSpider connector | Live topic feeds from social listening deployments | `skills/mindspider-connector/` |
 | **2. Evolution** | Skill Organism + ARENA.md | Autonomous overnight evolution with fitness tracking | `skill-organism/`, `skills/*/ARENA.md` |
-| **1. Foundation** | 26 core skills + evaluation lab | Research, security, MLOps, orchestration, quality | `skills/`, `cortex/` |
+| **1. Foundation** | 27 core skills + evaluation lab | Research, security, MLOps, orchestration, quality | `skills/`, `cortex/` |
 
-## Skills (26)
+## Live Mode (optional)
+
+Install with live web intelligence support:
+
+```bash
+pip install -e ".[live]"
+```
+
+This enables Scrapling-powered web scraping for real-time social signals, academic evidence, and forum analysis. Skills that support live mode:
+
+- `mindspider-connector` — `--source scrapling` for live Reddit/HN/Bluesky topic feeds
+- `research-workflow` — `--live-evidence` for real-time Scholar/PubMed/arXiv citations
+- `web-intelligence` — full live web intelligence sweeps
+- `forum-intelligence` — live forum thread scraping
+
+All skills work fully offline without Scrapling installed — live mode is additive.
+
+## Dashboard Server (optional)
+
+```bash
+pip install uvicorn
+python scripts/serve_dashboard.py --port 3117
+```
+
+SSE-powered live dashboard showing evolution progress, skill fitness, and generation deltas. Connects to `skill-organism/evolution_log.jsonl` and streams updates in real time.
+
+## Skills (27)
 
 | Skill | Category | Description |
 |-------|----------|-------------|
@@ -122,6 +148,7 @@ print(f"Quality: {score.normalized:.0%}")  # e.g., Quality: 87%
 | `skill-test-harness` | Testing | Automated skill testing framework with LLM-as-Judge |
 | `skill-validator` | Validation | Skill structure and manifest validation |
 | `tdd-enforcer` | Testing | Test-driven development enforcement |
+| `web-intelligence` | Intelligence | Live web scraping with Scrapling — social signals, academic evidence, forum analysis |
 
 See [AGENTS.md](AGENTS.md) for the full agent manifest with platform-specific integration guides.
 
@@ -197,7 +224,7 @@ cortex-research-suite/
 | Generator | Path | Purpose |
 |-----------|------|---------|
 | Category-based | `scripts/generate_dataset.py` | Generates prompts by category (reasoning, strategy, healthcare, adversarial) for the cortex evaluation framework |
-| Per-skill | `datasets/generators/skill_dataset_generator.py` | Generates 50 prompts per skill (26 skills, 10% adversarial) for skill evolution and arena testing |
+| Per-skill | `datasets/generators/skill_dataset_generator.py` | Generates 50 prompts per skill (27 skills, 10% adversarial) for skill evolution and arena testing |
 
 ### Two research pipelines
 

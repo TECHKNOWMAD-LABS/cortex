@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Cortex Research Suite v1.1.0 — end-to-end smoke test.
+"""Cortex Research Suite v1.2.0 — end-to-end smoke test.
 Verifies all components work without requiring an API key.
 Exit code 0 = all checks passed. Exit code 1 = fix before tagging.
 """
@@ -24,16 +24,16 @@ def check(name: str, condition: bool, detail: str = ""):
 
 
 def main():
-    print("Cortex Research Suite v1.1.0 — Smoke Test")
+    print("Cortex Research Suite v1.2.0 — Smoke Test")
     print("=" * 50)
 
     # 1. Skill count
     skills = [p for p in (REPO_ROOT / "skills").iterdir() if (p / "SKILL.md").exists()]
-    check("26 skills with SKILL.md", len(skills) == 26, f"found {len(skills)}")
+    check("26 skills with SKILL.md", len(skills) == 27, f"found {len(skills)}")
 
     # 2. ARENA.md count
     arenas = [p for p in (REPO_ROOT / "skills").iterdir() if (p / "ARENA.md").exists()]
-    check("26 skills with ARENA.md", len(arenas) == 26, f"found {len(arenas)}")
+    check("26 skills with ARENA.md", len(arenas) == 27, f"found {len(arenas)}")
 
     # 3. Import all skill script modules (no ImportErrors)
     import_ok = True
@@ -123,10 +123,10 @@ def main():
     total = CHECKS_PASSED + CHECKS_FAILED
     print(f"\nSmoke test: {CHECKS_PASSED}/{total} checks passed")
     if CHECKS_FAILED > 0:
-        print("FIX FAILURES BEFORE TAGGING v1.1.0")
+        print("FIX FAILURES BEFORE TAGGING v1.2.0")
         sys.exit(1)
     else:
-        print("All checks passed. Safe to tag v1.1.0.")
+        print("All checks passed. Safe to tag v1.2.0.")
         sys.exit(0)
 
 
