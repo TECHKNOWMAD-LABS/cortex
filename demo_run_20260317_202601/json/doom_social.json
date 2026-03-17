@@ -1,0 +1,62 @@
+{
+  "source": "mindspider",
+  "extraction_timestamp": "2026-03-17T15:05:10.924587+00:00",
+  "topics": [
+    {
+      "topic": "AI regulation framework debate",
+      "sentiment_score": 0.374,
+      "post_count": 1867,
+      "trend_direction": "rising",
+      "sample_posts": [
+        "Sample post about ai regulation framework debate \u2014 perspective 1",
+        "Sample post about ai regulation framework debate \u2014 perspective 2",
+        "Sample post about ai regulation framework debate \u2014 perspective 3"
+      ],
+      "platforms": [
+        "reddit",
+        "twitter"
+      ],
+      "first_seen": "2026-03-17T10:05:10.924318+00:00",
+      "peak_time": "2026-03-17T15:05:10.924318+00:00"
+    },
+    {
+      "topic": "Quantum computing breakthrough claims",
+      "sentiment_score": 0.719,
+      "post_count": 4418,
+      "trend_direction": "rising",
+      "sample_posts": [
+        "Sample post about quantum computing breakthrough claims \u2014 perspective 1",
+        "Sample post about quantum computing breakthrough claims \u2014 perspective 2",
+        "Sample post about quantum computing breakthrough claims \u2014 perspective 3"
+      ],
+      "platforms": [
+        "twitter",
+        "reddit"
+      ],
+      "first_seen": "2026-03-16T20:05:10.924318+00:00",
+      "peak_time": "2026-03-17T13:05:10.924318+00:00"
+    },
+    {
+      "topic": "Supply chain AI optimization",
+      "sentiment_score": 0.45,
+      "post_count": 1310,
+      "trend_direction": "stable",
+      "sample_posts": [
+        "Sample post about supply chain ai optimization \u2014 perspective 1",
+        "Sample post about supply chain ai optimization \u2014 perspective 2",
+        "Sample post about supply chain ai optimization \u2014 perspective 3"
+      ],
+      "platforms": [
+        "mastodon",
+        "telegram"
+      ],
+      "first_seen": "2026-03-17T06:05:10.924318+00:00",
+      "peak_time": "2026-03-17T07:05:10.924318+00:00"
+    }
+  ],
+  "metadata": {
+    "total_topics": 3,
+    "time_range_hours": 24,
+    "source_mode": "demo"
+  }
+}

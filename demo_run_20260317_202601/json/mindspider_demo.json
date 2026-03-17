@@ -1,0 +1,280 @@
+{
+  "source": "mindspider",
+  "extraction_timestamp": "2026-03-17T15:03:30.928870+00:00",
+  "topics": [
+    {
+      "topic": "AI regulation framework debate",
+      "sentiment_score": 0.374,
+      "post_count": 1867,
+      "trend_direction": "rising",
+      "sample_posts": [
+        "Sample post about ai regulation framework debate \u2014 perspective 1",
+        "Sample post about ai regulation framework debate \u2014 perspective 2",
+        "Sample post about ai regulation framework debate \u2014 perspective 3"
+      ],
+      "platforms": [
+        "reddit",
+        "twitter"
+      ],
+      "first_seen": "2026-03-17T10:03:30.928508+00:00",
+      "peak_time": "2026-03-17T15:03:30.928508+00:00"
+    },
+    {
+      "topic": "Open-source LLM benchmark results",
+      "sentiment_score": 0.629,
+      "post_count": 3117,
+      "trend_direction": "rising",
+      "sample_posts": [
+        "Sample post about open-source llm benchmark results \u2014 perspective 1",
+        "Sample post about open-source llm benchmark results \u2014 perspective 2",
+        "Sample post about open-source llm benchmark results \u2014 perspective 3"
+      ],
+      "platforms": [
+        "twitter",
+        "reddit"
+      ],
+      "first_seen": "2026-03-16T20:03:30.928508+00:00",
+      "peak_time": "2026-03-17T13:03:30.928508+00:00"
+    },
+    {
+      "topic": "Healthcare data privacy concerns",
+      "sentiment_score": -0.27,
+      "post_count": 1143,
+      "trend_direction": "stable",
+      "sample_posts": [
+        "Sample post about healthcare data privacy concerns \u2014 perspective 1",
+        "Sample post about healthcare data privacy concerns \u2014 perspective 2",
+        "Sample post about healthcare data privacy concerns \u2014 perspective 3"
+      ],
+      "platforms": [
+        "mastodon",
+        "telegram"
+      ],
+      "first_seen": "2026-03-17T06:03:30.928508+00:00",
+      "peak_time": "2026-03-17T07:03:30.928508+00:00"
+    },
+    {
+      "topic": "Autonomous vehicle safety incidents",
+      "sentiment_score": -0.441,
+      "post_count": 2006,
+      "trend_direction": "declining",
+      "sample_posts": [
+        "Sample post about autonomous vehicle safety incidents \u2014 perspective 1",
+        "Sample post about autonomous vehicle safety incidents \u2014 perspective 2",
+        "Sample post about autonomous vehicle safety incidents \u2014 perspective 3"
+      ],
+      "platforms": [
+        "telegram",
+        "weibo"
+      ],
+      "first_seen": "2026-03-17T06:03:30.928508+00:00",
+      "peak_time": "2026-03-17T08:03:30.928508+00:00"
+    },
+    {
+      "topic": "Quantum computing breakthrough claims",
+      "sentiment_score": 0.682,
+      "post_count": 4792,
+      "trend_direction": "rising",
+      "sample_posts": [
+        "Sample post about quantum computing breakthrough claims \u2014 perspective 1",
+        "Sample post about quantum computing breakthrough claims \u2014 perspective 2",
+        "Sample post about quantum computing breakthrough claims \u2014 perspective 3"
+      ],
+      "platforms": [
+        "twitter",
+        "mastodon",
+        "reddit"
+      ],
+      "first_seen": "2026-03-17T05:03:30.928508+00:00",
+      "peak_time": "2026-03-17T13:03:30.928508+00:00"
+    },
+    {
+      "topic": "Social media algorithm transparency",
+      "sentiment_score": -0.085,
+      "post_count": 1776,
+      "trend_direction": "stable",
+      "sample_posts": [
+        "Sample post about social media algorithm transparency \u2014 perspective 1",
+        "Sample post about social media algorithm transparency \u2014 perspective 2",
+        "Sample post about social media algorithm transparency \u2014 perspective 3"
+      ],
+      "platforms": [
+        "twitter",
+        "telegram",
+        "weibo"
+      ],
+      "first_seen": "2026-03-17T10:03:30.928508+00:00",
+      "peak_time": "2026-03-17T13:03:30.928508+00:00"
+    },
+    {
+      "topic": "Climate tech investment trends",
+      "sentiment_score": 0.438,
+      "post_count": 2940,
+      "trend_direction": "rising",
+      "sample_posts": [
+        "Sample post about climate tech investment trends \u2014 perspective 1",
+        "Sample post about climate tech investment trends \u2014 perspective 2",
+        "Sample post about climate tech investment trends \u2014 perspective 3"
+      ],
+      "platforms": [
+        "mastodon",
+        "weibo",
+        "telegram",
+        "twitter"
+      ],
+      "first_seen": "2026-03-17T10:03:30.928508+00:00",
+      "peak_time": "2026-03-17T12:03:30.928508+00:00"
+    },
+    {
+      "topic": "Remote work productivity studies",
+      "sentiment_score": 0.236,
+      "post_count": 1500,
+      "trend_direction": "stable",
+      "sample_posts": [
+        "Sample post about remote work productivity studies \u2014 perspective 1",
+        "Sample post about remote work productivity studies \u2014 perspective 2",
+        "Sample post about remote work productivity studies \u2014 perspective 3"
+      ],
+      "platforms": [
+        "twitter",
+        "reddit",
+        "mastodon"
+      ],
+      "first_seen": "2026-03-17T11:03:30.928508+00:00",
+      "peak_time": "2026-03-17T15:03:30.928508+00:00"
+    },
+    {
+      "topic": "Cybersecurity zero-day exploits",
+      "sentiment_score": -0.555,
+      "post_count": 3498,
+      "trend_direction": "rising",
+      "sample_posts": [
+        "Sample post about cybersecurity zero-day exploits \u2014 perspective 1",
+        "Sample post about cybersecurity zero-day exploits \u2014 perspective 2",
+        "Sample post about cybersecurity zero-day exploits \u2014 perspective 3"
+      ],
+      "platforms": [
+        "weibo",
+        "mastodon"
+      ],
+      "first_seen": "2026-03-17T01:03:30.928508+00:00",
+      "peak_time": "2026-03-17T11:03:30.928508+00:00"
+    },
+    {
+      "topic": "EdTech adaptive learning results",
+      "sentiment_score": 0.4,
+      "post_count": 1125,
+      "trend_direction": "stable",
+      "sample_posts": [
+        "Sample post about edtech adaptive learning results \u2014 perspective 1",
+        "Sample post about edtech adaptive learning results \u2014 perspective 2",
+        "Sample post about edtech adaptive learning results \u2014 perspective 3"
+      ],
+      "platforms": [
+        "twitter",
+        "reddit",
+        "weibo",
+        "mastodon"
+      ],
+      "first_seen": "2026-03-17T07:03:30.928508+00:00",
+      "peak_time": "2026-03-17T11:03:30.928508+00:00"
+    },
+    {
+      "topic": "Cryptocurrency market manipulation",
+      "sentiment_score": -0.682,
+      "post_count": 5428,
+      "trend_direction": "declining",
+      "sample_posts": [
+        "Sample post about cryptocurrency market manipulation \u2014 perspective 1",
+        "Sample post about cryptocurrency market manipulation \u2014 perspective 2",
+        "Sample post about cryptocurrency market manipulation \u2014 perspective 3"
+      ],
+      "platforms": [
+        "mastodon",
+        "reddit",
+        "weibo",
+        "telegram"
+      ],
+      "first_seen": "2026-03-17T08:03:30.928508+00:00",
+      "peak_time": "2026-03-17T08:03:30.928508+00:00"
+    },
+    {
+      "topic": "Biotech CRISPR therapy approvals",
+      "sentiment_score": 0.842,
+      "post_count": 2401,
+      "trend_direction": "rising",
+      "sample_posts": [
+        "Sample post about biotech crispr therapy approvals \u2014 perspective 1",
+        "Sample post about biotech crispr therapy approvals \u2014 perspective 2",
+        "Sample post about biotech crispr therapy approvals \u2014 perspective 3"
+      ],
+      "platforms": [
+        "weibo",
+        "twitter",
+        "telegram"
+      ],
+      "first_seen": "2026-03-17T12:03:30.928508+00:00",
+      "peak_time": "2026-03-17T14:03:30.928508+00:00"
+    },
+    {
+      "topic": "Supply chain AI optimization",
+      "sentiment_score": 0.411,
+      "post_count": 1278,
+      "trend_direction": "stable",
+      "sample_posts": [
+        "Sample post about supply chain ai optimization \u2014 perspective 1",
+        "Sample post about supply chain ai optimization \u2014 perspective 2",
+        "Sample post about supply chain ai optimization \u2014 perspective 3"
+      ],
+      "platforms": [
+        "telegram",
+        "reddit",
+        "mastodon"
+      ],
+      "first_seen": "2026-03-16T19:03:30.928508+00:00",
+      "peak_time": "2026-03-17T05:03:30.928508+00:00"
+    },
+    {
+      "topic": "Misinformation detection tools",
+      "sentiment_score": 0.174,
+      "post_count": 2065,
+      "trend_direction": "rising",
+      "sample_posts": [
+        "Sample post about misinformation detection tools \u2014 perspective 1",
+        "Sample post about misinformation detection tools \u2014 perspective 2",
+        "Sample post about misinformation detection tools \u2014 perspective 3"
+      ],
+      "platforms": [
+        "mastodon",
+        "telegram",
+        "weibo"
+      ],
+      "first_seen": "2026-03-17T09:03:30.928508+00:00",
+      "peak_time": "2026-03-17T14:03:30.928508+00:00"
+    },
+    {
+      "topic": "Digital identity verification",
+      "sentiment_score": 0.262,
+      "post_count": 1426,
+      "trend_direction": "stable",
+      "sample_posts": [
+        "Sample post about digital identity verification \u2014 perspective 1",
+        "Sample post about digital identity verification \u2014 perspective 2",
+        "Sample post about digital identity verification \u2014 perspective 3"
+      ],
+      "platforms": [
+        "telegram",
+        "twitter",
+        "mastodon",
+        "weibo"
+      ],
+      "first_seen": "2026-03-17T01:03:30.928508+00:00",
+      "peak_time": "2026-03-17T10:03:30.928508+00:00"
+    }
+  ],
+  "metadata": {
+    "total_topics": 15,
+    "time_range_hours": 24,
+    "source_mode": "demo"
+  }
+}

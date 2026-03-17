@@ -1,0 +1,104 @@
+{
+  "events": 63,
+  "generations": 3,
+  "skills_evolved": 21,
+  "mutations": {
+    "example_replacement": 14,
+    "reasoning_scaffolding": 14,
+    "instruction_clarity": 14,
+    "edge_case_handling": 8,
+    "output_schema_tightening": 13
+  },
+  "top_5": [
+    {
+      "generation": 3,
+      "skill": "diff-generator",
+      "score_before": 0.8793,
+      "score_after": 0.9985,
+      "delta": 0.1192,
+      "mutation_type": "edge_case_handling",
+      "status": "improved",
+      "budget_elapsed_s": 8.56,
+      "timestamp": "2026-03-15T06:35:00Z",
+      "git_commit": "",
+      "browser_demo_url": "",
+      "trilogy_integration": {
+        "mindspider_active": false,
+        "bettafish_engine": null,
+        "mirofish_active": false
+      }
+    },
+    {
+      "generation": 2,
+      "skill": "mlops-standards",
+      "score_before": 0.814,
+      "score_after": 0.9303,
+      "delta": 0.1163,
+      "mutation_type": "example_replacement",
+      "status": "improved",
+      "budget_elapsed_s": 7.95,
+      "timestamp": "2026-03-15T04:34:00Z",
+      "git_commit": "",
+      "browser_demo_url": "",
+      "trilogy_integration": {
+        "mindspider_active": false,
+        "bettafish_engine": null,
+        "mirofish_active": false
+      }
+    },
+    {
+      "generation": 3,
+      "skill": "github-mcp",
+      "score_before": 0.7142,
+      "score_after": 0.8289,
+      "delta": 0.1147,
+      "mutation_type": "reasoning_scaffolding",
+      "status": "improved",
+      "budget_elapsed_s": 6.4,
+      "timestamp": "2026-03-15T06:37:00Z",
+      "git_commit": "",
+      "browser_demo_url": "",
+      "trilogy_integration": {
+        "mindspider_active": false,
+        "bettafish_engine": null,
+        "mirofish_active": false
+      }
+    },
+    {
+      "generation": 2,
+      "skill": "code-review-engine",
+      "score_before": 0.7483,
+      "score_after": 0.8585,
+      "delta": 0.1102,
+      "mutation_type": "instruction_clarity",
+      "status": "improved",
+      "budget_elapsed_s": 20.68,
+      "timestamp": "2026-03-15T04:43:00Z",
+      "git_commit": "",
+      "browser_demo_url": "",
+      "trilogy_integration": {
+        "mindspider_active": false,
+        "bettafish_engine": null,
+        "mirofish_active": false
+      }
+    },
+    {
+      "generation": 2,
+      "skill": "github-mcp",
+      "score_before": 0.6149,
+      "score_after": 0.7228,
+      "delta": 0.1079,
+      "mutation_type": "output_schema_tightening",
+      "status": "improved",
+      "budget_elapsed_s": 10.51,
+      "timestamp": "2026-03-15T04:56:00Z",
+      "git_commit": "",
+      "browser_demo_url": "",
+      "trilogy_integration": {
+        "mindspider_active": false,
+        "bettafish_engine": null,
+        "mirofish_active": false
+      }
+    }
+  ]
+}

@@ -12,8 +12,8 @@ from typing import Dict, List, Optional
 from dataclasses import dataclass, asdict
 import hashlib
 
-from telemetry import SkillTelemetry
-from skill_dna import SkillDNA, crossover, mutate
+from cortex_skill_organism.telemetry import SkillTelemetry
+from cortex_skill_organism.skill_dna import SkillDNA, crossover, mutate
 
 logger = logging.getLogger(__name__)
 

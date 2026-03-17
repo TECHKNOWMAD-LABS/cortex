@@ -1,0 +1,212 @@
+{
+  "improved": [
+    {
+      "skill": "diff-generator",
+      "score_before": 0.8449,
+      "score_after": 0.9985,
+      "delta": 0.1536,
+      "mutation_type": "edge_case_handling",
+      "severity": "significant",
+      "category": "improved"
+    },
+    {
+      "skill": "github-mcp",
+      "score_before": 0.7228,
+      "score_after": 0.8289,
+      "delta": 0.1061,
+      "mutation_type": "reasoning_scaffolding",
+      "severity": "significant",
+      "category": "improved"
+    },
+    {
+      "skill": "security-audit",
+      "score_before": 0.5862,
+      "score_after": 0.8255,
+      "delta": 0.2393,
+      "mutation_type": "reasoning_scaffolding",
+      "severity": "significant",
+      "category": "improved"
+    },
+    {
+      "skill": "skill-test-harness",
+      "score_before": 0.891,
+      "score_after": 0.9597,
+      "delta": 0.0687,
+      "mutation_type": "output_schema_tightening",
+      "severity": "moderate",
+      "category": "improved"
+    },
+    {
+      "skill": "tdd-enforcer",
+      "score_before": 0.8097,
+      "score_after": 0.8452,
+      "delta": 0.0355,
+      "mutation_type": "instruction_clarity",
+      "severity": "minor",
+      "category": "improved"
+    }
+  ],
+  "regressed": [
+    {
+      "skill": "prompt-architect",
+      "score_before": 0.7739,
+      "score_after": 0.7223,
+      "delta": -0.0516,
+      "mutation_type": "reasoning_scaffolding",
+      "severity": "moderate",
+      "category": "regressed"
+    },
+    {
+      "skill": "research-workflow",
+      "score_before": 0.7985,
+      "score_after": 0.7324,
+      "delta": -0.0661,
+      "mutation_type": "output_schema_tightening",
+      "severity": "moderate",
+      "category": "regressed"
+    }
+  ],
+  "crossed_over": [
+    {
+      "skill": "agent-orchestrator",
+      "score_before": 0.6254,
+      "score_after": 0.9082,
+      "delta": 0.2828,
+      "mutation_type": "example_replacement",
+      "severity": "significant",
+      "category": "improved"
+    },
+    {
+      "skill": "agent-output-validator",
+      "score_before": 0.7575,
+      "score_after": 0.7479,
+      "delta": -0.0096,
+      "mutation_type": "output_schema_tightening",
+      "severity": "minor",
+      "category": "regressed"
+    },
+    {
+      "skill": "code-review-engine",
+      "score_before": 0.8585,
+      "score_after": 0.8214,
+      "delta": -0.0371,
+      "mutation_type": "reasoning_scaffolding",
+      "severity": "minor",
+      "category": "regressed"
+    },
+    {
+      "skill": "context-engineer",
+      "score_before": 0.7396,
+      "score_after": 0.8449,
+      "delta": 0.1053,
+      "mutation_type": "instruction_clarity",
+      "severity": "significant",
+      "category": "improved"
+    },
+    {
+      "skill": "de-slop",
+      "score_before": 0.7458,
+      "score_after": 0.8305,
+      "delta": 0.0847,
+      "mutation_type": "edge_case_handling",
+      "severity": "moderate",
+      "category": "improved"
+    },
+    {
+      "skill": "design-system-forge",
+      "score_before": 0.8368,
+      "score_after": 0.7003,
+      "delta": -0.1365,
+      "mutation_type": "instruction_clarity",
+      "severity": "significant",
+      "category": "regressed"
+    },
+    {
+      "skill": "dev-lifecycle-engine",
+      "score_before": 0.7207,
+      "score_after": 0.7896,
+      "delta": 0.0689,
+      "mutation_type": "output_schema_tightening",
+      "severity": "moderate",
+      "category": "improved"
+    },
+    {
+      "skill": "meta-skill-evolver",
+      "score_before": 0.7167,
+      "score_after": 0.6769,
+      "delta": -0.0398,
+      "mutation_type": "reasoning_scaffolding",
+      "severity": "minor",
+      "category": "regressed"
+    },
+    {
+      "skill": "mlops-standards",
+      "score_before": 0.9303,
+      "score_after": 0.7325,
+      "delta": -0.1978,
+      "mutation_type": "instruction_clarity",
+      "severity": "significant",
+      "category": "regressed"
+    },
+    {
+      "skill": "persistent-memory",
+      "score_before": 0.7723,
+      "score_after": 0.6187,
+      "delta": -0.1536,
+      "mutation_type": "example_replacement",
+      "severity": "significant",
+      "category": "regressed"
+    },
+    {
+      "skill": "pre-package-pipeline",
+      "score_before": 0.7018,
+      "score_after": 0.9222,
+      "delta": 0.2204,
+      "mutation_type": "reasoning_scaffolding",
+      "severity": "significant",
+      "category": "improved"
+    },
+    {
+      "skill": "repo-publisher",
+      "score_before": 0.715,
+      "score_after": 0.7691,
+      "delta": 0.0541,
+      "mutation_type": "example_replacement",
+      "severity": "moderate",
+      "category": "improved"
+    },
+    {
+      "skill": "session-memory",
+      "score_before": 0.7332,
+      "score_after": 0.6445,
+      "delta": -0.0887,
+      "mutation_type": "example_replacement",
+      "severity": "moderate",
+      "category": "regressed"
+    },
+    {
+      "skill": "skill-validator",
+      "score_before": 0.7943,
+      "score_after": 0.918,
+      "delta": 0.1237,
+      "mutation_type": "reasoning_scaffolding",
+      "severity": "significant",
+      "category": "improved"
+    }
+  ],
+  "deprecated": [],
+  "new": [],
+  "unchanged": [],
+  "direction": "mixed",
+  "summary": {
+    "total_skills": 21,
+    "improved_count": 5,
+    "regressed_count": 2,
+    "crossed_over_count": 14,
+    "deprecated_count": 0,
+    "new_count": 0,
+    "unchanged_count": 0
+  },
+  "generation_before": 2,
+  "generation_after": 3
+}

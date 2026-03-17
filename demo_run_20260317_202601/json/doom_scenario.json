@@ -1,0 +1,118 @@
+{
+  "disclaimer": "These are simulated outcomes for analytical purposes only. Not predictions or recommendations.",
+  "seed_summary": "Indian government mandates AI certification for healthcare by 2027",
+  "personas": [
+    {
+      "name": "Agent Skeptical",
+      "role": "Skeptical Analyst",
+      "lens": "risk-averse",
+      "expertise": "indian/government — skeptical analyst perspective",
+      "bias": "Identifies failure modes and worst-case scenarios"
+    },
+    {
+      "name": "Analyst Systems",
+      "role": "Systems Thinker",
+      "lens": "second-order-effects",
+      "expertise": "indian/government — systems thinker perspective",
+      "bias": "Traces cascading consequences and feedback loops"
+    },
+    {
+      "name": "Director Optimistic",
+      "role": "Optimistic Strategist",
+      "lens": "opportunity-focused",
+      "expertise": "indian/government — optimistic strategist perspective",
+      "bias": "Highlights upside potential and growth vectors"
+    },
+    {
+      "name": "Dr. Empirical",
+      "role": "Empirical Realist",
+      "lens": "data-driven",
+      "expertise": "indian/government — empirical realist perspective",
+      "bias": "Demands evidence and quantifiable metrics"
+    }
+  ],
+  "deliberation_rounds": [
+    {
+      "round": 1,
+      "outputs": {
+        "Agent Skeptical": {
+          "position": "[Skeptical Analyst] Analysis of 'Indian government mandates AI certification for healthcare by 2027...' through risk-averse lens.",
+          "evidence": "Based on indian/government — skeptical analyst perspective, the key factors are risk mitigation and feasibility assessment.",
+          "uncertainty": "Uncertain about long-term second-order effects and external variable stability.",
+          "challenge": null
+        },
+        "Analyst Systems": {
+          "position": "[Systems Thinker] Analysis of 'Indian government mandates AI certification for healthcare by 2027...' through second-order-effects lens.",
+          "evidence": "Based on indian/government — systems thinker perspective, the key factors are risk mitigation and feasibility assessment.",
+          "uncertainty": "Uncertain about long-term second-order effects and external variable stability.",
+          "challenge": null
+        },
+        "Director Optimistic": {
+          "position": "[Optimistic Strategist] Analysis of 'Indian government mandates AI certification for healthcare by 2027...' through opportunity-focused lens.",
+          "evidence": "Based on indian/government — optimistic strategist perspective, the key factors are risk mitigation and feasibility assessment.",
+          "uncertainty": "Uncertain about long-term second-order effects and external variable stability.",
+          "challenge": null
+        },
+        "Dr. Empirical": {
+          "position": "[Empirical Realist] Analysis of 'Indian government mandates AI certification for healthcare by 2027...' through data-driven lens.",
+          "evidence": "Based on indian/government — empirical realist perspective, the key factors are risk mitigation and feasibility assessment.",
+          "uncertainty": "Uncertain about long-term second-order effects and external variable stability.",
+          "challenge": null
+        }
+      },
+      "agreement_score": 0.51
+    },
+    {
+      "round": 2,
+      "outputs": {
+        "Agent Skeptical": {
+          "position": "[Skeptical Analyst] Analysis of 'Indian government mandates AI certification for healthcare by 2027...' through risk-averse lens.",
+          "evidence": "Based on indian/government — skeptical analyst perspective, the key factors are risk mitigation and feasibility assessment.",
+          "uncertainty": "Uncertain about long-term second-order effects and external variable stability.",
+          "challenge": "[Agent Skeptical] challenges [Analyst Systems]: The risk-averse perspective suggests a different weighting."
+        },
+        "Analyst Systems": {
+          "position": "[Systems Thinker] Analysis of 'Indian government mandates AI certification for healthcare by 2027...' through second-order-effects lens.",
+          "evidence": "Based on indian/government — systems thinker perspective, the key factors are risk mitigation and feasibility assessment.",
+          "uncertainty": "Uncertain about long-term second-order effects and external variable stability.",
+          "challenge": "[Analyst Systems] challenges [Agent Skeptical]: The second-order-effects perspective suggests a different weighting."
+        },
+        "Director Optimistic": {
+          "position": "[Optimistic Strategist] Analysis of 'Indian government mandates AI certification for healthcare by 2027...' through opportunity-focused lens.",
+          "evidence": "Based on indian/government — optimistic strategist perspective, the key factors are risk mitigation and feasibility assessment.",
+          "uncertainty": "Uncertain about long-term second-order effects and external variable stability.",
+          "challenge": "[Director Optimistic] challenges [Agent Skeptical]: The opportunity-focused perspective suggests a different weighting."
+        },
+        "Dr. Empirical": {
+          "position": "[Empirical Realist] Analysis of 'Indian government mandates AI certification for healthcare by 2027...' through data-driven lens.",
+          "evidence": "Based on indian/government — empirical realist perspective, the key factors are risk mitigation and feasibility assessment.",
+          "uncertainty": "Uncertain about long-term second-order effects and external variable stability.",
+          "challenge": "[Dr. Empirical] challenges [Agent Skeptical]: The data-driven perspective suggests a different weighting."
+        }
+      },
+      "agreement_score": 0.51
+    }
+  ],
+  "counterfactual_branches": [
+    {
+      "assumption_changed": "the situation described: 'Indian government mandates AI certification for healthcare b' holds true",
+      "new_value": "the opposite of: the situation described: 'Indian government mandates AI certification for healthcare b' holds true",
+      "outcome_delta": "If 'the situation described: 'Indian government mandates AI certification for healthcare b' holds true' were instead 'the opposite of: the situation described: 'Indian government mandates AI certification for healthcare b' holds true', the scenario outcome would shift significantly in risk/benefit calculus.",
+      "impact_severity": "low"
+    }
+  ],
+  "consensus_outcome": "After 2 round(s) of deliberation, the 4 personas reached the following synthesis: The scenario warrants careful analysis with attention to risk factors, second-order effects, and implementation feasibility. Final agreement score: 0.51.",
+  "dissenting_views": [
+    "[Agent Skeptical — Skeptical Analyst] Uncertain about long-term second-order effects and external variable stability.",
+    "[Analyst Systems — Systems Thinker] Uncertain about long-term second-order effects and external variable stability.",
+    "[Director Optimistic — Optimistic Strategist] Uncertain about long-term second-order effects and external variable stability.",
+    "[Dr. Empirical — Empirical Realist] Uncertain about long-term second-order effects and external variable stability."
+  ],
+  "confidence_level": 0.48,
+  "metadata": {
+    "rounds_completed": 2,
+    "counterfactuals_generated": 1,
+    "early_convergence": false,
+    "timestamp": "2026-03-17T15:05:11Z"
+  }
+}
