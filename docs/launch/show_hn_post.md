@@ -1,4 +1,4 @@
-# Show HN: Cortex Research Suite -- 26 self-evolving research skills with an autoresearch pattern
+# Show HN: Cortex Research Suite -- 27 self-evolving research skills with an autoresearch pattern
 
 **GitHub:** https://github.com/TECHKNOWMAD-LABS/cortex-research-suite
 
@@ -6,7 +6,7 @@ We built a Python framework where research skills don't just run -- they evolve.
 
 ## The Architecture: A 5-Layer Stack
 
-**Layer 1 -- Foundation.** 26 core skills (literature review, patent analysis, competitive intelligence, etc.) plus an evaluation lab that scores every skill output on accuracy, depth, and relevance.
+**Layer 1 -- Foundation.** 27 core skills (literature review, patent analysis, competitive intelligence, etc.) plus an evaluation lab that scores every skill output on accuracy, depth, and relevance.
 
 **Layer 2 -- Evolution.** The Skill Organism. Skills are treated as living entities with an ARENA.md configuration that defines competition rules. Skills fork, mutate their prompts and parameters, compete head-to-head, and the losers get pruned. This is the autoresearch loop.
 
@@ -30,7 +30,7 @@ Works with Claude Code natively. Also supports LangChain, CrewAI, and OpenAI via
 
 - Python 3.10+
 - MIT license
-- 27 skills total (26 core skills including 5 trilogy integration skills)
+- 27 skills total (27 core skills including 5 trilogy integration skills)
 - MCP adapter layer for cross-framework compatibility
 - No vendor lock-in -- works with any LLM backend that supports tool use
 

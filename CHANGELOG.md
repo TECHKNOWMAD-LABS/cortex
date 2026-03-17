@@ -5,6 +5,42 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.2.0] - 2026-03-17
+
+### Added
+
+#### Live Web Intelligence (Scrapling integration)
+- **web-intelligence** (#27): Live web scraping skill with Scrapling — social signals from Reddit/HN/Bluesky, academic evidence from Scholar/PubMed/arXiv, forum thread analysis
+- `skills/mindspider-connector/scripts/scrapling_source.py`: Live social topic scraping with keyword sentiment scoring
+- `skills/research-workflow/scripts/evidence_scraper.py`: Real-time academic evidence gathering with `--live-evidence` flag
+- `skills/forum-intelligence/scripts/forum_scraper.py`: Live forum thread scraping and analysis
+- `pip install -e ".[live]"` optional extra for Scrapling dependency
+
+#### Evolution & Observability
+- `skill-organism/evolution_delta.py`: Delta computation between evolution generations with direction/severity classification
+- `skill-organism/notify.py`: Telegram, Discord, and console notifications for evolution events
+- `scripts/serve_dashboard.py`: SSE-powered live dashboard server for real-time evolution monitoring
+
+#### Cross-Platform Completion (27/27 skills)
+- Generated MCP servers, LangChain tools, CrewAI tools, and OpenAI GPT Action schemas for 6 previously missing skills: forum-intelligence, intelligence-query, mindspider-connector, multimodal-analyst, scenario-simulator, web-intelligence
+- All 27 skills now have complete cross-platform adapters
+
+#### Testing
+- `tests/unit/test_scrapling_source.py`: 12 tests for Scrapling integration
+- `tests/unit/test_evolution_delta.py`: 16 tests for delta computation
+- `tests/unit/test_web_intel.py`: 12 tests for web intelligence
+- Test suite expanded from 151 to 194 tests
+
+### Changed
+- Version bump to 1.2.0 across all files (pyproject.toml, cortex/__init__.py, skill-organism, 27 MCP servers, dashboards, docs)
+- Skill count updated from 26 to 27 across all documentation, badges, and adapters
+- README.md: Added Live Mode, Dashboard Server sections
+- Synthetic datasets regenerated: 1350 prompts across 27 skills (10% adversarial)
+
+### Fixed
+- Pre-existing `false` → `False` bug in de-slop MCP server (F821)
+- 32 pre-existing W292 (missing trailing newline) across cross-platform Python files
+
 ## [1.1.0] - 2026-03-16
 
 ### Added
@@ -133,5 +169,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - CODE_OF_CONDUCT.md
 - Publish report with full pipeline results
 
+[1.2.0]: https://github.com/TECHKNOWMAD-LABS/cortex-research-suite/compare/v1.1.0...v1.2.0
 [1.1.0]: https://github.com/TECHKNOWMAD-LABS/cortex-research-suite/compare/v1.0.0...v1.1.0
 [1.0.0]: https://github.com/TECHKNOWMAD-LABS/cortex-research-suite/releases/tag/v1.0.0

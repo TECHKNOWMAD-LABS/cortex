@@ -32,6 +32,7 @@ Complete registry of all 27 skills in the Cortex Research Suite, including trilo
 | `skill-test-harness` | Testing | — | Automated test runner for skill scripts with fixtures and assertions |
 | `skill-validator` | Validation | — | Pre-flight validation for Claude Code skills before packaging |
 | `tdd-enforcer` | Testing | — | Enforces test-driven development with mandatory RED-GREEN-REFACTOR cycles |
+| `web-intelligence` | Intelligence | — | Live web scraping with Scrapling — social signals, academic evidence, forum analysis |
 
 ## Trilogy Integration
 

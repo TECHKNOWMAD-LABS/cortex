@@ -1,6 +1,6 @@
 # Contributing to Cortex Research Suite
 
-Cortex is an AI Research Operating System with 26 self-evolving skills built on Karpathy's autoresearch pattern. Each skill has an ARENA.md that defines its evolution strategy, a SKILL.md that defines its capabilities, and scripts that implement its logic. The Skill Organism engine runs genetic selection — skills compete, mutate, and the best variants survive.
+Cortex is an AI Research Operating System with 27 self-evolving skills built on Karpathy's autoresearch pattern. Each skill has an ARENA.md that defines its evolution strategy, a SKILL.md that defines its capabilities, and scripts that implement its logic. The Skill Organism engine runs genetic selection — skills compete, mutate, and the best variants survive.
 
 ## Submitting Issues
 
