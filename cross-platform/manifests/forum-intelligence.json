@@ -1,0 +1,83 @@
+{
+  "name": "forum-intelligence",
+  "version": "1.0.0",
+  "description": "Forum thread analysis with coordination detection. Analyzes forum threads for viewpoints, coordination patterns, and emerging consensus.",
+  "author": "TECHKNOWMAD LABS",
+  "license": "MIT",
+  "repository": "https://github.com/TECHKNOWMAD-LABS/cortex-research-suite/tree/main/skills/forum-intelligence",
+  "capabilities": [
+    {
+      "name": "analyze_threads",
+      "description": "Analyze forum threads for viewpoints, coordination patterns, and emerging consensus",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "topic": {
+            "type": "string",
+            "description": "Topic to analyze forum threads for"
+          },
+          "platforms": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "List of forum platforms to analyze"
+          },
+          "timeframe": {
+            "type": "string",
+            "default": "7d",
+            "description": "Timeframe for thread analysis"
+          }
+        },
+        "required": [
+          "topic"
+        ]
+      }
+    }
+  ],
+  "platforms": {
+    "claude_skill": {
+      "entry_point": "SKILL.md"
+    },
+    "mcp_server": {
+      "transport": "stdio",
+      "entry_point": "mcp/forum-intelligence/server.py",
+      "command": "uv",
+      "args": [
+        "--directory",
+        "mcp/forum-intelligence",
+        "run",
+        "python",
+        "server.py"
+      ]
+    },
+    "langchain": {
+      "tool_class": "Analyze_threadsTool",
+      "module_path": "langchain.forum_intelligence.tools"
+    },
+    "crewai": {
+      "tool_class": "Analyze_threadsTool",
+      "module_path": "crewai.forum_intelligence.tools"
+    },
+    "openai_gpt": {
+      "action_schema_url": "https://api.techknowmad.ai/skills/forum-intelligence/openapi.json",
+      "openapi_spec": "openai/forum-intelligence/openapi.json"
+    },
+    "github_copilot": {
+      "mcp_config": {
+        "command": "uv",
+        "args": [
+          "--directory",
+          "mcp/forum-intelligence",
+          "run",
+          "python",
+          "server.py"
+        ]
+      }
+    }
+  },
+  "dependencies": {
+    "python": ">=3.12",
+    "packages": []
+  }
+}

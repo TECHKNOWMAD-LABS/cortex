@@ -1,0 +1,64 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "web-intelligence API",
+    "version": "1.0.0",
+    "description": "Live web scraping with Scrapling for social signals, academic evidence, and forum analysis."
+  },
+  "servers": [
+    {
+      "url": "https://api.techknowmad.ai/skills/web-intelligence"
+    }
+  ],
+  "paths": {
+    "/web_sweep": {
+      "post": {
+        "operationId": "web_sweep",
+        "summary": "Run live web intelligence sweep combining social, academic, and forum signals",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "topic": {
+                    "type": "string",
+                    "description": "Topic to sweep the web for"
+                  },
+                  "sources": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "description": "List of sources to sweep"
+                  },
+                  "live": {
+                    "type": "boolean",
+                    "description": "Enable live web scraping",
+                    "default": false
+                  }
+                },
+                "required": [
+                  "topic"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,87 @@
+{
+  "name": "intelligence-query",
+  "version": "1.0.0",
+  "description": "Multi-source intelligence analysis engine. Queries knowledge base for evidence, cross-references sources, and flags contradictions.",
+  "author": "TECHKNOWMAD LABS",
+  "license": "MIT",
+  "repository": "https://github.com/TECHKNOWMAD-LABS/cortex-research-suite/tree/main/skills/intelligence-query",
+  "capabilities": [
+    {
+      "name": "query_intelligence",
+      "description": "Query knowledge base for evidence, cross-reference sources, flag contradictions",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "query": {
+            "type": "string",
+            "description": "Intelligence query to execute"
+          },
+          "sources": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "List of sources to query"
+          },
+          "depth": {
+            "type": "string",
+            "enum": [
+              "shallow",
+              "deep"
+            ],
+            "default": "deep",
+            "description": "Analysis depth level"
+          }
+        },
+        "required": [
+          "query"
+        ]
+      }
+    }
+  ],
+  "platforms": {
+    "claude_skill": {
+      "entry_point": "SKILL.md"
+    },
+    "mcp_server": {
+      "transport": "stdio",
+      "entry_point": "mcp/intelligence-query/server.py",
+      "command": "uv",
+      "args": [
+        "--directory",
+        "mcp/intelligence-query",
+        "run",
+        "python",
+        "server.py"
+      ]
+    },
+    "langchain": {
+      "tool_class": "Query_intelligenceTool",
+      "module_path": "langchain.intelligence_query.tools"
+    },
+    "crewai": {
+      "tool_class": "Query_intelligenceTool",
+      "module_path": "crewai.intelligence_query.tools"
+    },
+    "openai_gpt": {
+      "action_schema_url": "https://api.techknowmad.ai/skills/intelligence-query/openapi.json",
+      "openapi_spec": "openai/intelligence-query/openapi.json"
+    },
+    "github_copilot": {
+      "mcp_config": {
+        "command": "uv",
+        "args": [
+          "--directory",
+          "mcp/intelligence-query",
+          "run",
+          "python",
+          "server.py"
+        ]
+      }
+    }
+  },
+  "dependencies": {
+    "python": ">=3.12",
+    "packages": []
+  }
+}

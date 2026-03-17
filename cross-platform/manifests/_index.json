@@ -2,7 +2,7 @@
   "schema": "techknowmad-universal-skill-manifest",
   "version": "1.0.0",
   "generated": true,
-  "skill_count": 21,
+  "skill_count": 27,
   "skills": {
     "agent-orchestrator": {
       "manifest": "agent-orchestrator.json",
@@ -108,6 +108,36 @@
       "manifest": "tdd-enforcer.json",
       "status": "ok",
       "path": "manifests/tdd-enforcer.json"
+    },
+    "forum-intelligence": {
+      "manifest": "forum-intelligence.json",
+      "status": "ok",
+      "path": "manifests/forum-intelligence.json"
+    },
+    "intelligence-query": {
+      "manifest": "intelligence-query.json",
+      "status": "ok",
+      "path": "manifests/intelligence-query.json"
+    },
+    "mindspider-connector": {
+      "manifest": "mindspider-connector.json",
+      "status": "ok",
+      "path": "manifests/mindspider-connector.json"
+    },
+    "multimodal-analyst": {
+      "manifest": "multimodal-analyst.json",
+      "status": "ok",
+      "path": "manifests/multimodal-analyst.json"
+    },
+    "scenario-simulator": {
+      "manifest": "scenario-simulator.json",
+      "status": "ok",
+      "path": "manifests/scenario-simulator.json"
+    },
+    "web-intelligence": {
+      "manifest": "web-intelligence.json",
+      "status": "ok",
+      "path": "manifests/web-intelligence.json"
     }
   }
 }

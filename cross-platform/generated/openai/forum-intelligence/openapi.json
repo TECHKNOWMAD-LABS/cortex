@@ -1,0 +1,64 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "forum-intelligence API",
+    "version": "1.0.0",
+    "description": "Forum thread analysis with coordination detection. Analyzes forum threads for viewpoints, coordination patterns, and emerging consensus."
+  },
+  "servers": [
+    {
+      "url": "https://api.techknowmad.ai/skills/forum-intelligence"
+    }
+  ],
+  "paths": {
+    "/analyze_threads": {
+      "post": {
+        "operationId": "analyze_threads",
+        "summary": "Analyze forum threads for viewpoints, coordination patterns, and emerging consensus",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "topic": {
+                    "type": "string",
+                    "description": "Topic to analyze forum threads for"
+                  },
+                  "platforms": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "description": "List of forum platforms to analyze"
+                  },
+                  "timeframe": {
+                    "type": "string",
+                    "description": "Timeframe for thread analysis",
+                    "default": "7d"
+                  }
+                },
+                "required": [
+                  "topic"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

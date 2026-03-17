@@ -1,0 +1,83 @@
+{
+  "name": "web-intelligence",
+  "version": "1.0.0",
+  "description": "Live web scraping with Scrapling for social signals, academic evidence, and forum analysis.",
+  "author": "TECHKNOWMAD LABS",
+  "license": "MIT",
+  "repository": "https://github.com/TECHKNOWMAD-LABS/cortex-research-suite/tree/main/skills/web-intelligence",
+  "capabilities": [
+    {
+      "name": "web_sweep",
+      "description": "Run live web intelligence sweep combining social, academic, and forum signals",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "topic": {
+            "type": "string",
+            "description": "Topic to sweep the web for"
+          },
+          "sources": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "List of sources to sweep"
+          },
+          "live": {
+            "type": "boolean",
+            "default": false,
+            "description": "Enable live web scraping"
+          }
+        },
+        "required": [
+          "topic"
+        ]
+      }
+    }
+  ],
+  "platforms": {
+    "claude_skill": {
+      "entry_point": "SKILL.md"
+    },
+    "mcp_server": {
+      "transport": "stdio",
+      "entry_point": "mcp/web-intelligence/server.py",
+      "command": "uv",
+      "args": [
+        "--directory",
+        "mcp/web-intelligence",
+        "run",
+        "python",
+        "server.py"
+      ]
+    },
+    "langchain": {
+      "tool_class": "Web_sweepTool",
+      "module_path": "langchain.web_intelligence.tools"
+    },
+    "crewai": {
+      "tool_class": "Web_sweepTool",
+      "module_path": "crewai.web_intelligence.tools"
+    },
+    "openai_gpt": {
+      "action_schema_url": "https://api.techknowmad.ai/skills/web-intelligence/openapi.json",
+      "openapi_spec": "openai/web-intelligence/openapi.json"
+    },
+    "github_copilot": {
+      "mcp_config": {
+        "command": "uv",
+        "args": [
+          "--directory",
+          "mcp/web-intelligence",
+          "run",
+          "python",
+          "server.py"
+        ]
+      }
+    }
+  },
+  "dependencies": {
+    "python": ">=3.12",
+    "packages": []
+  }
+}

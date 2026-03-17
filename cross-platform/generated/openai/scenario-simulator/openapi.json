@@ -1,0 +1,62 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "scenario-simulator API",
+    "version": "1.0.0",
+    "description": "Swarm-based what-if scenario simulation. Runs multi-persona scenario simulations with counterfactual analysis."
+  },
+  "servers": [
+    {
+      "url": "https://api.techknowmad.ai/skills/scenario-simulator"
+    }
+  ],
+  "paths": {
+    "/run_scenario": {
+      "post": {
+        "operationId": "run_scenario",
+        "summary": "Run multi-persona scenario simulations with counterfactual analysis",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "topic": {
+                    "type": "string",
+                    "description": "Scenario topic to simulate"
+                  },
+                  "personas": {
+                    "type": "integer",
+                    "description": "Number of personas to simulate",
+                    "default": 3
+                  },
+                  "rounds": {
+                    "type": "integer",
+                    "description": "Number of simulation rounds",
+                    "default": 3
+                  }
+                },
+                "required": [
+                  "topic"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

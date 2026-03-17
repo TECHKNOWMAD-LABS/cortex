@@ -1,0 +1,62 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "mindspider-connector API",
+    "version": "1.0.0",
+    "description": "Live social listening feed connector. Pulls trending topics from social platforms with sentiment analysis."
+  },
+  "servers": [
+    {
+      "url": "https://api.techknowmad.ai/skills/mindspider-connector"
+    }
+  ],
+  "paths": {
+    "/fetch_topics": {
+      "post": {
+        "operationId": "fetch_topics",
+        "summary": "Pull trending topics from social platforms with sentiment analysis",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "source": {
+                    "type": "string",
+                    "enum": [
+                      "demo",
+                      "scrapling"
+                    ],
+                    "description": "Data source to use",
+                    "default": "demo"
+                  },
+                  "platforms": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "description": "List of social platforms to monitor"
+                  }
+                },
+                "required": []
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

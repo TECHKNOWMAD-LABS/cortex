@@ -1,0 +1,59 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "multimodal-analyst API",
+    "version": "1.0.0",
+    "description": "Cross-modal content analysis for text, image, and video. Detects content types and synthesizes findings across modalities."
+  },
+  "servers": [
+    {
+      "url": "https://api.techknowmad.ai/skills/multimodal-analyst"
+    }
+  ],
+  "paths": {
+    "/analyze_content": {
+      "post": {
+        "operationId": "analyze_content",
+        "summary": "Analyze mixed-media content, detect types, synthesize findings",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "content": {
+                    "type": "string",
+                    "description": "Content to analyze"
+                  },
+                  "content_types": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "description": "List of content types to analyze"
+                  }
+                },
+                "required": [
+                  "content"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

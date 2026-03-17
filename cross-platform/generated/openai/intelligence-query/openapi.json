@@ -1,0 +1,68 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "intelligence-query API",
+    "version": "1.0.0",
+    "description": "Multi-source intelligence analysis engine. Queries knowledge base for evidence, cross-references sources, and flags contradictions."
+  },
+  "servers": [
+    {
+      "url": "https://api.techknowmad.ai/skills/intelligence-query"
+    }
+  ],
+  "paths": {
+    "/query_intelligence": {
+      "post": {
+        "operationId": "query_intelligence",
+        "summary": "Query knowledge base for evidence, cross-reference sources, flag contradictions",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "query": {
+                    "type": "string",
+                    "description": "Intelligence query to execute"
+                  },
+                  "sources": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "description": "List of sources to query"
+                  },
+                  "depth": {
+                    "type": "string",
+                    "enum": [
+                      "shallow",
+                      "deep"
+                    ],
+                    "description": "Analysis depth level",
+                    "default": "deep"
+                  }
+                },
+                "required": [
+                  "query"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

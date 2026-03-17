@@ -1,0 +1,78 @@
+{
+  "name": "multimodal-analyst",
+  "version": "1.0.0",
+  "description": "Cross-modal content analysis for text, image, and video. Detects content types and synthesizes findings across modalities.",
+  "author": "TECHKNOWMAD LABS",
+  "license": "MIT",
+  "repository": "https://github.com/TECHKNOWMAD-LABS/cortex-research-suite/tree/main/skills/multimodal-analyst",
+  "capabilities": [
+    {
+      "name": "analyze_content",
+      "description": "Analyze mixed-media content, detect types, synthesize findings",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "content": {
+            "type": "string",
+            "description": "Content to analyze"
+          },
+          "content_types": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "List of content types to analyze"
+          }
+        },
+        "required": [
+          "content"
+        ]
+      }
+    }
+  ],
+  "platforms": {
+    "claude_skill": {
+      "entry_point": "SKILL.md"
+    },
+    "mcp_server": {
+      "transport": "stdio",
+      "entry_point": "mcp/multimodal-analyst/server.py",
+      "command": "uv",
+      "args": [
+        "--directory",
+        "mcp/multimodal-analyst",
+        "run",
+        "python",
+        "server.py"
+      ]
+    },
+    "langchain": {
+      "tool_class": "Analyze_contentTool",
+      "module_path": "langchain.multimodal_analyst.tools"
+    },
+    "crewai": {
+      "tool_class": "Analyze_contentTool",
+      "module_path": "crewai.multimodal_analyst.tools"
+    },
+    "openai_gpt": {
+      "action_schema_url": "https://api.techknowmad.ai/skills/multimodal-analyst/openapi.json",
+      "openapi_spec": "openai/multimodal-analyst/openapi.json"
+    },
+    "github_copilot": {
+      "mcp_config": {
+        "command": "uv",
+        "args": [
+          "--directory",
+          "mcp/multimodal-analyst",
+          "run",
+          "python",
+          "server.py"
+        ]
+      }
+    }
+  },
+  "dependencies": {
+    "python": ">=3.12",
+    "packages": []
+  }
+}

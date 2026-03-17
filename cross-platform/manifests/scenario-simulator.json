@@ -1,0 +1,81 @@
+{
+  "name": "scenario-simulator",
+  "version": "1.0.0",
+  "description": "Swarm-based what-if scenario simulation. Runs multi-persona scenario simulations with counterfactual analysis.",
+  "author": "TECHKNOWMAD LABS",
+  "license": "MIT",
+  "repository": "https://github.com/TECHKNOWMAD-LABS/cortex-research-suite/tree/main/skills/scenario-simulator",
+  "capabilities": [
+    {
+      "name": "run_scenario",
+      "description": "Run multi-persona scenario simulations with counterfactual analysis",
+      "input_schema": {
+        "type": "object",
+        "properties": {
+          "topic": {
+            "type": "string",
+            "description": "Scenario topic to simulate"
+          },
+          "personas": {
+            "type": "integer",
+            "default": 3,
+            "description": "Number of personas to simulate"
+          },
+          "rounds": {
+            "type": "integer",
+            "default": 3,
+            "description": "Number of simulation rounds"
+          }
+        },
+        "required": [
+          "topic"
+        ]
+      }
+    }
+  ],
+  "platforms": {
+    "claude_skill": {
+      "entry_point": "SKILL.md"
+    },
+    "mcp_server": {
+      "transport": "stdio",
+      "entry_point": "mcp/scenario-simulator/server.py",
+      "command": "uv",
+      "args": [
+        "--directory",
+        "mcp/scenario-simulator",
+        "run",
+        "python",
+        "server.py"
+      ]
+    },
+    "langchain": {
+      "tool_class": "Run_scenarioTool",
+      "module_path": "langchain.scenario_simulator.tools"
+    },
+    "crewai": {
+      "tool_class": "Run_scenarioTool",
+      "module_path": "crewai.scenario_simulator.tools"
+    },
+    "openai_gpt": {
+      "action_schema_url": "https://api.techknowmad.ai/skills/scenario-simulator/openapi.json",
+      "openapi_spec": "openai/scenario-simulator/openapi.json"
+    },
+    "github_copilot": {
+      "mcp_config": {
+        "command": "uv",
+        "args": [
+          "--directory",
+          "mcp/scenario-simulator",
+          "run",
+          "python",
+          "server.py"
+        ]
+      }
+    }
+  },
+  "dependencies": {
+    "python": ">=3.12",
+    "packages": []
+  }
+}

@@ -18,7 +18,7 @@ mcp = FastMCP(name="de-slop", version="1.2.0")
 @mcp.tool()
 async def scan_content(
     content: str,
-    fix: bool = false,
+    fix: bool = False,
 ) -> dict[str, Any]:
     """Scan content for AI-generated writing patterns and flag violations"""
     # Implementation: delegate to skill logic
