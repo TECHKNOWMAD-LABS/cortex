@@ -3,7 +3,7 @@
 Experiment design and research methodology for AI/ML research projects with hypothesis generation and evaluation frameworks.
 
 Auto-generated MCP server from TECHKNOWMAD Universal Skill Manifest.
-Skill: research-workflow v1.2.0
+Skill: research-workflow v1.3.0
 """
 
 import os
@@ -13,7 +13,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-mcp = FastMCP(name="research-workflow", version="1.2.0")
+mcp = FastMCP(name="research-workflow", version="1.3.0")
 
 @mcp.tool()
 async def design_experiment(

@@ -3,7 +3,7 @@
 Test framework for Claude Code skills. Runs structured test suites against skills, validates outputs, measures performance, and generates coverage reports.
 
 Auto-generated MCP server from TECHKNOWMAD Universal Skill Manifest.
-Skill: skill-test-harness v1.2.0
+Skill: skill-test-harness v1.3.0
 """
 
 import os
@@ -13,7 +13,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-mcp = FastMCP(name="skill-test-harness", version="1.2.0")
+mcp = FastMCP(name="skill-test-harness", version="1.3.0")
 
 @mcp.tool()
 async def run_skill_tests(

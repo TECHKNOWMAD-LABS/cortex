@@ -3,7 +3,7 @@
 Validates AI agent outputs against schema contracts, quality thresholds, and safety constraints. Catches hallucinations, schema violations, and drift before outputs reach production.
 
 Auto-generated MCP server from TECHKNOWMAD Universal Skill Manifest.
-Skill: agent-output-validator v1.2.0
+Skill: agent-output-validator v1.3.0
 """
 
 import os
@@ -13,7 +13,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-mcp = FastMCP(name="agent-output-validator", version="1.2.0")
+mcp = FastMCP(name="agent-output-validator", version="1.3.0")
 
 @mcp.tool()
 async def validate_output(

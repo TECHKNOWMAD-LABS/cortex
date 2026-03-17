@@ -3,7 +3,7 @@
 Automated security scanning for code repositories. Runs bandit (Python SAST), semgrep (multi-language static analysis), and secret detection to produce machine-readable reports.
 
 Auto-generated MCP server from TECHKNOWMAD Universal Skill Manifest.
-Skill: security-audit v1.2.0
+Skill: security-audit v1.3.0
 """
 
 import os
@@ -13,7 +13,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-mcp = FastMCP(name="security-audit", version="1.2.0")
+mcp = FastMCP(name="security-audit", version="1.3.0")
 
 @mcp.tool()
 async def security_scan(

@@ -5,6 +5,35 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.3.0] - 2026-03-18
+
+### Added
+
+#### Cortex Petri Dish (Interactive Evolution Visualization)
+- **Petri Dish** (`dashboards/petri-dish.html`): Browser-based interactive visualization where 27 AI skills evolve as living organisms in a digital petri dish
+  - Canvas 2D rendering with glow, particles, trails, and pulse animations
+  - Generative audio (Tone.js) — chimes on mutation, harmonics on crossover, bass on extinction
+  - God mode — inject catastrophes, visual cataclysm effects
+  - Configurable parameters (mutation rate, selection pressure, catastrophe frequency)
+  - Seed-based deterministic simulations (every seed produces a unique evolutionary arc)
+  - Notable seed discovery system (6 curated seeds with descriptions)
+  - Speed controls (1x to 80x), play/pause
+  - Click any organism for full genetic history, lineage, and fitness trajectory
+  - Real-time leaderboard with event feed
+  - Claude Judge integration (LLM-as-Judge at any generation via API)
+  - Red Queen dynamics, paradigm shifts, carrying capacity, innovation bursts
+  - Supports up to 10,000 generations with frame sampling
+- **Evolution Simulator** (`skill-organism/evolution_simulator.py`)
+  - Runs 1000+ generations in < 2 seconds with synthetic scoring
+  - Full genetic algorithm: selection, mutation, crossover, extinction, rebirth
+  - Environmental shifts, catastrophe injection, population dynamics
+  - LLM-as-Judge checkpoint generation (20 milestone prompts per run)
+  - 6-seed benchmark suite for reproducible demonstrations
+  - JSONL output compatible with dashboards and visualization
+
+### Changed
+- Version bump to 1.3.0
+
 ## [1.2.0] - 2026-03-17
 
 ### Added
@@ -169,6 +198,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - CODE_OF_CONDUCT.md
 - Publish report with full pipeline results
 
+[1.3.0]: https://github.com/TECHKNOWMAD-LABS/cortex-research-suite/compare/v1.2.0...v1.3.0
 [1.2.0]: https://github.com/TECHKNOWMAD-LABS/cortex-research-suite/compare/v1.1.0...v1.2.0
 [1.1.0]: https://github.com/TECHKNOWMAD-LABS/cortex-research-suite/compare/v1.0.0...v1.1.0
 [1.0.0]: https://github.com/TECHKNOWMAD-LABS/cortex-research-suite/releases/tag/v1.0.0

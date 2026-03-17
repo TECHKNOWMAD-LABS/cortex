@@ -3,7 +3,7 @@
 Cross-modal content analysis for text, image, and video. Detects content types and synthesizes findings across modalities.
 
 Auto-generated MCP server from TECHKNOWMAD Universal Skill Manifest.
-Skill: multimodal-analyst v1.2.0
+Skill: multimodal-analyst v1.3.0
 """
 
 import os
@@ -13,7 +13,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-mcp = FastMCP(name="multimodal-analyst", version="1.2.0")
+mcp = FastMCP(name="multimodal-analyst", version="1.3.0")
 
 
 @mcp.tool()

@@ -3,7 +3,7 @@
 Context window optimization and prompt context management for efficient LLM usage.
 
 Auto-generated MCP server from TECHKNOWMAD Universal Skill Manifest.
-Skill: context-engineer v1.2.0
+Skill: context-engineer v1.3.0
 """
 
 import os
@@ -13,7 +13,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-mcp = FastMCP(name="context-engineer", version="1.2.0")
+mcp = FastMCP(name="context-engineer", version="1.3.0")
 
 @mcp.tool()
 async def optimize_context(

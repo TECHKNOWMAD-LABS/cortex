@@ -3,7 +3,7 @@
 ML operations best practices enforcement covering experiment tracking, model versioning, CI/CD for ML, and deployment standards.
 
 Auto-generated MCP server from TECHKNOWMAD Universal Skill Manifest.
-Skill: mlops-standards v1.2.0
+Skill: mlops-standards v1.3.0
 """
 
 import os
@@ -13,7 +13,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-mcp = FastMCP(name="mlops-standards", version="1.2.0")
+mcp = FastMCP(name="mlops-standards", version="1.3.0")
 
 @mcp.tool()
 async def audit_mlops(

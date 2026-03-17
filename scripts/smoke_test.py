@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Cortex Research Suite v1.2.0 — end-to-end smoke test.
+"""Cortex Research Suite v1.3.0 — end-to-end smoke test.
 Verifies all components work without requiring an API key.
 Exit code 0 = all checks passed. Exit code 1 = fix before tagging.
 """
@@ -24,7 +24,7 @@ def check(name: str, condition: bool, detail: str = ""):
 
 
 def main():
-    print("Cortex Research Suite v1.2.0 — Smoke Test")
+    print("Cortex Research Suite v1.3.0 — Smoke Test")
     print("=" * 50)
 
     # 1. Skill count
@@ -123,10 +123,10 @@ def main():
     total = CHECKS_PASSED + CHECKS_FAILED
     print(f"\nSmoke test: {CHECKS_PASSED}/{total} checks passed")
     if CHECKS_FAILED > 0:
-        print("FIX FAILURES BEFORE TAGGING v1.2.0")
+        print("FIX FAILURES BEFORE TAGGING v1.3.0")
         sys.exit(1)
     else:
-        print("All checks passed. Safe to tag v1.2.0.")
+        print("All checks passed. Safe to tag v1.3.0.")
         sys.exit(0)
 
 

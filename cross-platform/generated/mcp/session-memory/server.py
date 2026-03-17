@@ -3,7 +3,7 @@
 Lightweight session-scoped memory with checkpoint and restore. Captures working state snapshots that persist across context window resets within a single session.
 
 Auto-generated MCP server from TECHKNOWMAD Universal Skill Manifest.
-Skill: session-memory v1.2.0
+Skill: session-memory v1.3.0
 """
 
 import os
@@ -13,7 +13,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-mcp = FastMCP(name="session-memory", version="1.2.0")
+mcp = FastMCP(name="session-memory", version="1.3.0")
 
 @mcp.tool()
 async def session_checkpoint(

@@ -3,7 +3,7 @@
 Multi-agent workflow orchestration with dependency resolution, parallel execution, and fault-tolerant task routing. Coordinates complex pipelines where multiple agents collaborate on compound tasks.
 
 Auto-generated MCP server from TECHKNOWMAD Universal Skill Manifest.
-Skill: agent-orchestrator v1.2.0
+Skill: agent-orchestrator v1.3.0
 """
 
 import os
@@ -13,7 +13,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-mcp = FastMCP(name="agent-orchestrator", version="1.2.0")
+mcp = FastMCP(name="agent-orchestrator", version="1.3.0")
 
 @mcp.tool()
 async def orchestrate_workflow(

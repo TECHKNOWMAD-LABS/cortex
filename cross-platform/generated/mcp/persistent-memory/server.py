@@ -3,7 +3,7 @@
 SQLite-backed persistent memory with FTS5 full-text search for cross-session knowledge retention.
 
 Auto-generated MCP server from TECHKNOWMAD Universal Skill Manifest.
-Skill: persistent-memory v1.2.0
+Skill: persistent-memory v1.3.0
 """
 
 import os
@@ -13,7 +13,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-mcp = FastMCP(name="persistent-memory", version="1.2.0")
+mcp = FastMCP(name="persistent-memory", version="1.3.0")
 
 @mcp.tool()
 async def memory_operation(

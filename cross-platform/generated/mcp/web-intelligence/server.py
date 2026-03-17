@@ -3,7 +3,7 @@
 Live web scraping with Scrapling for social signals, academic evidence, and forum analysis.
 
 Auto-generated MCP server from TECHKNOWMAD Universal Skill Manifest.
-Skill: web-intelligence v1.2.0
+Skill: web-intelligence v1.3.0
 """
 
 import os
@@ -13,7 +13,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-mcp = FastMCP(name="web-intelligence", version="1.2.0")
+mcp = FastMCP(name="web-intelligence", version="1.3.0")
 
 
 @mcp.tool()

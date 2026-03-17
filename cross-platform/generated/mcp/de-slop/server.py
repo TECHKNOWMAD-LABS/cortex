@@ -3,7 +3,7 @@
 AI-generated writing pattern detection and removal. Scans for emoji in headers, hyperbolic language, buzzword stacking, and other LLM artifacts.
 
 Auto-generated MCP server from TECHKNOWMAD Universal Skill Manifest.
-Skill: de-slop v1.2.0
+Skill: de-slop v1.3.0
 """
 
 import os
@@ -13,7 +13,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-mcp = FastMCP(name="de-slop", version="1.2.0")
+mcp = FastMCP(name="de-slop", version="1.3.0")
 
 @mcp.tool()
 async def scan_content(

@@ -3,7 +3,7 @@
 Manages the full software development lifecycle from planning through deployment. Tracks phases, gates, artifacts, and provides automated status reporting across the entire pipeline.
 
 Auto-generated MCP server from TECHKNOWMAD Universal Skill Manifest.
-Skill: dev-lifecycle-engine v1.2.0
+Skill: dev-lifecycle-engine v1.3.0
 """
 
 import os
@@ -13,7 +13,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-mcp = FastMCP(name="dev-lifecycle-engine", version="1.2.0")
+mcp = FastMCP(name="dev-lifecycle-engine", version="1.3.0")
 
 @mcp.tool()
 async def manage_lifecycle(

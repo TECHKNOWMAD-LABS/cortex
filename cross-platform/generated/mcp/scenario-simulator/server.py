@@ -3,7 +3,7 @@
 Swarm-based what-if scenario simulation. Runs multi-persona scenario simulations with counterfactual analysis.
 
 Auto-generated MCP server from TECHKNOWMAD Universal Skill Manifest.
-Skill: scenario-simulator v1.2.0
+Skill: scenario-simulator v1.3.0
 """
 
 import os
@@ -13,7 +13,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-mcp = FastMCP(name="scenario-simulator", version="1.2.0")
+mcp = FastMCP(name="scenario-simulator", version="1.3.0")
 
 
 @mcp.tool()

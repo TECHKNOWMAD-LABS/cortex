@@ -3,7 +3,7 @@
 Analyzes, improves, and evolves Claude Code skills through automated metrics collection, A/B testing, and iterative refinement. Skills that improve themselves.
 
 Auto-generated MCP server from TECHKNOWMAD Universal Skill Manifest.
-Skill: meta-skill-evolver v1.2.0
+Skill: meta-skill-evolver v1.3.0
 """
 
 import os
@@ -13,7 +13,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-mcp = FastMCP(name="meta-skill-evolver", version="1.2.0")
+mcp = FastMCP(name="meta-skill-evolver", version="1.3.0")
 
 @mcp.tool()
 async def evolve_skill(

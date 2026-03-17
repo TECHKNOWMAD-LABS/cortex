@@ -35,11 +35,15 @@ pip install cortex-research-suite
 
 ## Quickstart — 3 entry points
 
-### 1. Browser (zero install)
+### 1. Petri Dish (zero install)
+
+Open `dashboards/petri-dish.html` in any browser. Press **EVOLVE**. Watch 27 AI skills compete, mutate, and evolve as living organisms across 10,000 generations — with generative audio, god mode, and Claude Judge integration.
+
+### 2. Browser Arena
 
 Open `dashboards/skill_arena_demo.html` in any browser. Paste your Anthropic API key. Pick a skill. Click **Run Experiment**. Watch the organism evolve in real time.
 
-### 2. Terminal
+### 3. Terminal
 
 ```bash
 

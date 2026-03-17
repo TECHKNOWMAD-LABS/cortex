@@ -3,7 +3,7 @@
 Multi-source intelligence analysis engine. Queries knowledge base for evidence, cross-references sources, and flags contradictions.
 
 Auto-generated MCP server from TECHKNOWMAD Universal Skill Manifest.
-Skill: intelligence-query v1.2.0
+Skill: intelligence-query v1.3.0
 """
 
 import os
@@ -13,7 +13,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-mcp = FastMCP(name="intelligence-query", version="1.2.0")
+mcp = FastMCP(name="intelligence-query", version="1.3.0")
 
 
 @mcp.tool()

@@ -9,5 +9,5 @@ simulation), and cross-platform adapters for Claude Code, MCP, LangChain,
 CrewAI, and OpenAI.
 """
 
-__version__ = "1.2.0"
+__version__ = "1.3.0"
 __author__ = "TECHKNOWMAD-LABS"

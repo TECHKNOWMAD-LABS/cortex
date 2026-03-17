@@ -3,7 +3,7 @@
 Validates Claude Code skill structure, frontmatter, scripts, and references against the canonical skill specification. Catches errors before packaging.
 
 Auto-generated MCP server from TECHKNOWMAD Universal Skill Manifest.
-Skill: skill-validator v1.2.0
+Skill: skill-validator v1.3.0
 """
 
 import os
@@ -13,7 +13,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-mcp = FastMCP(name="skill-validator", version="1.2.0")
+mcp = FastMCP(name="skill-validator", version="1.3.0")
 
 @mcp.tool()
 async def validate_skill(

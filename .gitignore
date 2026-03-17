@@ -64,6 +64,9 @@ scrapling_cache/
 # Dashboard server runtime
 .dashboard_state/
 
+# Simulation data (regenerate with: python skill-organism/evolution_simulator.py)
+skill-organism/simulations/
+
 # Environment
 .env
 .env.local

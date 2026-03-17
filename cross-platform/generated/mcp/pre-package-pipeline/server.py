@@ -3,7 +3,7 @@
 Pre-packaging validation pipeline for Claude Code skills. Validates structure, checks references, verifies scripts, and ensures packaging readiness before .skill file creation.
 
 Auto-generated MCP server from TECHKNOWMAD Universal Skill Manifest.
-Skill: pre-package-pipeline v1.2.0
+Skill: pre-package-pipeline v1.3.0
 """
 
 import os
@@ -13,7 +13,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-mcp = FastMCP(name="pre-package-pipeline", version="1.2.0")
+mcp = FastMCP(name="pre-package-pipeline", version="1.3.0")
 
 @mcp.tool()
 async def validate_package(

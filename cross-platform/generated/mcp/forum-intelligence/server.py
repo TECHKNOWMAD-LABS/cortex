@@ -3,7 +3,7 @@
 Forum thread analysis with coordination detection. Analyzes forum threads for viewpoints, coordination patterns, and emerging consensus.
 
 Auto-generated MCP server from TECHKNOWMAD Universal Skill Manifest.
-Skill: forum-intelligence v1.2.0
+Skill: forum-intelligence v1.3.0
 """
 
 import os
@@ -13,7 +13,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-mcp = FastMCP(name="forum-intelligence", version="1.2.0")
+mcp = FastMCP(name="forum-intelligence", version="1.3.0")
 
 
 @mcp.tool()

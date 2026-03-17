@@ -3,7 +3,7 @@
 Design system generation and component library scaffolding with tokens, themes, and documentation.
 
 Auto-generated MCP server from TECHKNOWMAD Universal Skill Manifest.
-Skill: design-system-forge v1.2.0
+Skill: design-system-forge v1.3.0
 """
 
 import os
@@ -13,7 +13,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-mcp = FastMCP(name="design-system-forge", version="1.2.0")
+mcp = FastMCP(name="design-system-forge", version="1.3.0")
 
 @mcp.tool()
 async def generate_design_system(

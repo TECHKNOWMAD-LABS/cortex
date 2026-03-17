@@ -3,7 +3,7 @@
 Prompt engineering and optimization. Analyzes, improves, and tests prompts for AI/ML tasks and agent systems.
 
 Auto-generated MCP server from TECHKNOWMAD Universal Skill Manifest.
-Skill: prompt-architect v1.2.0
+Skill: prompt-architect v1.3.0
 """
 
 import os
@@ -13,7 +13,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-mcp = FastMCP(name="prompt-architect", version="1.2.0")
+mcp = FastMCP(name="prompt-architect", version="1.3.0")
 
 @mcp.tool()
 async def optimize_prompt(

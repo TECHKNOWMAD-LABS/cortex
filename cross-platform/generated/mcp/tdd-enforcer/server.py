@@ -3,7 +3,7 @@
 Enforces test-driven development workflow. Validates that tests exist before implementation, checks coverage thresholds, detects test anti-patterns, and blocks commits without adequate test coverage.
 
 Auto-generated MCP server from TECHKNOWMAD Universal Skill Manifest.
-Skill: tdd-enforcer v1.2.0
+Skill: tdd-enforcer v1.3.0
 """
 
 import os
@@ -13,7 +13,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-mcp = FastMCP(name="tdd-enforcer", version="1.2.0")
+mcp = FastMCP(name="tdd-enforcer", version="1.3.0")
 
 @mcp.tool()
 async def enforce_tdd(

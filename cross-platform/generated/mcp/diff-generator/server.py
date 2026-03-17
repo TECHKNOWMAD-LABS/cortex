@@ -3,7 +3,7 @@
 Creates snapshot-based diffs of file system state. Captures before/after snapshots and generates structured change reports showing additions, deletions, and modifications.
 
 Auto-generated MCP server from TECHKNOWMAD Universal Skill Manifest.
-Skill: diff-generator v1.2.0
+Skill: diff-generator v1.3.0
 """
 
 import os
@@ -13,7 +13,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-mcp = FastMCP(name="diff-generator", version="1.2.0")
+mcp = FastMCP(name="diff-generator", version="1.3.0")
 
 @mcp.tool()
 async def generate_diff(

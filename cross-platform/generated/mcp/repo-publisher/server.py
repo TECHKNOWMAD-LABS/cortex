@@ -3,7 +3,7 @@
 Pre-publish pipeline for GitHub repositories. Chains security scanning, AI slop detection, structure validation, and repo metadata updates into a single workflow.
 
 Auto-generated MCP server from TECHKNOWMAD Universal Skill Manifest.
-Skill: repo-publisher v1.2.0
+Skill: repo-publisher v1.3.0
 """
 
 import os
@@ -13,7 +13,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-mcp = FastMCP(name="repo-publisher", version="1.2.0")
+mcp = FastMCP(name="repo-publisher", version="1.3.0")
 
 @mcp.tool()
 async def publish_repo(
