@@ -56,3 +56,14 @@ experiments/research_reports/
 .pypirc
 credentials.json
 cortex-research-suite
+
+# Live scraping cache
+.scrapling/
+scrapling_cache/
+
+# Dashboard server runtime
+.dashboard_state/
+
+# Environment
+.env
+.env.local
