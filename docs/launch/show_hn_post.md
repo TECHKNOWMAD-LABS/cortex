@@ -30,7 +30,7 @@ Works with Claude Code natively. Also supports LangChain, CrewAI, and OpenAI via
 
 - Python 3.10+
 - MIT license
-- 26 skills total (26 core skills including 5 trilogy integration skills)
+- 27 skills total (26 core skills including 5 trilogy integration skills)
 - MCP adapter layer for cross-framework compatibility
 - No vendor lock-in -- works with any LLM backend that supports tool use
 

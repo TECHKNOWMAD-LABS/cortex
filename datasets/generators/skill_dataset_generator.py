@@ -17,7 +17,7 @@ from pathlib import Path
 from typing import Any
 
 # ---------------------------------------------------------------------------
-# Skill template registry — default prompts for all 26 skills
+# Skill template registry — default prompts for all 27 skills
 # ---------------------------------------------------------------------------
 
 SKILL_TEMPLATES: dict[str, list[str]] = {
@@ -108,7 +108,7 @@ SKILL_TEMPLATES: dict[str, list[str]] = {
     "pre-package-pipeline": [
         "Validate that skill {skill} meets all packaging requirements for .skill format.",
         "Check the manifest.json for skill {skill} for completeness and schema compliance.",
-        "Run pre-packaging checks on all 26 skills and report which are ready.",
+        "Run pre-packaging checks on all 27 skills and report which are ready.",
         "Validate the dependency declarations for skill {skill}.",
         "Check that skill {skill} has all required files: SKILL.md, scripts/, references/.",
     ],

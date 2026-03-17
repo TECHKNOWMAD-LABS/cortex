@@ -75,7 +75,7 @@ cortex/
 │   ├── adapters/               # Platform adapter generators
 │   ├── tools/                  # Manifest generators and converters
 │   └── generated/              # Platform-specific outputs
-│       ├── mcp/                # FastMCP servers (26 skills)
+│       ├── mcp/                # FastMCP servers (27 skills)
 │       ├── langchain/          # LangChain BaseTool classes
 │       ├── crewai/             # CrewAI BaseTool classes
 │       ├── openai/             # OpenAPI 3.1 specs for GPT Actions

@@ -4,7 +4,7 @@
 [![MIT License](https://img.shields.io/badge/License-MIT-green)](LICENSE)
 [![GitHub Stars](https://img.shields.io/github/stars/TECHKNOWMAD-LABS/cortex-research-suite?style=social)](https://github.com/TECHKNOWMAD-LABS/cortex-research-suite)
 
-**Evolutionary intelligence for AI skill ecosystems, inspired by Karpathy's autoresearch pattern.** Cortex implements a biological evolution engine that treats AI skills as living organisms. Each skill has an ARENA.md (the "program.md" equivalent from autoresearch) that defines its evolution strategy. Skills compete in an LLM-as-Judge evaluation arena, adapt, breed, and evolve through natural selection, genetic mutation, and fitness-driven reproduction across 26 skills including trilogy integration (social listening, intelligence analysis, scenario simulation).
+**Evolutionary intelligence for AI skill ecosystems, inspired by Karpathy's autoresearch pattern.** Cortex implements a biological evolution engine that treats AI skills as living organisms. Each skill has an ARENA.md (the "program.md" equivalent from autoresearch) that defines its evolution strategy. Skills compete in an LLM-as-Judge evaluation arena, adapt, breed, and evolve through natural selection, genetic mutation, and fitness-driven reproduction across 27 skills including trilogy integration (social listening, intelligence analysis, scenario simulation).
 
 ---
 
@@ -111,7 +111,7 @@ python enterprise_runner.py  # Production mode
 
 ## Live Results
 
-From actual evolution run on 26-skill ecosystem (v1.1.0, includes 5 trilogy integration skills):
+From actual evolution run on 27-skill ecosystem (v1.2.0, includes 5 trilogy integration skills + web-intelligence):
 
 ```
 EVOLUTION CYCLE COMPLETE — 0.03s

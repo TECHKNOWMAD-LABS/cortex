@@ -32,7 +32,7 @@ Works with Claude Code natively. MCP adapters for LangChain, CrewAI, and OpenAI.
 
 **Technical details:**
 - Python 3.10+
-- 26 skills (26 core skills including 5 trilogy integration skills)
+- 27 skills (26 core skills including 5 trilogy integration skills)
 - MIT license
 - Deterministic, auditable evaluation traces
 - NVIDIA Inception Program member

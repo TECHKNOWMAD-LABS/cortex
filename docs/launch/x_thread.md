@@ -74,7 +74,7 @@ Inspired by the MiroFish pattern -- collective intelligence through simulated di
 
 Works natively with Claude Code. Also supports LangChain, CrewAI, and OpenAI through MCP adapters.
 
-26 skills total. Python. MIT license.
+27 skills total. Python. MIT license.
 
 Plug individual skills into your existing pipeline or run the full stack.
 

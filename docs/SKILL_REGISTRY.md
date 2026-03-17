@@ -1,6 +1,6 @@
 # Skill Registry
 
-Complete registry of all 26 skills in the Cortex Research Suite, including trilogy integration status.
+Complete registry of all 27 skills in the Cortex Research Suite, including trilogy integration status.
 
 ## Skills
 

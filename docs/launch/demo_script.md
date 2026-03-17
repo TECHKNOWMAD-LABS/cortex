@@ -167,7 +167,7 @@ cortex mcp --list-adapters
 
 **Narration:**
 
-"Finally, integration. Cortex works with Claude Code natively, and MCP adapters let you plug individual skills into LangChain, CrewAI, or OpenAI pipelines. 26 skills, MIT license, Python. The link is in the description."
+"Finally, integration. Cortex works with Claude Code natively, and MCP adapters let you plug individual skills into LangChain, CrewAI, or OpenAI pipelines. 27 skills, MIT license, Python. The link is in the description."
 
 **End card:** GitHub URL on screen.
 
