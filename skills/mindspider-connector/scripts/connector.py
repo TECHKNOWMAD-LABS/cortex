@@ -1,12 +1,14 @@
 """MindSpider connector — pulls trending topics from a MindSpider deployment.
 
-Supports two modes:
-  --source demo   : Generate synthetic demo data (no external connections)
-  --source mysql  : Connect to live MindSpider via MINDSPIDER_DB_URL env var
+Supports three modes:
+  --source demo      : Generate synthetic demo data (no external connections)
+  --source mysql     : Connect to live MindSpider via MINDSPIDER_DB_URL env var
+  --source scrapling : Scrape live topics from Reddit/HN/Bluesky via Scrapling
 
 Usage:
     python -m skills.mindspider-connector.scripts.connector --source demo
     python -m skills.mindspider-connector.scripts.connector --source mysql --domain "AI"
+    python -m skills.mindspider-connector.scripts.connector --source scrapling --domain "AI"
 """
 
 from __future__ import annotations
@@ -19,6 +21,18 @@ import sys
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from typing import Any
+
+try:
+    from skills.mindspider_connector.scripts.scrapling_source import fetch_live_topics
+
+    SCRAPLING_AVAILABLE = True
+except ImportError:
+    try:
+        from scrapling_source import fetch_live_topics  # type: ignore[no-redef]
+
+        SCRAPLING_AVAILABLE = True
+    except ImportError:
+        SCRAPLING_AVAILABLE = False
 
 MAX_INPUT_CHARS = 50000
 MAX_SAMPLE_POST_LEN = 280
@@ -62,12 +76,9 @@ def generate_demo_data(domain: str | None = None, n_topics: int = 15) -> list[di
                 "post_count": count + rng.randint(-100, 300),
                 "trend_direction": trend,
                 "sample_posts": [
-                    f"Sample post about {title.lower()} — perspective {i + 1}"[:MAX_SAMPLE_POST_LEN]
-                    for i in range(3)
+                    f"Sample post about {title.lower()} — perspective {i + 1}"[:MAX_SAMPLE_POST_LEN] for i in range(3)
                 ],
-                "platforms": rng.sample(
-                    ["twitter", "reddit", "weibo", "telegram", "mastodon"], k=rng.randint(2, 4)
-                ),
+                "platforms": rng.sample(["twitter", "reddit", "weibo", "telegram", "mastodon"], k=rng.randint(2, 4)),
                 "first_seen": (now - timedelta(hours=hours_ago)).isoformat(),
                 "peak_time": (now - timedelta(hours=peak_offset)).isoformat(),
             }
@@ -154,7 +165,18 @@ def fetch_mysql_topics(db_url: str, domain: str | None = None) -> list[dict[str,
 
 def run_connector(source: str = "demo", domain: str | None = None) -> dict[str, Any]:
     """Main connector logic."""
-    if source == "mysql":
+    if source == "scrapling":
+        if not SCRAPLING_AVAILABLE:
+            print("WARN: scrapling source unavailable, falling back to demo mode", file=sys.stderr)
+            source = "demo"
+            topics = generate_demo_data(domain)
+        else:
+            topics = fetch_live_topics(domain)
+            if not topics:
+                print("WARN: scrapling returned no topics, falling back to demo mode", file=sys.stderr)
+                source = "demo"
+                topics = generate_demo_data(domain)
+    elif source == "mysql":
         db_url = os.environ.get("MINDSPIDER_DB_URL", "")
         if not db_url:
             print("WARN: MINDSPIDER_DB_URL not set, falling back to demo mode", file=sys.stderr)
@@ -179,7 +201,7 @@ def run_connector(source: str = "demo", domain: str | None = None) -> dict[str, 
 
 def main() -> int:
     parser = argparse.ArgumentParser(description="MindSpider connector")
-    parser.add_argument("--source", choices=["demo", "mysql"], default="demo", help="Data source")
+    parser.add_argument("--source", choices=["demo", "mysql", "scrapling"], default="demo", help="Data source")
     parser.add_argument("--domain", default=None, help="Filter by domain keyword")
     parser.add_argument("--output", default=None, help="Output file path")
     parser.add_argument("--format", choices=["json", "jsonl"], default="json", help="Output format")

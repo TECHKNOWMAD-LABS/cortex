@@ -2,7 +2,7 @@
 """Synthetic dataset generator for skill evaluation.
 
 Generates n prompts per skill with 10% adversarial variants.
-Includes default templates for all 26 skill types.
+Includes default templates for all 27 skill types.
 """
 
 from __future__ import annotations
@@ -203,6 +203,13 @@ SKILL_TEMPLATES: dict[str, list[str]] = {
         "Run a multi-round counterfactual analysis on {topic} with escalating constraints.",
         "Generate scenario projections for {topic} under optimistic, baseline, and pessimistic assumptions.",
     ],
+    "web-intelligence": [
+        "Scrape live trending topics from Reddit, HN, and Bluesky and rank by engagement velocity.",
+        "Gather real-time evidence from Google Scholar and arXiv for a research claim about {topic}.",
+        "Run a live web intelligence sweep on {topic} with sentiment analysis across 3 platforms.",
+        "Collect forum threads about {topic} from the last 24 hours and extract key arguments.",
+        "Build a live evidence dossier for {topic} combining social signals, academic citations, and forum analysis.",
+    ],
 }
 
 # Fill-in variables
@@ -319,6 +326,7 @@ EXPECTED_STRUCTURES: dict[str, dict[str, Any]] = {
     "multimodal-analyst": {"content_types": [], "analysis": {}, "cross_modal_consistency": 0.0},
     "forum-intelligence": {"threads_analyzed": 0, "viewpoints": [], "coordination_score": 0.0, "consensus": ""},
     "scenario-simulator": {"scenarios": [], "personas": [], "counterfactuals": [], "projections": {}},
+    "web-intelligence": {"sources": [], "evidence": [], "sentiment": {}, "freshness_score": 0.0},
 }
 
 
@@ -426,7 +434,7 @@ def main() -> int:
         nargs="*",
         help="Multiple skills (comma or space separated)",
     )
-    parser.add_argument("--all-skills", action="store_true", help="Generate for all 26 skills")
+    parser.add_argument("--all-skills", action="store_true", help="Generate for all 27 skills")
     parser.add_argument("-n", "--n", type=int, default=50, help="Prompts per skill (default: 50)")
     parser.add_argument("--count", type=int, default=None, help="Alias for -n")
     parser.add_argument("--adversarial-ratio", type=float, default=0.10, help="Fraction of adversarial prompts")

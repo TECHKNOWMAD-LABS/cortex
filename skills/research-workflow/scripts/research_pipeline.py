@@ -20,6 +20,18 @@ from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any
 
+try:
+    from skills.research_workflow.scripts.evidence_scraper import scrape_evidence
+
+    EVIDENCE_SCRAPER_AVAILABLE = True
+except ImportError:
+    try:
+        from evidence_scraper import scrape_evidence  # type: ignore[no-redef]
+
+        EVIDENCE_SCRAPER_AVAILABLE = True
+    except ImportError:
+        EVIDENCE_SCRAPER_AVAILABLE = False
+
 
 # ---------------------------------------------------------------------------
 # Data model
@@ -504,6 +516,12 @@ def main() -> int:
     parser.add_argument("--topic", required=True, help="Research topic")
     parser.add_argument("--hypothesis", default=None, help="Pre-defined hypothesis (optional)")
     parser.add_argument("--output", type=Path, default=Path("experiments/research_output"), help="Output directory")
+    parser.add_argument(
+        "--live-evidence",
+        action="store_true",
+        default=False,
+        help="Scrape live academic evidence via Scrapling (requires scrapling)",
+    )
     args = parser.parse_args()
 
     print(f"Research Pipeline — Topic: {args.topic}")
@@ -511,6 +529,32 @@ def main() -> int:
 
     pipeline = ResearchPipeline()
     report = pipeline.run(args.topic, hypothesis=args.hypothesis)
+
+    # Merge live evidence if requested
+    if args.live_evidence:
+        if EVIDENCE_SCRAPER_AVAILABLE:
+            print("Scraping live academic evidence...", file=sys.stderr)
+            live_items = scrape_evidence(args.topic)
+            if live_items:
+                for item in live_items:
+                    report.evidence.append(
+                        Evidence(
+                            source=f"{item.get('source', 'web')}: {', '.join(item.get('authors', [])[:3])}",
+                            finding=item.get("snippet", item.get("title", ""))[:500],
+                            strength="moderate",
+                            direction="neutral",
+                            methodology=f"Scraped from {item.get('source', 'web')} ({item.get('year', 'n/a')})",
+                            limitations="Automatically scraped; requires manual verification",
+                        )
+                    )
+                print(f"  Merged {len(live_items)} live evidence items", file=sys.stderr)
+                # Re-run analysis with expanded evidence
+                analyzer = EvidenceAnalyzer()
+                report.analysis = analyzer.analyze(report.hypothesis, report.evidence)
+            else:
+                print("  No live evidence found", file=sys.stderr)
+        else:
+            print("WARN: evidence_scraper not available, skipping --live-evidence", file=sys.stderr)
 
     # Save
     paths = pipeline.save(report, args.output)
