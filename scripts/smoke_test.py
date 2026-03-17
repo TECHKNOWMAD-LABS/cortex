@@ -29,11 +29,11 @@ def main():
 
     # 1. Skill count
     skills = [p for p in (REPO_ROOT / "skills").iterdir() if (p / "SKILL.md").exists()]
-    check("26 skills with SKILL.md", len(skills) == 27, f"found {len(skills)}")
+    check("27 skills with SKILL.md", len(skills) == 27, f"found {len(skills)}")
 
     # 2. ARENA.md count
     arenas = [p for p in (REPO_ROOT / "skills").iterdir() if (p / "ARENA.md").exists()]
-    check("26 skills with ARENA.md", len(arenas) == 27, f"found {len(arenas)}")
+    check("27 skills with ARENA.md", len(arenas) == 27, f"found {len(arenas)}")
 
     # 3. Import all skill script modules (no ImportErrors)
     import_ok = True
