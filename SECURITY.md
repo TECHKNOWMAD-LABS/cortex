@@ -4,8 +4,11 @@
 
 | Version | Status |
 |---------|--------|
-| main    | Supported |
-| < 1.0   | Not Supported |
+| 1.3.x (current) | Fully Supported |
+| 1.2.x | Security fixes only |
+| 1.1.x | Security fixes only |
+| 1.0.x | Security fixes only |
+| < 1.0 | Not Supported |
 
 ## Reporting a Vulnerability
 

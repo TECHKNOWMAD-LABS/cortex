@@ -69,7 +69,7 @@ def main():
     try:
         from graph_store import GraphStore
 
-        GraphStore()
+        gs = GraphStore()  # noqa: F841
         check("GraphStore initialises", True)
     except Exception as e:
         check("GraphStore initialises", False, str(e))

@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "cortex-research-suite"
 version = "1.3.0"
-description = "AI Research Operating System — 27 self-evolving skills with live web intelligence (Scrapling), Karpathy's autoresearch pattern, Skill Organism genetic evolution, LLM-as-Judge evaluation, and trilogy integration"
+description = "AI Research Operating System — 27 self-evolving skills that compete, mutate, and evolve through genetic selection. Interactive Petri Dish visualization, 8 LLM judge providers, 6-platform support, and enterprise-grade security. Built on Karpathy's autoresearch pattern."
 readme = "README.md"
 license = {text = "MIT"}
 requires-python = ">=3.10"

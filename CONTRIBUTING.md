@@ -1,33 +1,43 @@
 # Contributing to Cortex Research Suite
 
-Cortex is an AI Research Operating System with 27 self-evolving skills built on Karpathy's autoresearch pattern. Each skill has an ARENA.md that defines its evolution strategy, a SKILL.md that defines its capabilities, and scripts that implement its logic. The Skill Organism engine runs genetic selection — skills compete, mutate, and the best variants survive.
+Thanks for your interest in contributing! Cortex is an AI Research Operating System where 27 self-evolving skills compete, mutate, and evolve through genetic selection. Whether you're adding a new skill, improving the evolution engine, or building dashboard visualizations — we'd love your help.
 
-## Submitting Issues
+## Where to Start
 
-Report bugs and request features by opening an issue:
-- **Bug Reports**: Include steps to reproduce, expected vs actual behavior, and your environment details
-- **Feature Requests**: Describe the use case and how the feature should work
+- **New skill** — Follow the [Adding a New Skill](#adding-a-new-skill) guide below
+- **Bug fix** — Check [open issues](https://github.com/TECHKNOWMAD-LABS/cortex-research-suite/issues) or report a new one
+- **Feature** — Open an issue to discuss your idea first
+- **Dashboard** — The Petri Dish and Arena dashboards are standalone HTML — easy to hack on
+- **Cross-platform adapter** — We maintain 162 adapters across 6 platforms
 
 ## Pull Request Process
 
 1. Fork the repository
 2. Create a feature branch: `git checkout -b feature/your-feature-name`
-3. Commit your changes following the format below
-4. Push to your fork and open a pull request against `main`
-5. Address review feedback and maintain branch up-to-date with main
+3. Make your changes (see code standards below)
+4. Run the full test suite: `pytest`
+5. Push to your fork and open a PR against `main`
+6. Address review feedback
 
-## Adding a new skill
+All PRs require:
+- Passing CI checks (ruff, bandit, pytest, security scan)
+- One approving review
+- No leaked secrets or credentials
 
-Directory structure:
+## Adding a New Skill
+
+Every skill follows the same structure:
+
 ```
 skills/{skill-name}/
-  SKILL.md         — skill instruction (the "code" the organism evolves)
-  ARENA.md         — arena config (the "program.md" — human edits this)
+  SKILL.md         — skill instruction (the "DNA" the organism evolves)
+  ARENA.md         — arena config (the "program.md" — evolution strategy)
   scripts/         — Python implementation scripts
   references/      — (optional) reference docs, checklists
 ```
 
-SKILL.md template:
+**SKILL.md template:**
+
 ```markdown
 # {skill-name}
 ## Overview — what this skill does
@@ -37,38 +47,40 @@ SKILL.md template:
 ## Common gotchas — failure modes to avoid
 ```
 
-ARENA.md: copy from any existing skill's ARENA.md, update:
-- `notes` field (what "better" means for YOUR skill)
-- `eval_budget_seconds` (30s default, increase for API-heavy skills)
-- `allowed_mutations` (which improvement strategies apply)
-- `trilogy` fields (if integrating with MindSpider/BettaFish/MiroFish)
+**ARENA.md:** Copy from any existing skill, then update:
+- `notes` — what "better" means for YOUR skill
+- `eval_budget_seconds` — 30s default, increase for API-heavy skills
+- `allowed_mutations` — which improvement strategies apply
+- `trilogy` fields — if integrating with MindSpider/BettaFish/MiroFish
 
-Running evaluation on your skill:
+**Test your skill:**
+
 ```bash
+# Generate evaluation dataset
 python3 datasets/generators/skill_dataset_generator.py --skill {skill-name} --n 50
+
+# Run LLM-as-Judge evaluation
 python3 skills/skill-test-harness/scripts/eval_judge.py \
   --skill {skill-name} \
   --dataset datasets/synthetic/{skill-name}/shard_000.json
-```
 
-Running evolution on your skill:
-```bash
+# Run evolution (optional — let the organism improve your skill)
 python3 skill-organism/enterprise_runner.py --skill {skill-name} --generations 5
 ```
 
 ## Code Standards
 
 **Python:**
-- Use type hints on all function parameters and return values
-- Write docstrings for all functions and classes (Google style)
-- Avoid bare `except:` clauses; catch specific exceptions
-- Use parameterized queries for SQL to prevent injection
-- Format code with ruff (line length 120)
+- Type hints on all function parameters and return values
+- Docstrings for all functions and classes (Google style)
+- No bare `except:` — catch specific exceptions
+- Parameterized queries for SQL (never f-strings)
+- Format with `ruff` (line length 120)
 
 **General:**
 - Keep functions focused and reasonably sized
-- Write meaningful variable names
-- Add inline comments for non-obvious logic
+- Meaningful variable names
+- Inline comments for non-obvious logic only
 
 ## Security Requirements
 
@@ -80,13 +92,22 @@ python3 skill-organism/enterprise_runner.py --skill {skill-name} --generations 5
 
 ## Testing
 
-- Run `bandit` on all Python code before submitting: `bandit -r .`
-- Add tests for new functionality
-- Ensure existing tests pass
+```bash
+# Run all 194 tests
+pytest
+
+# Run security scan
+bandit -r . -q
+
+# Run linter
+ruff check .
+
+# Smoke test (verifies all 27 skills, no API key needed)
+python scripts/smoke_test.py
+```
 
 ## Commit Message Format
 
-Use clear, concise messages:
 ```
 Brief summary of changes (50 chars max)
 
@@ -95,4 +116,4 @@ Longer explanation if needed. Explain the why, not just what changed.
 
 ## License
 
-This project is licensed under the MIT License. By contributing, you agree that your contributions will be licensed under the same terms.
+MIT. By contributing, you agree that your contributions will be licensed under the same terms.
