@@ -2,10 +2,7 @@
 
 from __future__ import annotations
 
-import pytest
-
 from cortex.models.router import ModelRouter
-from cortex.models.claude_provider import MockProvider
 
 
 class TestModelRouter:

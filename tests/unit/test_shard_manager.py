@@ -3,12 +3,11 @@
 from __future__ import annotations
 
 import tempfile
-from pathlib import Path
 
 import pytest
 
-from cortex.synthetic.shard_manager import ShardManager
 from cortex.synthetic.base_generator import GeneratedPrompt
+from cortex.synthetic.shard_manager import ShardManager
 
 
 class TestShardManager:

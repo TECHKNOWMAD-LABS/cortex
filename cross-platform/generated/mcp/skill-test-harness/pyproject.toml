@@ -1,0 +1,6 @@
+[project]
+name = "cortex-mcp-skill-test-harness"
+version = "1.3.0"
+description = "Provides automated testing infrastructure for MCP skills including unit tests, integration tests, and behavioral validation."
+requires-python = ">=3.12"
+dependencies = ["fastmcp~=3.1.0", "python-dotenv~=1.0.0"]

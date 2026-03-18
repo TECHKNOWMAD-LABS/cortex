@@ -6,9 +6,7 @@ import tempfile
 import time
 from pathlib import Path
 
-import pytest
-
-from cortex.telemetry.metrics import MetricsCollector, MetricRecord
+from cortex.telemetry.metrics import MetricRecord, MetricsCollector
 
 
 class TestMetricsCollector:

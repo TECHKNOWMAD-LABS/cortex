@@ -1,0 +1,6 @@
+[project]
+name = "cortex-mcp-intelligence-query"
+version = "1.3.0"
+description = "Executes structured intelligence queries across multiple data sources with result synthesis and confidence scoring."
+requires-python = ">=3.12"
+dependencies = ["fastmcp~=3.1.0", "python-dotenv~=1.0.0"]

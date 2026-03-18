@@ -52,7 +52,7 @@ def main() -> None:
     output_path = output_dir / f"{safe_name}.json"
     engine.save_report(report, output_path)
 
-    print(f"\nResearch Complete")
+    print("\nResearch Complete")
     print(f"  Stages: {len(report.pipeline_result.stages)}")
     print(f"  Tokens: {report.pipeline_result.total_tokens}")
     print(f"  Latency: {report.pipeline_result.total_latency_ms:.0f}ms")

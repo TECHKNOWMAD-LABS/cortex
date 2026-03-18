@@ -4,9 +4,9 @@ from __future__ import annotations
 
 import pytest
 
-from cortex.agents.base_agent import ResearcherAgent, CriticAgent, StrategistAgent, SynthesizerAgent
-from cortex.agents.orchestrator import AgentOrchestrator
+from cortex.agents.base_agent import CriticAgent, ResearcherAgent, StrategistAgent, SynthesizerAgent
 from cortex.agents.debate import DebateArena
+from cortex.agents.orchestrator import AgentOrchestrator
 from cortex.agents.task_graph import TaskGraph, TaskNode
 from cortex.models.claude_provider import MockProvider
 

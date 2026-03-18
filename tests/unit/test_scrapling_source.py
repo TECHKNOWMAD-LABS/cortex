@@ -10,8 +10,6 @@ import sys
 from pathlib import Path
 from unittest import mock
 
-import pytest
-
 # Make scrapling_source importable
 _SCRIPTS_DIR = Path(__file__).resolve().parent.parent.parent / "skills" / "mindspider-connector" / "scripts"
 sys.path.insert(0, str(_SCRIPTS_DIR))

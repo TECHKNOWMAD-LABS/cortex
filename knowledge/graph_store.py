@@ -29,7 +29,6 @@ from collections import defaultdict, deque
 from pathlib import Path
 from typing import Any, NamedTuple
 
-
 # ---------------------------------------------------------------------------
 # Data model
 # ---------------------------------------------------------------------------

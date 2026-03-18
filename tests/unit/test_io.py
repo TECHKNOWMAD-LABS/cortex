@@ -2,13 +2,12 @@
 
 from __future__ import annotations
 
-import json
 import tempfile
 from pathlib import Path
 
 import pytest
 
-from cortex.utils.io import read_json, write_json, read_jsonl, write_jsonl
+from cortex.utils.io import read_json, read_jsonl, write_json, write_jsonl
 
 
 class TestJson:

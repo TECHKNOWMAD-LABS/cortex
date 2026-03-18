@@ -16,13 +16,12 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
 from cortex.evaluation.benchmarks import BenchmarkSuite
-from cortex.evaluation.runner import EvaluationRunner
 from cortex.evaluation.judge import LLMJudge
 from cortex.evaluation.regression import RegressionDetector
+from cortex.evaluation.runner import EvaluationRunner
+from cortex.experiments import Experiment, ExperimentTracker
 from cortex.models.claude_provider import ClaudeProvider, MockProvider
 from cortex.telemetry.metrics import MetricsCollector
-from cortex.experiments import ExperimentTracker, Experiment
-from cortex.utils.io import write_json
 
 
 def main() -> None:
@@ -90,7 +89,7 @@ def main() -> None:
     print(f"  Mean latency: {report.mean_latency_ms}ms")
 
     if regressions:
-        print(f"\nRegression Check:")
+        print("\nRegression Check:")
         for r in regressions:
             status = "REGRESSED" if r.regressed else "OK"
             print(f"  {r.metric}: {r.baseline:.4f} -> {r.current:.4f} ({r.delta:+.4f}) [{status}]")

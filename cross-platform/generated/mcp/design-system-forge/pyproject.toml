@@ -1,0 +1,6 @@
+[project]
+name = "cortex-mcp-design-system-forge"
+version = "1.3.0"
+description = "Generates and maintains design system components, tokens, and documentation from specifications and existing codebases."
+requires-python = ">=3.12"
+dependencies = ["fastmcp~=3.1.0", "python-dotenv~=1.0.0"]

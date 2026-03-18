@@ -4,9 +4,9 @@ Verifies all components work without requiring an API key.
 Exit code 0 = all checks passed. Exit code 1 = fix before tagging.
 """
 
-from pathlib import Path
 import json
 import sys
+from pathlib import Path
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 CHECKS_PASSED = 0
@@ -69,7 +69,7 @@ def main():
     try:
         from graph_store import GraphStore
 
-        gs = GraphStore()
+        GraphStore()
         check("GraphStore initialises", True)
     except Exception as e:
         check("GraphStore initialises", False, str(e))

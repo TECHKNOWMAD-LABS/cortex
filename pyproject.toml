@@ -32,6 +32,9 @@ keywords = [
     "osint",
     "live-data",
     "scrapling",
+    "petri-dish",
+    "evolution-visualization",
+    "cross-platform",
 ]
 classifiers = [
     "Development Status :: 5 - Production/Stable",

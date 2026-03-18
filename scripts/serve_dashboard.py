@@ -24,7 +24,6 @@ import os
 import signal
 import sys
 import threading
-import time
 from http import HTTPStatus
 from http.server import HTTPServer, SimpleHTTPRequestHandler
 from pathlib import Path

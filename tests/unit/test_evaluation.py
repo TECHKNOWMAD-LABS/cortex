@@ -8,10 +8,9 @@ from pathlib import Path
 
 import pytest
 
-from cortex.evaluation.judge import LLMJudge, JudgeScore
-from cortex.evaluation.runner import EvaluationRunner, EvalResult
+from cortex.evaluation.benchmarks import BenchmarkSuite
+from cortex.evaluation.judge import JudgeScore, LLMJudge
 from cortex.evaluation.regression import RegressionDetector
-from cortex.evaluation.benchmarks import BenchmarkSuite, BenchmarkCase
 from cortex.models.claude_provider import MockProvider
 
 

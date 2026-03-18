@@ -5,11 +5,11 @@ from __future__ import annotations
 import pytest
 
 from cortex.utils.security import (
-    sanitize_input,
-    detect_injection,
-    validate_json_schema,
-    compute_hash,
     InputValidationError,
+    compute_hash,
+    detect_injection,
+    sanitize_input,
+    validate_json_schema,
 )
 
 

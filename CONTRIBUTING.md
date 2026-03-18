@@ -63,7 +63,7 @@ python3 skill-organism/enterprise_runner.py --skill {skill-name} --generations 5
 - Write docstrings for all functions and classes (Google style)
 - Avoid bare `except:` clauses; catch specific exceptions
 - Use parameterized queries for SQL to prevent injection
-- Format code with Black (line length 88)
+- Format code with ruff (line length 120)
 
 **General:**
 - Keep functions focused and reasonably sized

@@ -55,6 +55,9 @@ experiments/research_reports/
 *.p12
 .pypirc
 credentials.json
+secrets*
+*secrets*
+*.secret
 cortex-research-suite
 
 # Live scraping cache

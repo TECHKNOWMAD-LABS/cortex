@@ -37,7 +37,7 @@ pip install cortex-research-suite
 
 ### 1. Petri Dish (zero install)
 
-Open `dashboards/petri-dish.html` in any browser. Press **EVOLVE**. Watch 27 AI skills compete, mutate, and evolve as living organisms across 10,000 generations — with generative audio, god mode, and Claude Judge integration.
+Open `dashboards/petri-dish.html` in any browser. Press **EVOLVE**. Watch 27 AI skills compete, mutate, and evolve as living organisms across 10,000 generations — with generative audio, god mode, and 8 judge providers (Synthetic, Claude, GPT, Groq, Together AI, Ollama, LM Studio, Custom endpoints).
 
 ### 2. Browser Arena
 
@@ -65,7 +65,7 @@ python skills/agent-orchestrator/scripts/debate_engine.py \
 python skill-organism/enterprise_runner.py --overnight --generations 10
 ```
 
-### 3. Python API
+### 4. Python API
 
 ```python
 from cortex.synthetic.reasoning_generator import ReasoningGenerator
@@ -185,14 +185,17 @@ See [OVERNIGHT_USAGE.md](OVERNIGHT_USAGE.md) for autonomous evolution setup.
 
 ## Cross-Platform Support
 
-| Platform | Adapter Type | Status |
-|----------|-------------|--------|
-| Claude Code | Native Skills | Primary |
-| MCP (Model Context Protocol) | FastMCP Servers | Generated |
-| LangChain | Tool Classes | Generated |
-| CrewAI | Tool Wrappers | Generated |
-| OpenAI GPT Actions | Action Schemas | Generated |
-| VS Code / Copilot / Cursor / Windsurf / JetBrains | MCP via Extension | Compatible |
+All 27 skills are available across 6 platforms:
+
+| Platform | Adapter Type | Status | Directory |
+|----------|-------------|--------|-----------|
+| Claude Code | Native Skills | Primary | `skills/` |
+| MCP (Model Context Protocol) | FastMCP Servers | 27/27 Generated | `cross-platform/generated/mcp/` |
+| LangChain | Tool Classes | 27/27 Generated | `cross-platform/generated/langchain/` |
+| CrewAI | Tool Wrappers | 27/27 Generated | `cross-platform/generated/crewai/` |
+| OpenAI GPT Actions | OpenAPI Schemas | 27/27 Generated | `cross-platform/generated/openai/` |
+| AutoGen / Agents | Agent Manifests | 27/27 Generated | `cross-platform/generated/agents/` |
+| VS Code / Copilot / Cursor / Windsurf / JetBrains | MCP via Extension | Compatible | via MCP adapters |
 
 ## Project Structure
 
@@ -206,7 +209,7 @@ cortex-research-suite/
 ├── datasets/                  # Synthetic datasets + MindSpider feed
 ├── benchmarks/                # Baselines for all skills
 ├── dashboards/                # Browser dashboards (evolution, benchmark, arena)
-├── cross-platform/            # Generated adapters (MCP, LangChain, CrewAI, OpenAI)
+├── cross-platform/            # Generated adapters (MCP, LangChain, CrewAI, OpenAI, AutoGen)
 ├── packages/                  # Standalone packages (de-slop-cli)
 ├── docs/                      # Documentation site (GitHub Pages)
 ├── scripts/                   # CLI entry points and utilities

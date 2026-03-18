@@ -85,3 +85,14 @@ We follow a coordinated disclosure approach. Please allow 90 days from initial r
 - SKILL.md content truncated to 8,000 characters before API prompt injection
 - No eval(), Function(), or innerHTML on API response content
 - All diff rendering uses explicit HTML escaping
+
+### Petri Dish (petri-dish.html)
+- API keys stored in localStorage for persistence across sessions — users can clear via browser DevTools
+- Keys are never transmitted to any server other than the selected provider's official API endpoint
+- 8 judge providers supported: Anthropic, OpenAI, Groq, Together AI, Ollama (local), LM Studio (local), Custom
+- Local providers (Ollama, LM Studio) make requests to localhost only — no external network calls
+- Custom endpoint URL is user-supplied — verify the endpoint before entering API keys
+- All LLM responses are parsed as JSON only — no eval(), Function(), or dynamic code execution
+- Synthetic judge runs entirely client-side with no network calls
+- CORS header `anthropic-dangerous-direct-browser-access` required for Anthropic API (browser-only limitation)
+- Evolution engine is deterministic (seeded PRNG) — no server state or external data sources

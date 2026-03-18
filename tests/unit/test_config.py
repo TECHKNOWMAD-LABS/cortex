@@ -4,11 +4,10 @@ from __future__ import annotations
 
 import os
 import tempfile
-from pathlib import Path
 
 import pytest
 
-from cortex.config.settings import Settings, ModelConfig, DatasetConfig
+from cortex.config.settings import ModelConfig, Settings
 
 
 class TestSettings:
@@ -32,7 +31,7 @@ evaluation:
     - reasoning
 """
         try:
-            import yaml
+            import yaml  # noqa: F401
         except ImportError:
             pytest.skip("PyYAML not installed")
 
@@ -54,7 +53,7 @@ evaluation:
 
     def test_missing_yaml_returns_defaults(self):
         try:
-            import yaml
+            import yaml  # noqa: F401
         except ImportError:
             pytest.skip("PyYAML not installed")
         settings = Settings.from_yaml("/nonexistent/path.yaml")

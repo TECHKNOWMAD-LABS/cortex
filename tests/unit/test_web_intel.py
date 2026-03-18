@@ -10,8 +10,6 @@ import sys
 from pathlib import Path
 from unittest import mock
 
-import pytest
-
 # Make web_intel importable
 _SCRIPTS_DIR = Path(__file__).resolve().parent.parent.parent / "skills" / "web-intelligence" / "scripts"
 sys.path.insert(0, str(_SCRIPTS_DIR))

@@ -17,14 +17,14 @@ from pathlib import Path
 # Add project root to path
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
+from cortex.pipelines.dataset_pipeline import DatasetPipeline
 from cortex.synthetic import (
+    AdversarialGenerator,
+    DomainGenerator,
     ReasoningGenerator,
     ResearchGenerator,
     StrategyGenerator,
-    DomainGenerator,
-    AdversarialGenerator,
 )
-from cortex.pipelines.dataset_pipeline import DatasetPipeline
 
 
 def main() -> None:
@@ -69,7 +69,7 @@ def main() -> None:
     )
     report = pipeline.run(generators)
 
-    print(f"\nDataset Generation Complete")
+    print("\nDataset Generation Complete")
     print(f"  Generated: {report.total_generated}")
     print(f"  Valid:     {report.total_valid}")
     print(f"  Shards:    {report.shards_created}")

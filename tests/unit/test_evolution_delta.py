@@ -7,10 +7,7 @@ from __future__ import annotations
 
 import json
 import sys
-import tempfile
 from pathlib import Path
-
-import pytest
 
 # Make evolution_delta importable
 _ORGANISM_DIR = Path(__file__).resolve().parent.parent.parent / "skill-organism"

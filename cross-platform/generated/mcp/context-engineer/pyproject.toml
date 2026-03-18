@@ -1,0 +1,6 @@
+[project]
+name = "cortex-mcp-context-engineer"
+version = "1.3.0"
+description = "Constructs, compresses, and optimizes context windows for LLM interactions to maximize relevance and minimize token usage."
+requires-python = ">=3.12"
+dependencies = ["fastmcp~=3.1.0", "python-dotenv~=1.0.0"]

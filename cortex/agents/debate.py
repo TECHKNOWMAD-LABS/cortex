@@ -105,7 +105,6 @@ class DebateArena:
         start = time.time()
 
         proposer_input = f"Topic for debate: {topic}\n\nPresent your opening argument."
-        challenger_context = ""
 
         for round_num in range(1, self._num_rounds + 1):
             # Proposer argues
